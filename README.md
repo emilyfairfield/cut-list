@@ -17,7 +17,7 @@ First, let's list our assumptions:
 Next, let's see if we can formulate the problem as a Mixed Integer Linear Program (MILP):
 
 ### Objective Function:
-
+![](./objective.png)
 
 ## Future Work:
 * Create GUI for tool.
