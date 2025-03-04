@@ -5,4 +5,7 @@ I searched for an online tool, which, given my BOM, would tell me how many sheet
 
 I made due with that tool at the time just to get the project done, but I swore I would improve upon it. This is my attempt at doing just that.
 
-First, let's see if we can formulate the problem as a Mixed Integer Linear Program (MILP):
+First, let's list our assumptions:
+* test
+
+Next, let's see if we can formulate the problem as a Mixed Integer Linear Program (MILP):
