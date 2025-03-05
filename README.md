@@ -34,12 +34,16 @@ Based on the above, we need to come up with a reasonable upper limit for the qua
 
 ### Constraints:
 #### 1. All BOM items must be cut exactly once / from exactly one stock board:
+![](./images/constr1.png)
 
 #### 2. The thickness (smallest dimension) of the BOM item must match that of the stock item from which it's cut: 
+![](./images/constr2.png)
 
 #### 3. BOM items cannot exceed the boundaries of the stock board from which they're cut:
 
 #### 4. BOM items cannot overlap each other:
+
+#### 5. u_ij must be a non-negative integer:
 
 
 
