@@ -43,7 +43,7 @@ Based on the above, we need to come up with a reasonable upper limit for the qua
 
 #### 4. BOM items cannot overlap each other:
 
-#### 5. u_ij must be a non-negative integer:
+#### 5. All u_ij must be a non-negative integer:
 
 
 
