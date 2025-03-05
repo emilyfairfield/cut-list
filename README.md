@@ -18,18 +18,19 @@ First, let's list our assumptions:
 Next, let's see if we can formulate the problem as a Mixed Integer Linear Program (MILP):
 
 ### Objective Function & Decision Variables, Attempt 1:
-![](./objective.png)
+![](./images/objective.png)
 
 ### User Inputs:
 #### Bill of Materials:
-![](./inputs1.png)
+![](./images/inputs1.png)
 
 #### Stock Boards Available for Purchase:
-![](./inputs2.png)
+![](./images/inputs2.png)
 
 ### Objective Function & Decision Variables, Attempt 2:
 Based on the above, we need to come up with a reasonable upper limit for the quantity of each stock board required to fulfill our BOM. Because we are assuming feasibility, we know that in the worst case scenario, we can only cut one of our BOM boards from each stock board we buy. Of course, we don't know right off the bat which size of stock board would be paired with each BOM item in this worst case. So, a conservative upper limit would be one of *each* type of stock board *per* BOM item. Our new objective function & decision variables become:
-![](./objective2.png)
+
+![](./images/objective2.png)
 
 ### Constraints:
 #### 1. All BOM items must be cut exactly once / from exactly one stock board:
