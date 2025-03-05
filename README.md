@@ -27,14 +27,18 @@ Next, let's see if we can formulate the problem as a Mixed Integer Linear Progra
 #### Stock Boards Available for Purchase:
 ![](./inputs2.png)
 
-### Objective Function & Decision Variables, Attempt 2:
-Based on the above, we need to come up with a reasonable upper limit for the quantity of each stock board required to fulfill our BOM. Because we are assuming feasibility, we know that in the worst case scenario, we can only cut one of our BOM boards from each stock board we buy. Of course, we don't know right off the bat which size of stock board would be paired with each BOM item in this worst case. So, a conservative upper limit would be one of *each* type of stock board *per* BOM item. 
 ### Constraints:
+Based on the above, we need to come up with a reasonable upper limit for the quantity of each stock board required to fulfill our BOM. Because we are assuming feasibility, we know that in the worst case scenario, we can only cut one of our BOM boards from each stock board we buy. Of course, we don't know right off the bat which size of stock board would be paired with each BOM item in this worst case. So, a conservative upper limit would be one of *each* type of stock board *per* BOM item. 
+
 #### 1. All BOM items must be cut exactly once / from exactly one stock board:
 
-#### 2. BOM items cannot exceed the boundaries of the stock board from which they're cut:
+#### 2. The thickness (smallest dimension) of the BOM item must match that of the stock item from which it's cut: 
 
-#### 3. BOM items cannot overlap each other:
+#### 3. BOM items cannot exceed the boundaries of the stock board from which they're cut:
+
+#### 4. BOM items cannot overlap each other:
+
+### Objective Function & Decision Variables, Attempt 2:
 
 
 ## Future Work:
