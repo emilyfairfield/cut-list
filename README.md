@@ -4,7 +4,7 @@ A few years ago, my family and I built a murphy bed with bookcases in our home. 
 
 I searched for an online tool, which, given my BOM, would tell me how many sheets of plywood to buy, and subsequently, how to cut them, with the goal of minimizing cost. I found a tool that was close to what I needed - it told me how to cut stock boards to get my BOM, with the goal of using the fewest boards. However, it assumed I had these stock boards on hand and required that I input their quantities.
 
-I made due with that tool at the time just to get the project done, but I swore I would improve upon it. This is my attempt at doing just that.
+I made due with that tool at the time just to get the project done, but I swore I would improve upon it. This is my attempt at doing that.
 
 ## Assumptions:
 First, let's list our assumptions:
@@ -21,7 +21,19 @@ Next, let's see if we can formulate the problem as a Mixed Integer Linear Progra
 ![](./objective.png)
 
 ### User Inputs:
-![](./inputs.png)
+#### Bill of Materials:
+![](./inputs1.png)
+
+#### Stock Boards Available for Purchase:
+![](./inputs2.png)
+
+### Constraints:
+#### 1. All BOM items must be cut exactly once / from exactly one stock board:
+
+#### 2. BOM items cannot exceed the boundaries of the stock board from which they're cut:
+
+#### 3. BOM items cannot overlap each other:
+
 
 ## Future Work:
 * Create GUI for tool.
