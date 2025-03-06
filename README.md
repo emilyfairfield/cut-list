@@ -44,18 +44,7 @@ Based on the above, we need to come up with a reasonable upper limit for the qua
 ![](./images/constr3b.png)
 ![](./images/constr3c.png)
 
-Turning to ChatGPT for a little help converting the above inequality into a single term that evaluates to 0 when false and 1 when true:
-![](./images/constr3d.png)
 
-The above solution makes sense, but I can't use the min and max functions explicitly in my constraints within the confines of the scipy MILP library. So, I'll ask two follow up questions to ChatGPT. First, let's rewrite "min":
-![](./images/constr3e.png)
-
-Next, let's rewrite "max":
-![](./images/constr3f.png)
-
-The previous 2 responses raise the same problem as with min and max - I can't explicitly use "abs" in my constraints. 
-![](./images/constr3g.png)
-Of course... sqrt(z^2). Silly me.
 #### 4. BOM items cannot overlap each other:
 
 #### 5. All u_ij must be a non-negative integer:
