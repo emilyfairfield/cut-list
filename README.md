@@ -43,6 +43,10 @@ Based on the above, we need to come up with a reasonable upper limit for the qua
 ![](./images/constr3a.png)
 ![](./images/constr3b.png)
 ![](./images/constr3c.png)
+![](./images/constr3d.png)
+![](./images/constr3e.png)
+![](./images/constr3f.png)
+![](./images/constr3g.png)
 #### 4. BOM items cannot overlap each other:
 
 #### 5. All u_ij must be a non-negative integer:
