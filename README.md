@@ -45,7 +45,8 @@ Based on the above, we need to come up with a reasonable upper limit for the qua
 Let's enumerate all the ways board 1 can be "next to" board 2:
 ![](./images/constr3c.png)
 
-
+Wait. Let's simplify this by enumerating the ways 2 boards are NOT "next to each other":
+![](./images/constr3d.png)
 #### 4. BOM items cannot overlap each other:
 
 #### 5. All u_ij must be a non-negative integer:
