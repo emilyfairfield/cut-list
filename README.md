@@ -42,6 +42,7 @@ Based on the above, we need to come up with a reasonable upper limit for the qua
 #### 3. BOM items cannot exceed the boundaries of the stock board from which they're cut:
 ![](./images/constr3a.png)
 ![](./images/constr3b.png)
+Let's enumerate all the ways board 1 can be "next to" board 2:
 ![](./images/constr3c.png)
 
 
