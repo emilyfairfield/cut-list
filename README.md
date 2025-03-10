@@ -55,10 +55,10 @@ $min\left( \sum_{j=0}^m p_j \sum_{i=0}^n u_{ij} \right)$
 where  
 
 $$\begin{equation}
-(p, y) = 
+u_{ij} = 
 \begin{cases}
-    -\log(p) & \text{if }~~ y = 1 \\
-    -\log(1-p) & \text{otherwise.}
+    -\1 & \text{if }BOM item i is cut from stock board j \\
+    -\0 & \text{otherwise.}
 \end{cases}
 \end{equation}$$  
 
