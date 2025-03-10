@@ -54,10 +54,13 @@ Objective is still to minimize cost, but we need to expand on $q_i$:
 $min\left( \sum_{j=0}^m p_j \sum_{i=0}^n u_{ij} \right)$  
 where  
 
-\mathrm{CE}(p, y) = \begin{cases}
-    -\log(p) & \text{if } y = 1 \\
+$$\begin{equation}
+(p, y) = 
+\begin{cases}
+    -\log(p) & \text{if }~~ y = 1 \\
     -\log(1-p) & \text{otherwise.}
 \end{cases}
+\end{equation}$$  
 
 ![](./images/objective2.png)
 
