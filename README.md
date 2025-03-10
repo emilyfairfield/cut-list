@@ -57,7 +57,7 @@ where
 $
 \begin{aligned}
 \begin{equation}
-&u_{ij} = 
+u_{ij} = 
 \begin{cases}
     1 & \text{if BOM item i is cut from stock board j} \\
     0 & \text{otherwise.}
