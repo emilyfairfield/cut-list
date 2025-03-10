@@ -53,12 +53,12 @@ Based on the above, we need to come up with a reasonable upper limit for the qua
 Objective is still to minimize cost, but we need to expand on $q_i$:  
 $min\left( \sum_{j=0}^m p_j \sum_{i=0}^n u_{ij} \right)$  
 where  
-$\[ f(n) =
+$$\[ f(n) =
   \begin{cases}
     n/2       & \quad \text{if } n \text{ is even}\\
     -(n+1)/2  & \quad \text{if } n \text{ is odd}
   \end{cases}
-\]$  
+\]$$  
 ![](./images/objective2.png)
 
 ### Constraints:
