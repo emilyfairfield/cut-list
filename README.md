@@ -55,7 +55,7 @@ $min\left( \sum_{j=0}^m p_j \sum_{i=0}^n u_{ij} \right)$
 where  
 $$
 \mathrm{CE}(p, y) = \begin{cases}
-    -\log(p) & \text{if } y = 1 \\ % & is your "\tab"-like command (it's a tab alignment character)
+    -\log(p) & \text{if } y = 1 \\
     -\log(1-p) & \text{otherwise.}
 \end{cases}
 $$  
