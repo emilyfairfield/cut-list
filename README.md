@@ -19,11 +19,11 @@ Next, let's see if we can formulate the problem as a Mixed Integer Linear Progra
 
 ### Objective Function & Decision Variables, Attempt 1:
 **Objective is to minimize cost:**\
-$$min\left( \sum_{j=0}^&infin; p_j q_j \right)$$  
+$min\left( \sum_{j=0}^&infin; p_j q_j \right)$  
 where:
 
-$$p_j: price of stock item j$$
-$$q_j: our **decision variable,** representing quantity of stock item j to buy$$
+$p_j: price of stock item j$
+$q_j: our **decision variable,** representing quantity of stock item j to buy$
 ![](./images/objective.png)
 
 ### User Inputs:
