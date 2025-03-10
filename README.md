@@ -25,7 +25,13 @@ $p_j:$ price of stock item $j$
 $q_j:$ our **decision variables**, representing quantity of stock item $j$ to buy    
 
 ### User Inputs:
-#### Bill of Materials:
+#### Bill of Materials (BOM):
+$a_i:$ length/max dimension of BOM item $i$  
+$b_i:$ width/mid dimension of BOM item $i$  
+$c_i:$ height/min dimension of BOM item $i$  
+
+(where $a_i \geq b_i \geq c_i$)
+
 ![](./images/inputs1.png)
 
 #### Stock Boards Available for Purchase:
