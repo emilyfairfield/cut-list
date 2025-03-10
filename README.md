@@ -54,7 +54,17 @@ Objective is still to minimize cost, but we need to expand on $q_i$:
 $min\left( \sum_{j=0}^m p_j \sum_{i=0}^n u_{ij} \right)$  
 where  
 
-$\begin{equation}u_{ij} = \begin{cases}1 & \text{if BOM item i is cut from stock board j} \\0 & \text{otherwise.}\end{cases}\end{equation}$     
+```math
+\begin{aligned}
+\begin{equation}
+u_{ij} = 
+\begin{cases}
+    1 & \text{if BOM item i is cut from stock board j} \\
+    0 & \text{otherwise.}
+\end{cases}
+\end{equation}
+\end{aligned}
+```   
 
 ![](./images/objective2.png)
 
