@@ -30,12 +30,22 @@ $a_i:$ length/max dimension of BOM item $i$
 $b_i:$ width/mid dimension of BOM item $i$  
 $c_i:$ height/min dimension of BOM item $i$  
 
-(where $a_i \geq b_i \geq c_i$)
+(where $a_i \geq b_i \geq c_i$)  
 
-![](./images/inputs1.png)
+For model simplicity, $i$ is one **instance** of a board with given dimensions. If you need 2 of the same board, its dimensions must be given twice.
 
 #### Stock Boards Available for Purchase:
-![](./images/inputs2.png)
+$l_j:$ length/max dimension of stock item $j$  
+$w_j:$ width/mid dimension of stock item $j$  
+$h_j:$ height/min dimension of stock item $j$  
+
+(where $l_j \geq w_j \geq h_j$)  
+
+$p_j:$ price of stock item $j$  
+
+For model simplicity, $j$ is one **instance** of a stock board with given dimensions. Require the user to give the information only once, but the tool should automatically duplicate it several times*.
+
+*Needs to be defined
 
 ### Objective Function & Decision Variables, Attempt 2:
 Based on the above, we need to come up with a reasonable upper limit for the quantity of each stock board required to fulfill our BOM. Because we are assuming feasibility, we know that in the worst case scenario, we can only cut one of our BOM boards from each stock board we buy. Of course, we don't know right off the bat which size of stock board would be paired with each BOM item in this worst case. So, a conservative upper limit would be one of *each* type of stock board *per* BOM item. Our new objective function & decision variables become:
