@@ -55,8 +55,8 @@ $min\left( \sum_{j=0}^m p_j \sum_{i=0}^n u_{ij} \right)$
 where  
 $$\[ f(n) =
   \begin{cases}
-    n/2       & \quad \text{if } n \text{ is even}\\
-    -(n+1)/2  & \quad \text{if } n \text{ is odd}
+    n/2       & \quad \mathrm{if } n \mathrm{ is even}\\
+    -(n+1)/2  & \quad \mathrm{if } n \mathrm{ is odd}
   \end{cases}
 \]$$  
 ![](./images/objective2.png)
