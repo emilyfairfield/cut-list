@@ -54,7 +54,7 @@ Objective is still to minimize cost, but we need to expand on $q_i$:
 $min\left( \sum_{j=0}^m p_j \sum_{i=0}^n u_{ij} \right)$  
 where  
 
-$
+```math
 \begin{aligned}
 \begin{equation}
 u_{ij} = 
@@ -64,7 +64,7 @@ u_{ij} =
 \end{cases}
 \end{equation}
 \end{aligned}
-$   
+```   
 
 ![](./images/objective2.png)
 
