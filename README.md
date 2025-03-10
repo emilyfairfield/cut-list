@@ -22,8 +22,7 @@ Next, let's see if we can formulate the problem as a Mixed Integer Linear Progra
 $min\left( \sum_{j=0}^&infin; p_j q_j \right)$  
 where:  
 $p_j:$ price of stock item $j$    
-$q_j:$ our decision variable, representing quantity of stock item $j$ to buy    
-![](./images/objective.png)
+$q_j:$ our **decision variables**, representing quantity of stock item $j$ to buy    
 
 ### User Inputs:
 #### Bill of Materials:
