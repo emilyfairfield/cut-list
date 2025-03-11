@@ -108,10 +108,24 @@ $y_i:$ y coordinate of BOM item $i$'s upper left corner with respect to the uppe
 
 Looking again at the example cut pattern above, there's one more element to this problem that we haven't yet considered. To enable the model to rotate boards, we will also need a decision variable to indicated whether a BOM item is "rotated" with respect to the stock sheet from which it's cut. A BOM item will be considered "rotated" if its longest dimension is **NOT** parallel to the stock board's longest dimension. Call this additional decision variable $r_i$, where:
 
-$`r_i = \begin{cases} 1 & \text{if BOM item} i \text{is rotated wrt its stock board} \\ 0 & \text{otherwise} \end{cases}`$ 
+$`r_i = \begin{cases} 1 & \text{if BOM item } i \text{ is rotated wrt its stock board} \\ 0 & \text{otherwise} \end{cases}`$ 
 
-![](./images/constr3a.png)
-![](./images/constr3b.png)
+Using these new decision variables and our existing decision variables $u_{ij}$, we need to devise our constraints that prevent BOM items from exceeding the boundaries of the stock board from which they're cut. Using the above diagram:  
+
+![](./images/constr3a_table.png)  
+
+##### 3a. BOM items' width cannot exceed width of stock board:
+
+![](./images/constr3b.png)  
+
+But wait. This is too restrictive. We don't want the total width of all 5 BOM items to be $\leq$ the stock width. We only want that to be true of each of the following groups of boards because they're next to each other:
+
+![](./images/constr3_groups.png)  
+
+We need to incorporate a "next to each other" term into the constraint above.
+
+![](./images/constr3a_scoot.png) 
+
 Let's enumerate all the ways board 1 can be "next to" board 2:
 ![](./images/constr3c.png)
 
