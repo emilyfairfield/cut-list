@@ -64,7 +64,7 @@ $m:$ upper limit of stock items = number of different types of board $* n$
 
 ### Constraints:
 #### 1. All BOM items must be cut exactly once / from exactly one stock board:
-$\sum_{j=1}^m u_{ij} \eq 1 \forall i$  
+$\sum_{j=1}^m u_{ij} = 1  \forall i$  
 ![](./images/constr1.png)
 
 #### 2. The thickness (smallest dimension) of each BOM item must match that of the stock item from which it's cut: 
