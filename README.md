@@ -55,16 +55,16 @@ $min\left( \sum_{j=0}^m p_j \sum_{i=0}^n u_{ij} \right)$
 where  
 
 ```math
-\begin{flalign}
 \begin{equation}
+\begin{flalign}
 u_{ij} = 
 \begin{cases}
     1 & \text{if BOM item i is cut from stock board j} \\
     0 & \text{otherwise.}
 \end{cases}
-\end{equation}
 \end{flalign}
-```   
+\end{equation}
+```     
 
 ![](./images/objective2.png)
 
