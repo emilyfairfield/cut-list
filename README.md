@@ -61,9 +61,9 @@ u_{ij} =
     1 & \text{if BOM item i is cut from stock board j} \\
     0 & \text{otherwise.}
 \end{cases}
-\end{equation}$$
+\end{equation}$$  
 
-f(x) = $ \begin{cases} x & \text{if } x \ge 0 \\ -x & \text{if } x < 0 \end{cases} $
+f(x) = $ \begin{cases} x & \text{if } x \ge 0 \\ -x & \text{if } x < 0 \end{cases} $  
 
 ![](./images/objective2.png)
 
