@@ -19,7 +19,7 @@ Next, let's see if we can formulate the problem as a Mixed Integer Linear Progra
 
 ### Objective Function & Decision Variables, Attempt 1:
 **Objective is to minimize cost:**\
-$min\left( \sum_{j=0}^&infin; p_j q_j \right)$  
+$min\left( \sum_{j=1}^&infin; p_j q_j \right)$  
 where:  
 $p_j:$ price of stock item $j$    
 $q_j:$ our **decision variables**, representing quantity of stock item $j$ to buy    
@@ -52,7 +52,7 @@ Based on the above, we need to come up with a reasonable upper limit for the qua
 
 Objective is still to minimize cost, but we need to expand on $q_i$:  
 
-$min\left( \sum_{j=0}^m p_j \sum_{i=0}^n u_{ij} \right)$  
+$min\left( \sum_{j=1}^m p_j \sum_{i=1}^n u_{ij} \right)$  
 
 where   
 
@@ -62,10 +62,9 @@ $p_j:$ price of stock item $j$
 $n:$ total number of BOM items  
 $m:$ upper limit of stock items = number of different types of board $* n$  
 
-![](./images/objective2.png)
-
 ### Constraints:
 #### 1. All BOM items must be cut exactly once / from exactly one stock board:
+$\sum_{j=1}^m u_{ij} = 1 \forall i$  
 ![](./images/constr1.png)
 
 #### 2. The thickness (smallest dimension) of each BOM item must match that of the stock item from which it's cut: 
