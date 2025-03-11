@@ -98,13 +98,17 @@ Using the intentionally complex cut pattern example below, let's consider how to
 
 ![](./images/example_cuts.png)  
 
-We're going to need additional decision variables, to answer not just "is board i cut from board j?" but also, "what is the cut pattern for board j?". To this end, let's create additional decision variables for each BOM item's x and y coordinates with respect to the stock board. Arbitrarily choose the BOM item's upper left corner to be the point represented by $(x_i,y_i)$, such that:  
+We're going to need additional decision variables, to answer not just "Is BOM item $i$ cut from stock board $j$?" but also, "What is the cut pattern for stock board $j$?". 
 
-$x_i:$ x coordinate of BOM item $i$'s upper left corner with respect to the upper left corner of the stock board from which its cut  
+To this end, let's create additional decision variables for each BOM item's x and y coordinates with respect to the stock board. Arbitrarily choose the BOM item's upper left corner to be the point represented by $(x_i,y_i)$, such that:  
 
-$y_i:$ y coordinate of BOM item $i$'s upper left corner with respect to the upper left corner of the stock board from which its cut
+$x_i:$ x coordinate of BOM item $i$'s upper left corner with respect to the upper left corner of the stock board from which it's cut  
 
+$y_i:$ y coordinate of BOM item $i$'s upper left corner with respect to the upper left corner of the stock board from which it's cut
 
+Looking again at the example cut pattern above, there's one more element to this problem that we haven't yet considered. To enable the model to rotate boards, we will also need a decision variable to indicated whether a BOM item is "rotated" with respect to the stock sheet from which it's cut. A BOM item will be considered "rotated" if its longest dimension is **NOT** parallel to the stock board's longest dimension. Call this additional decision variable $r_i$, where:
+
+$`r_i = \begin{cases} 1 & \text{if BOM item} i \text{is rotated wrt its stock board} \\ 0 & \text{otherwise} \end{cases}`$ 
 
 ![](./images/constr3a.png)
 ![](./images/constr3b.png)
