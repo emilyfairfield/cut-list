@@ -56,7 +56,9 @@ $min\left( \sum_{j=1}^m p_j \sum_{i=1}^n u_{ij} \right)$
 
 where   
 
-$`u_{ij}: \text{our decision variables} = \begin{cases} 1 & \text{if BOM item i is cut from stock board j} \\ 0 & \text{otherwise} \end{cases}`$  
+
+$u_{ij}:$ our **decision variables**, defined as follows:  
+$`u_{ij} = \begin{cases} 1 & \text{if BOM item i is cut from stock board j} \\ 0 & \text{otherwise} \end{cases}`$  
 
 $p_j:$ price of stock item $j$  
 $n:$ total number of BOM items  
@@ -86,6 +88,9 @@ YES!
 We need BOTH of the following:
 
 $u_{ij} \leq \frac{c_i}{h_j} \forall i,j$
+$u_{ij} \leq \frac{h_j}{c_i} \forall i,j$
+
+If $c_i \neq h_j$, then one of these ratios will be less than one, and since $u_{ij} \in \{0,1\}$, this will force $u_{ij} = 0$.
 
 ![](./images/constr2.png)
 
