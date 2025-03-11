@@ -67,11 +67,18 @@ $m:$ upper limit of stock items = number of different types of board $* n$
 $\sum_{j=1}^m u_{ij} = 1  \forall i$  
 
 #### 2. The thickness (smallest dimension) of each BOM item must match that of the stock item from which it's cut: 
-We know that:
+We want to constrain our problem such that:
 
 $`u_{ij} = \begin{cases} 0 & \text{if } c_i \neq h_j \\ \in \{0,1\} & \text{otherwise} \end{cases}`$  
 
-How can this be expressed as an inequality / constraint?
+How can this be expressed as an inequality / constraint? Let's consider some examples:
+
+| $c_i$  | $h_i$ | Desired $u_{ij}$ Upper Limit |
+| ------------- | ------------- | ------------- |
+| 0.75  | 0.75  | 1 (or more)  |
+| 0.75  | 0.5  | 0  |
+| 0.5  | 0.75  | 0  |
+
 
 ![](./images/constr2.png)
 
