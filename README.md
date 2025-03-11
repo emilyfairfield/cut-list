@@ -56,7 +56,7 @@ $min\left( \sum_{j=1}^m p_j \sum_{i=1}^n u_{ij} \right)$
 
 where   
 
-$`u_{ij}: \text{our decision variables} = \begin{cases} 1 & \text{if BOM item i is cut from stock board j} \\ 0 & \text{otherwise} \end{cases}`$  
+$`u_{ij}: \text{our **decision variables**} = \begin{cases} 1 & \text{if BOM item i is cut from stock board j} \\ 0 & \text{otherwise} \end{cases}`$  
 
 $p_j:$ price of stock item $j$  
 $n:$ total number of BOM items  
@@ -65,9 +65,9 @@ $m:$ upper limit of stock items = number of different types of board $* n$
 ### Constraints:
 #### 1. All BOM items must be cut exactly once / from exactly one stock board:
 $\sum_{j=1}^m u_{ij} = 1  \forall i$  
-![](./images/constr1.png)
 
 #### 2. The thickness (smallest dimension) of each BOM item must match that of the stock item from which it's cut: 
+
 ![](./images/constr2.png)
 
 #### 3. BOM items cannot exceed the boundaries of the stock board from which they're cut:
