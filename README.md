@@ -34,16 +34,14 @@ $c_i:$ height/min dimension of BOM item $i$
 
 For model simplicity, $i$ is one **instance** of a board with given dimensions. If you need 2 of the same board, its dimensions must be given twice.
 
-#### Stock Boards Available for Purchase:  
-
-$$
+#### Stock Boards Available for Purchase:
 $l_j:$ length/max dimension of stock item $j$  
 $w_j:$ width/mid dimension of stock item $j$  
 $h_j:$ height/min dimension of stock item $j$  
 
 (where $l_j \geq w_j \geq h_j$)  
 
-$p_j:$ price of stock item $j$ $$    
+$p_j:$ price of stock item $j$  
 
 For model simplicity, $j$ is one **instance** of a stock board with given dimensions. Require the user to give the information only once, but the tool should automatically duplicate it several times*.
 
@@ -53,7 +51,7 @@ For model simplicity, $j$ is one **instance** of a stock board with given dimens
 Based on the above, we need to come up with a reasonable upper limit for the quantity of each stock board required to fulfill our BOM. Because we are assuming feasibility, we know that in the worst case scenario, we can only cut one of our BOM boards from each stock board we buy. Of course, we don't know right off the bat which size of stock board would be paired with each BOM item in this worst case. So, a conservative upper limit would be one of *each* type of stock board *per* BOM item.
 
 Objective is still to minimize cost, but we need to expand on $q_i$:  
-$$min\left( \sum_{j=0}^m p_j \sum_{i=0}^n u_{ij} \right)$$  
+$min\left( \sum_{j=0}^m p_j \sum_{i=0}^n u_{ij} \right)$  
 where  
 
 $$
@@ -63,7 +61,9 @@ u_{ij} =
     1 & \text{if BOM item i is cut from stock board j} \\
     0 & \text{otherwise.}
 \end{cases}
-\end{equation}$$       
+\end{equation}$$
+
+"f(x) = $ \begin{cases} x & \text{if } x \ge 0 \\ -x & \text{if } x < 0 \end{cases} $"
 
 ![](./images/objective2.png)
 
