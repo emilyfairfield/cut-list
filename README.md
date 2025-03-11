@@ -55,7 +55,7 @@ $min\left( \sum_{j=0}^m p_j \sum_{i=0}^n u_{ij} \right)$
 where  
 
 ```math
-\begin{equation}
+% \begin{equation}
 \begin{flalign}
 u_{ij} = 
 \begin{cases}
@@ -63,7 +63,7 @@ u_{ij} =
     0 & \text{otherwise.}
 \end{cases}
 \end{flalign}
-\end{equation}
+% \end{equation}
 ```     
 
 ![](./images/objective2.png)
