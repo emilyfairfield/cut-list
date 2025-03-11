@@ -34,7 +34,8 @@ $c_i:$ height/min dimension of BOM item $i$
 
 For model simplicity, $i$ is one **instance** of a board with given dimensions. If you need 2 of the same board, its dimensions must be given twice.
 
-#### Stock Boards Available for Purchase:
+#### Stock Boards Available for Purchase:  
+
 $$
 $l_j:$ length/max dimension of stock item $j$  
 $w_j:$ width/mid dimension of stock item $j$  
@@ -42,8 +43,7 @@ $h_j:$ height/min dimension of stock item $j$
 
 (where $l_j \geq w_j \geq h_j$)  
 
-$p_j:$ price of stock item $j$  
-$$
+$p_j:$ price of stock item $j$ $$    
 
 For model simplicity, $j$ is one **instance** of a stock board with given dimensions. Require the user to give the information only once, but the tool should automatically duplicate it several times*.
 
