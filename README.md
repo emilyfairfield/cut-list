@@ -87,12 +87,10 @@ YES!
 
 We need BOTH of the following:
 
-$u_{ij} \leq \frac{c_i}{h_j} \forall i,j$
+$u_{ij} \leq \frac{c_i}{h_j} \forall i,j$  
 $u_{ij} \leq \frac{h_j}{c_i} \forall i,j$
 
-If $c_i \neq h_j$, then one of these ratios will be less than one, and since $u_{ij} \in \{0,1\}$, this will force $u_{ij} = 0$.
-
-![](./images/constr2.png)
+Because if $c_i \neq h_j$, then one of the above ratios will be less than one, and since $u_{ij} \in \{0,1\}$, this will force $u_{ij} = 0$.
 
 #### 3. BOM items cannot exceed the boundaries of the stock board from which they're cut:
 ![](./images/constr3a.png)
