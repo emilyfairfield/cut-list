@@ -94,6 +94,18 @@ $u_{ij} \leq \frac{h_j}{c_i} \forall i,j$
 Because if $c_i \neq h_j$, then one of the above ratios will be less than one, and since $u_{ij} \in \{0,1\}$, this will force $u_{ij} = 0$.
 
 #### 3. BOM items cannot exceed the boundaries of the stock board from which they're cut:
+Using the intentionally complex cut pattern example below, let's consider how to write this constraint in terms of our decision variables.
+
+![](./images/example_cuts.png)  
+
+We're going to need additional decision variables, to answer not just "is board i cut from board j?" but also, "what is the cut pattern for board j?". To this end, let's create additional decision variables for each BOM item's x and y coordinates with respect to the stock board. Arbitrarily choose the BOM item's upper left corner to be the point represented by $(x_i,y_i)$, such that:  
+
+$x_i:$ x coordinate of BOM item $i$'s upper left corner with respect to the upper left corner of the stock board from which its cut  
+
+$y_i:$ y coordinate of BOM item $i$'s upper left corner with respect to the upper left corner of the stock board from which its cut
+
+
+
 ![](./images/constr3a.png)
 ![](./images/constr3b.png)
 Let's enumerate all the ways board 1 can be "next to" board 2:
