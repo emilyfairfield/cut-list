@@ -73,12 +73,19 @@ $`u_{ij} = \begin{cases} 0 & \text{if } c_i \neq h_j \\ \in \{0,1\} & \text{othe
 
 How can this be expressed as an inequality / constraint? Let's consider some examples:
 
-| $c_i$  | $h_i$ | Desired $u_{ij}$ Upper Limit |
+| $c_i$  | $h_j$ | Desired $u_{ij}$ Upper Limit |
 | ------------- | ------------- | ------------- |
 | 0.75  | 0.75  | 1 (or more)  |
 | 0.75  | 0.5  | 0  |
 | 0.5  | 0.75  | 0  |
 
+Can we use the ratio of $c_i$ to $h_j$ to get the desired $u_{ij}$?
+
+YES!
+
+We need BOTH of the following:
+
+$u_{ij} \leq \frac{c_i}{h_j} \forall i,j$
 
 ![](./images/constr2.png)
 
