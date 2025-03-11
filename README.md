@@ -132,6 +132,9 @@ Let's enumerate all the ways board 1 can be "next to" board 2:
 Wait. Let's simplify this by enumerating the ways 2 boards are NOT "next to each other":
 ![](./images/constr3d.png)
 
+
+##### 3b. BOM items' height cannot exceed height of stock board:
+
 #### 4. BOM items cannot overlap each other:
 
 #### 5. All u_ij must be a non-negative integer:
