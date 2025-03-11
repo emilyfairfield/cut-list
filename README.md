@@ -52,18 +52,9 @@ Based on the above, we need to come up with a reasonable upper limit for the qua
 
 Objective is still to minimize cost, but we need to expand on $q_i$:  
 $min\left( \sum_{j=0}^m p_j \sum_{i=0}^n u_{ij} \right)$  
-where  
+where   
 
-$$
-\begin{equation}
-u_{ij} = 
-\begin{cases}
-    1 & \text{if BOM item i is cut from stock board j} \\
-    0 & \text{otherwise.}
-\end{cases}
-\end{equation}$$  
-
-$`f(x) = \begin{cases} x^2 & \text{if } x \geq 0 \\ -x & \text{otherwise} \end{cases}`$ 
+$`u_{ij} = \begin{cases} 1 & \text{if BOM item i is cut from stock board j} \\ 0 & \text{otherwise} \end{cases}`$ 
 
 ![](./images/objective2.png)
 
