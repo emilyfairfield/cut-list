@@ -55,7 +55,7 @@ $min\left( \sum_{j=0}^m p_j \sum_{i=0}^n u_{ij} \right)$
 where  
 
 $$
-\setlength{\mathindent}{0pt}
+\hspace{-1em}
 \begin{equation}
 u_{ij} = 
 \begin{cases}
