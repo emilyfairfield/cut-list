@@ -50,6 +50,8 @@ For model simplicity, $j$ is one **instance** of a stock board with given dimens
 ### Objective Function & Decision Variables, Attempt 2:
 Based on the above, we need to come up with a reasonable upper limit for the quantity of each stock board required to fulfill our BOM. Because we are assuming feasibility, we know that in the worst case, we can only cut one of our BOM boards from each stock board we buy. Of course, we don't know right off the bat which size of stock board would be paired with each BOM item in this worst case. So, a conservative upper limit would be one of *each* type of stock board *per* BOM item.
 
+We now update our objective function such that the upper bound of our summation is $j=m$ where $m$ is the number of different types of boards times the number of BOM items, $n$. Our objective is still to minimize cost, but $q_j$ is no longer a decision variable, but a function of our new decision variable, $u_{ij}$. Keep in mind that because $j$ represents one **instance** of a stock board of given dimensions, it can only evaluate to 0 or 1. 
+
 $min_{\left(u_{ij}\right)}\left( \sum_{j=1}^m; p_j q_j \right)$ 
 
 where   
@@ -58,6 +60,7 @@ $u_{ij}:$ our **decision variables**, defined as follows:
 $`u_{ij} = \begin{cases} 1 & \text{if BOM item i is cut from stock board j} \\ 0 & \text{otherwise} \end{cases}`$  
 
 $p_j:$ price of stock item $j$  
+$`q_{j} = \begin{cases} 1 & \text{if we need to buy stock board j to satisfy our BOM} \\ 0 & \text{otherwise} \end{cases}`$  
 $n:$ total number of BOM items  
 $m:$ upper limit of stock items = number of different types of board $* n$  
 
@@ -90,7 +93,10 @@ $u_{ij} \leq \frac{h_j}{c_i} \forall i,j$
 
 Because if $c_i \neq h_j$, then one of the above ratios will be less than one, and since $u_{ij} \in \{0,1\}$, this will force $u_{ij} = 0$.
 
-#### 3. BOM items cannot exceed the boundaries of the stock board from which they're cut:
+#### 3. If any BOM items are planned to be cut from stock board j, we must buy stock board j:
+We want that, for a given $j$, if any $u_{ij} \forall i$ is set to 1, $q_j$ gets set to 1. We know that
+
+#### 4. BOM items cannot exceed the boundaries of the stock board from which they're cut:
 Using the intentionally complex cut pattern example below, let's consider how to write this constraint in terms of our decision variables.
 
 ![](./images/example_cuts.png)  
@@ -111,7 +117,7 @@ Using these new decision variables and our existing decision variables $u_{ij}$,
 
 ![](./images/constr3a_table.png)  
 
-##### 3a. BOM items' width cannot exceed width of stock board:
+##### 4a. BOM items' width cannot exceed width of stock board:
 
 ![](./images/constr3b.png)  
 
@@ -130,13 +136,17 @@ Wait. Let's simplify this by enumerating the ways 2 boards are NOT "next to each
 ![](./images/constr3d.png)
 
 
-##### 3b. BOM items' height cannot exceed height of stock board:
+##### 4b. BOM items' height cannot exceed height of stock board:
 
-#### 4. BOM items cannot overlap each other:
+#### 5. BOM items cannot overlap each other:
 
-#### 5. All u_ij must be a non-negative integer:
+#### 6. All u_ij must be a non-negative integer:
 
+#### 7. Integer constraints:
+$u_{ij}, q_j, r_i \in\{0,1\} \forall i,j$
 
+#### 8. Non-negativity constraints:
+$x_i, y_i \geq 0 \forall i$
 
 ## Future Work:
 * Create GUI for tool.
