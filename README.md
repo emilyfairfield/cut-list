@@ -50,12 +50,9 @@ For model simplicity, $j$ is one **instance** of a stock board with given dimens
 ### Objective Function & Decision Variables, Attempt 2:
 Based on the above, we need to come up with a reasonable upper limit for the quantity of each stock board required to fulfill our BOM. Because we are assuming feasibility, we know that in the worst case, we can only cut one of our BOM boards from each stock board we buy. Of course, we don't know right off the bat which size of stock board would be paired with each BOM item in this worst case. So, a conservative upper limit would be one of *each* type of stock board *per* BOM item.
 
-Objective is still to minimize cost, but we need to expand on $q_i$:  
-
-$min\left( \sum_{j=1}^m p_j \sum_{i=1}^n u_{ij} \right)$  
+$min_{u_{ij}}\left( \sum_{j=1}^m; p_j q_j \right)$ 
 
 where   
-
 
 $u_{ij}:$ our **decision variables**, defined as follows:  
 $`u_{ij} = \begin{cases} 1 & \text{if BOM item i is cut from stock board j} \\ 0 & \text{otherwise} \end{cases}`$  
