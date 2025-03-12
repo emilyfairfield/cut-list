@@ -19,7 +19,7 @@ Next, let's see if we can formulate the problem as a Mixed Integer Linear Progra
 
 ### Objective Function & Decision Variables, Attempt 1:
 **Objective is to minimize cost:**\
-$min\left( \sum_{j=1}^&infin; p_j q_j \right)$  
+$min_{\left(q_j\right)}\left( \sum_{j=1}^&infin; p_j q_j \right)$  
 where:  
 $p_j:$ price of stock item $j$    
 $q_j:$ our **decision variables**, representing quantity of stock item $j$ to buy    
@@ -50,7 +50,7 @@ For model simplicity, $j$ is one **instance** of a stock board with given dimens
 ### Objective Function & Decision Variables, Attempt 2:
 Based on the above, we need to come up with a reasonable upper limit for the quantity of each stock board required to fulfill our BOM. Because we are assuming feasibility, we know that in the worst case, we can only cut one of our BOM boards from each stock board we buy. Of course, we don't know right off the bat which size of stock board would be paired with each BOM item in this worst case. So, a conservative upper limit would be one of *each* type of stock board *per* BOM item.
 
-$min_{u_{ij}}\left( \sum_{j=1}^m; p_j q_j \right)$ 
+$min_{\left(u_{ij}\right)}\left( \sum_{j=1}^m; p_j q_j \right)$ 
 
 where   
 
