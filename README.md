@@ -9,8 +9,8 @@ I made due with that tool at the time just to get the project done, but I swore 
 ## Assumptions:
 First, let's list our assumptions:
 * The user only intends to cut the stock boards along their two largest dimensions. (eg, they will never cut/plane a 8' x 4' x 0.75" board down to a 8' x 4' x 0.5" board.) The consequence of this assumption is that we only consider cutting BOM items of a given thickness from stock items of the same thickness.
-* Grain direction doesn't matter. In other words, the user does not mind if some of the grain "points" vertically on one board and points horizontally on another. The consequence of this assumption is that we don't have to know - or consider - grain direction when "rotating" BOM items to fit them together on a stock board.
-* The user does not care about which wood species their pieces come from.
+* Grain direction doesn't matter. In other words, the user does not mind if some of the grain "points" vertically on one board and "points" horizontally on another. The consequence of this assumption is that we don't have to consider - or even know - grain direction when "rotating" BOM items to fit them together on a stock board.
+* The user does not care about which wood species their pieces come from. They simply want to minimize cost.
 * All pieces in the BOM, and all pieces of stock wood, are rectangular prisms.
 * The solution is feasible.
 
@@ -48,7 +48,7 @@ For model simplicity, $j$ is one **instance** of a stock board with given dimens
 *Needs to be defined
 
 ### Objective Function & Decision Variables, Attempt 2:
-Based on the above, we need to come up with a reasonable upper limit for the quantity of each stock board required to fulfill our BOM. Because we are assuming feasibility, we know that in the worst case scenario, we can only cut one of our BOM boards from each stock board we buy. Of course, we don't know right off the bat which size of stock board would be paired with each BOM item in this worst case. So, a conservative upper limit would be one of *each* type of stock board *per* BOM item.
+Based on the above, we need to come up with a reasonable upper limit for the quantity of each stock board required to fulfill our BOM. Because we are assuming feasibility, we know that in the worst case, we can only cut one of our BOM boards from each stock board we buy. Of course, we don't know right off the bat which size of stock board would be paired with each BOM item in this worst case. So, a conservative upper limit would be one of *each* type of stock board *per* BOM item.
 
 Objective is still to minimize cost, but we need to expand on $q_i$:  
 
@@ -106,7 +106,7 @@ $x_i:$ x coordinate of BOM item $i$'s upper left corner with respect to the uppe
 
 $y_i:$ y coordinate of BOM item $i$'s upper left corner with respect to the upper left corner of the stock board from which it's cut
 
-Looking again at the example cut pattern above, there's one more element to this problem that we haven't yet considered. To enable the model to rotate boards, we will also need a decision variable to indicated whether a BOM item is "rotated" with respect to the stock sheet from which it's cut. A BOM item will be considered "rotated" if its longest dimension is **NOT** parallel to the stock board's longest dimension. Call this additional decision variable $r_i$, where:
+Looking again at the example cut pattern above, there's one more element to this problem that we haven't yet considered. To enable the model to rotate boards, we will also need a decision variable to indicate whether a BOM item is "rotated" with respect to the stock sheet from which it's cut. A BOM item will be considered "rotated" if its longest dimension is **NOT** parallel to the stock board's longest dimension. Call this additional decision variable $r_i$, where:
 
 $`r_i = \begin{cases} 1 & \text{if BOM item } i \text{ is rotated wrt its stock board} \\ 0 & \text{otherwise} \end{cases}`$ 
 
