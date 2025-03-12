@@ -97,7 +97,7 @@ We want to constraint our problem such that, for a given $j$, if any $u_{ij} \fo
 
 $q_j \geq \frac{\sum_{i=1}^n u_{ij}}{n} \forall j$  
 
-Since we defined $q_j$ to be either 0 or 1, 
+If any $u_{ij}$ are equal to 1 for a given stock board $j$, then the numerator will evaluate to some value greater than 0. And, since we defined $q_j$ to be either 0 or 1, this will force $q_j$ to 1. The maximum value of the numerator is n, so the right side of this inequality will never evaluate to more than 1.
 
 #### 4. BOM items cannot exceed the boundaries of the stock board from which they're cut:
 Using the intentionally complex cut pattern example below, let's consider how to write this constraint in terms of our decision variables.
