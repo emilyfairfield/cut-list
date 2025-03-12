@@ -52,11 +52,10 @@ Based on the above, we need to come up with a reasonable upper limit for the qua
 
 We now update our objective function such that the upper bound of our summation is $j=m$ where $m$ is the number of different types of boards times the number of BOM items, $n$. Our objective is still to minimize cost, but $q_j$ is no longer a decision variable, but a function of our new decision variable, $u_{ij}$. Keep in mind that because $j$ represents one **instance** of a stock board of given dimensions, it can only evaluate to 0 or 1. 
 
-$min_{\left(u_{ij}\right)}\left( \sum_{j=1}^m; p_j q_j \right)$ 
+$min_{\left(u_{ij}\right)}\left( \sum_{j=1}^m p_j q_j \right)$ 
 
 where   
 
-$u_{ij}:$ our **decision variables**, defined as follows:  
 $`u_{ij} = \begin{cases} 1 & \text{if BOM item i is cut from stock board j} \\ 0 & \text{otherwise} \end{cases}`$  
 
 $p_j:$ price of stock item $j$  
@@ -94,7 +93,11 @@ $u_{ij} \leq \frac{h_j}{c_i} \forall i,j$
 Because if $c_i \neq h_j$, then one of the above ratios will be less than one, and since $u_{ij} \in \{0,1\}$, this will force $u_{ij} = 0$.
 
 #### 3. If any BOM items are planned to be cut from stock board j, we must buy stock board j:
-We want that, for a given $j$, if any $u_{ij} \forall i$ is set to 1, $q_j$ gets set to 1. We know that
+We want to constraint our problem such that, for a given $j$, if any $u_{ij} \forall i$ is set to 1, $q_j$ gets set to 1. Based on the definition of $u_{ij}$, we know that $u_{ij}$ will be either 0 or 1 for all values of $i$ and $j$. We also know that there will be $n$ total $u_{ij}$ variables for each value of $j$. Using similar logic to constraint 2 above, we require that:
+
+$q_j \geq \frac{\sum_{i=1}^n u_{ij}}{n} \forall j$  
+
+Since we defined $q_j$ to be either 0 or 1, 
 
 #### 4. BOM items cannot exceed the boundaries of the stock board from which they're cut:
 Using the intentionally complex cut pattern example below, let's consider how to write this constraint in terms of our decision variables.
