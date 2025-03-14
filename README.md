@@ -97,7 +97,7 @@ We want to constraint our problem such that, for a given $j$, if any $u_{ij} \fo
 
 $q_j \geq \frac{\sum_{i=1}^n u_{ij}}{n} \forall j$  
 
-If any $u_{ij}$ are equal to 1 for a given stock board $j$, then the numerator will evaluate to some value greater than 0. And, since we defined $q_j$ to be either 0 or 1, this will force $q_j$ to 1. The maximum value of the numerator is n, so the right side of this inequality will never evaluate to more than 1.
+If any $u_{ij}$ are equal to 1 for a given stock board $j$, then the numerator will evaluate to some value greater than 0. And, since we defined $q_j$ to be either 0 or 1, this will force $q_j$ to 1. The maximum value of the numerator is $n$, so the right side of this inequality will never evaluate to more than 1.
 
 #### 4. BOM items cannot exceed the boundaries of the stock board from which they're cut:
 Using the intentionally complex cut pattern example below, let's consider how to write this constraint in terms of our decision variables.
@@ -138,6 +138,22 @@ Let's enumerate all the ways board 1 can be "next to" board 2:
 Wait. Let's simplify this by enumerating the ways 2 boards are NOT "next to each other":
 ![](./images/constr3d.png)
 
+Let's use $t$ to represent "NOT next to each other", where $t=t_1 + t_2$ and $t_1$ and $t_2$ represent scenarios 1 and 2, respectively, from the photo above.  
+First, we know we should constrain $t_1$ to be 0 or 1:  
+$t_1 \in {0,1}$  
+
+We also want:  
+$`t_1 = \begin{cases} 1 & \text{if } y_3 \leq y_2 \\ 0 & \text{if } y_3 \gt y_2\end{cases}`$  
+
+Which can be rewritten as:  
+$`t_1 = \begin{cases} 1 & \text{if } \frac{y_2}{y_3} \geq 1 \\ 0 & \text{if } \frac{y_2}{y_3} \lt 1\end{cases}`$  
+
+Try:  
+$t_1 \leq \frac{y_2}{y_3}$  
+
+Does this accomplish what we want?
+When $y_3 \gt y_2$, this ratio will be $\lt 1$, forcing $t_1 = 0$, as desired.  
+When 
 
 ##### 4b. BOM items' height cannot exceed height of stock board:
 
