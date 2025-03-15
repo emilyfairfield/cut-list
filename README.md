@@ -149,7 +149,7 @@ Which can be rewritten as:
 $`t_1 = \begin{cases} 1 & \text{if } \frac{y_2}{y_3} \geq 1 \\ 0 & \text{if } \frac{y_2}{y_3} \lt 1\end{cases}`$  
 
 Try:  
-$t_1 \leq \frac{y_2}{y_3}$  
+$t_1 \leq \frac{y_2}{y_3}  &rarr;$  
 
 Does this accomplish what we want?
 When $y_2 \lt y_3$, this ratio will be $\lt 1$, forcing $t_1 = 0$, as desired.  
@@ -161,6 +161,7 @@ $t_1 \leq \frac{y_2 + 1}{y_3 + 1}$
 
 What additional constraint can we create to force $t_1 = 1$ when $\frac{y_2}{y_3} \geq 1$?  
 
+Try:
 $t_1 \geq y_2 - y_3$    
 
 
