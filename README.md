@@ -153,7 +153,7 @@ $t_1 \leq \frac{y_2}{y_3}$
 
 Does this accomplish what we want?
 When $y_2 \lt y_3$, this ratio will be $\lt 1$, forcing $t_1 = 0$, as desired.  
-When $y_2 \geq y_3$, this ratio will be $\g3q 1$, allowing $t_1 \in {0,1}$. We want to force $t_1$ to be 1 in this case, so this constraint alone is not enough, but could work in combination with others.
+When $y_2 \geq y_3$, this ratio will be $\geq 1$, allowing $t_1 \in {0,1}$. We want to force $t_1$ to be 1 in this case, so this constraint alone is not enough, but could work in combination with others.
 
 
 
