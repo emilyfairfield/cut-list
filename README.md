@@ -155,6 +155,13 @@ Does this accomplish what we want?
 When $y_2 \lt y_3$, this ratio will be $\lt 1$, forcing $t_1 = 0$, as desired.  
 When $y_2 \geq y_3$, this ratio will be $\geq 1$, allowing $t_1 \in {0,1}$. We want to force $t_1$ to be 1 in this case, so this constraint alone is not enough, but could work in combination with others.
 
+BUT WAIT: $y_3$ is some non-negative decimal number, and could be equal to zero, which would result in the fraction above having a denominator of zero. Since $y_3$ can never be negative, we can remedy this by simply adding 1 to the numerator and denominator:
+
+$t_1 \leq \frac{y_2 + 1}{y_3 + 1}$  
+
+What additional constraint can we create to force $t_1 = 1$ when $\frac{y_2}{y_3} \geq 1$?  
+
+$t_1 \geq y_2 - y_3$    
 
 
 ##### 4b. BOM items' height cannot exceed height of stock board:
