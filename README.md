@@ -150,14 +150,10 @@ $`t_1 = \begin{cases} 1 & \text{if } \frac{y_2}{y_3} \geq 1 \\ 0 & \text{if } \f
 
 Try:  
 $t_1 \leq \frac{y_2}{y_3}$  
-Does this accomplish what we want?
+Does this accomplish what we want?  
 $`t_1 = \begin{cases} 0 & \text{if } y_2 \lt y_3 \text{ as desired}\\ 0,1 & \text{if } y_2 \geq y_3 \text{not restrictive enough, combine with another constraint?}\end{cases}`$  
 
-Does this accomplish what we want?
-When $y_2 \lt y_3$, this ratio will be $\lt 1$, forcing $t_1 = 0$, as desired.  
-When $y_2 \geq y_3$, this ratio will be $\geq 1$, allowing $t_1 \in {0,1}$. We want to force $t_1$ to be 1 in this case, so this constraint alone is not enough, but could work in combination with others.
-
-BUT WAIT: $y_3$ is some non-negative decimal number, and could be equal to zero, which would result in the fraction above having a denominator of zero. Since $y_3$ can never be negative, we can remedy this by simply adding 1 to the numerator and denominator:
+BUT WAIT: $y_3$ is a non-negative decimal number, and could be equal to zero, which would result in the fraction above having a denominator of zero. Since $y_3$ can never be negative, we can remedy this by simply adding 1 to the numerator and denominator:  
 
 $t_1 \leq \frac{y_2 + 1}{y_3 + 1}$  
 
