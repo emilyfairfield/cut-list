@@ -143,7 +143,7 @@ First, we know we should constrain $t_1$ to be 0 or 1:
 $t_1 \in {0,1}$  
 
 We also want:  
-$`t_1 = \begin{cases} 1 & \text{if } y_3 \leq y_2 \\ 0 & \text{if } y_3 \gt y_2\end{cases}`$  
+$`t_1 = \begin{cases} 1 & \text{if } y_2 \geq y_3 \\ 0 & \text{if } y_2 \lt y_3\end{cases}`$  
 
 Which can be rewritten as:  
 $`t_1 = \begin{cases} 1 & \text{if } \frac{y_2}{y_3} \geq 1 \\ 0 & \text{if } \frac{y_2}{y_3} \lt 1\end{cases}`$  
@@ -152,8 +152,10 @@ Try:
 $t_1 \leq \frac{y_2}{y_3}$  
 
 Does this accomplish what we want?
-When $y_3 \gt y_2$, this ratio will be $\lt 1$, forcing $t_1 = 0$, as desired.  
-When 
+When $y_2 \lt y_3$, this ratio will be $\lt 1$, forcing $t_1 = 0$, as desired.  
+When $y_2 \geq y_3$, this ratio will be $\g3q 1$, allowing $t_1 \in {0,1}$. We want to force $t_1$ to be 1 in this case, so this constraint alone is not enough, but could work in combination with others.
+
+
 
 ##### 4b. BOM items' height cannot exceed height of stock board:
 
