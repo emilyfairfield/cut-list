@@ -18,14 +18,13 @@ First, let's list our assumptions:
 Next, let's see if we can formulate the problem as a Mixed Integer Linear Program (MILP):
 
 ### Objective Function & Decision Variables, Attempt 1:
-**Objective is to minimize cost:**\
-```math
-min_{\left(q_j\right)}\left( \sum_{j=1}^&infin; p_j q_j \right)\
+> **Objective is to minimize cost:**\
+> $min_{\left(q_j\right)}\left( \sum_{j=1}^&infin; p_j q_j \right)$  
 
-where:\  
-p_j: price of stock item j\    
-q_j: our **decision variables**, representing quantity of stock item j to buy\    
-```
+where:  
+> $p_j:$ price of stock item $j$    
+> $q_j:$ our **decision variables**, representing quantity of stock item $j$ to buy    
+
 ### User Inputs:
 #### Bill of Materials (BOM):
 > $a_i:$ length/max dimension of BOM item $i$  
