@@ -94,8 +94,13 @@ We need BOTH of the following:
 Because if $c_i \neq h_j$, then one of the above ratios will be less than one, and since $u_{ij} \in \{0,1\}$, this will force $u_{ij} = 0$.
 
 #### 3. If any BOM items are planned to be cut from stock board j, we must buy stock board j:
-We want to constraint our problem such that, for a given $j$, if any $u_{ij} \forall i$ is set to 1, $q_j$ gets set to 1. Based on the definition of $u_{ij}$, we know that $u_{ij}$ will be either 0 or 1 for all values of $i$ and $j$. We also know that there will be $n$ total $u_{ij}$ variables for each value of $j$. Using similar logic to constraint 2 above, we require that:
+We want to constraint our problem such that, for a given $j$, if any $u_{ij} \forall i$ is set to 1, $q_j$ gets set to 1. 
 
+Based on the definition of $u_{ij}$, we know that $u_{ij}$ will be either 0 or 1 for all values of $i$ and $j$. 
+
+We also know that there will be $n$ total $u_{ij}$ variables for each value of $j$. Using similar logic to constraints 2a and 2b above, we require that:
+
+> **Constraint 3:**\
 > $q_j \geq \frac{\sum_{i=1}^n u_{ij}}{n} \forall j$  
 
 If any $u_{ij}$ are equal to 1 for a given stock board $j$, then the numerator will evaluate to some value greater than 0. And, since we defined $q_j$ to be either 0 or 1, this will force $q_j$ to 1. The maximum value of the numerator is $n$, so the right side of this inequality will never evaluate to more than 1.
