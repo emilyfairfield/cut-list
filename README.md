@@ -132,7 +132,7 @@ Using these new decision variables and our existing decision variables $u_{ij}$,
 
 ![](./images/constr3a_table.png)  
 
-##### 4a. BOM items' width cannot exceed width of stock board:
+##### BOM items' width cannot exceed width of stock board:
 
 ![](./images/constr3b.png)  
 
@@ -153,6 +153,7 @@ Wait. Let's simplify this by enumerating the ways 2 boards are NOT "next to each
 Let's use $t$ to represent "NOT next to each other", where $t=t_1 + t_2$ and $t_1$ and $t_2$ represent scenarios 1 and 2, respectively, from the photo above.  
 
 First, we know we should constrain $t_1$ to be 0 or 1:  
+> **Constraint 4a:**\
 > $t_1 \in {0,1}$  
 
 We also want:  
@@ -168,6 +169,7 @@ $`t_1 = \begin{cases} 0 & \text{if } y_2 \lt y_3 \text{ as desired}\\ 0,1 & \tex
 
 BUT WAIT: $y_3$ is a non-negative decimal number, and could be equal to zero, which would result in the fraction above having a denominator of zero. Since $y_3$ can never be negative, we can remedy this by simply adding 1 to the numerator and denominator:  
 
+> **Constraint 4b:**\
 > $t_1 \leq \frac{y_2 + 1}{y_3 + 1}$  
 
 What additional constraint can we create to force $t_1 = 1$ when $\frac{y_2}{y_3} \geq 1$?  
@@ -176,7 +178,7 @@ Try:
 $t_1 \geq y_2 - y_3$    
 
 
-##### 4b. BOM items' height cannot exceed height of stock board:
+##### BOM items' height cannot exceed height of stock board:
 
 #### 5. BOM items cannot overlap each other:
 
