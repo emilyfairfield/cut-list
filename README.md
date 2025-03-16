@@ -183,7 +183,7 @@ $t_1 \leq \frac{y_2 + 1}{y_3 + 1}$
 Replacing $y_2$ and $y_3$ with their definitions above, we get:  
 
 > **Constraint 4b:**\
-> $t_1 \leq \frac{y_k + 1}{y_i + (1-r_i)*l_i + r_i*w_i + 1} \forall i \in {0-n} \forall k \neq i \in {0-n}$  
+> $t_1 \leq \frac{y_k + 1}{y_i + (1-r_i) \times l_i + r_i \times w_i + 1} \forall i \in {0-n} \forall k \neq i \in {0-n}$  
 
 What additional constraint can we create to force $t_1 = 1$ when $\frac{y_2}{y_3} \geq 1$?  
 
