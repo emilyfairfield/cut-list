@@ -152,6 +152,11 @@ Let's enumerate all the ways board 1 can be "next to" board 2:
 Wait. Let's simplify this by enumerating the ways 2 boards are NOT "next to each other":
 ![](./images/constr3d.png)
 
+Where:
+
+$"y_1" = y_i$  
+$"y_2" = $
+
 Let's use $t$ to represent "NOT next to each other", where $t=t_1 + t_2$ and $t_1$ and $t_2$ represent scenarios 1 and 2, respectively, from the photo above.  
 
 First, we know we should constrain $t_1$ to be 0 or 1:  
