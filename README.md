@@ -164,6 +164,7 @@ $`t_1 = \begin{cases} 1 & \text{if } \frac{y_2}{y_3} \geq 1 \\ 0 & \text{if } \f
 
 Try:  
 $t_1 \leq \frac{y_2}{y_3}$  
+
 Does this accomplish what we want?  
 $`t_1 = \begin{cases} 0 & \text{if } y_2 \lt y_3 \text{ as desired}\\ 0,1 & \text{if } y_2 \geq y_3 \text{not restrictive enough, combine with another constraint?}\end{cases}`$  
 
@@ -176,6 +177,15 @@ What additional constraint can we create to force $t_1 = 1$ when $\frac{y_2}{y_3
 
 Try:
 $t_1 \geq y_2 - y_3$    
+
+Does this accomplish what we want?  
+$`t_1 = \begin{cases} 1 & \text{if } y_2 \gt y_3 \text{ as desired}\\ 0,1 & \text{if } y_2 = y_3 \text{not restrictive enough, combine with another constraint?}\\ 0,1 & \text{if } y_2 \lt y_3 \text{not restrictive enough, but works when combined with constraint 4b}\end{cases}`$  
+
+Let's use it and try to come up with another constraint to handle the case when $y_2 = y_3$
+
+> **Constraint 4c:**\
+> $t_1 \geq y_2 - y_3$  
+
 
 
 ##### BOM items' height cannot exceed height of stock board:
