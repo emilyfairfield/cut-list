@@ -54,7 +54,8 @@ We now update our objective function such that the upper bound of our summation 
 
 > **Objective is to minimize cost:**\
 > $min_{\left(u_{ij}\right)}\left( \sum_{j=1}^m p_j q_j \right)$  
-> where   
+
+where:   
 > $`u_{ij} = \begin{cases} 1 & \text{if BOM item i is cut from stock board j} \\ 0 & \text{otherwise} \end{cases}`$    
 > $`q_{j} = \begin{cases} 1 & \text{if we need to buy stock board j to satisfy our BOM} \\ 0 & \text{otherwise} \end{cases}`$  
 > $p_j:$ price of stock item $j$  
@@ -63,7 +64,7 @@ We now update our objective function such that the upper bound of our summation 
 
 ### Constraints:
 #### 1. All BOM items must be cut exactly once / from exactly one stock board:
-> > **Constraint 1:**\
+> **Constraint 1:**\
 > $\sum_{j=1}^m u_{ij} = 1  \forall i$  
 
 #### 2. The thickness (smallest dimension) of each BOM item must match that of the stock item from which it's cut: 
@@ -84,9 +85,10 @@ Can we use the ratio of $c_i$ to $h_j$ to get the desired $u_{ij}$?
 YES!
 
 We need BOTH of the following:
-
+> **Constraint 2a:**\
 > $u_{ij} \leq \frac{c_i}{h_j} \forall i,j$  
-AND  
+
+> **Constraint 2b:**\
 > $u_{ij} \leq \frac{h_j}{c_i} \forall i,j$  
 
 Because if $c_i \neq h_j$, then one of the above ratios will be less than one, and since $u_{ij} \in \{0,1\}$, this will force $u_{ij} = 0$.
