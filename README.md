@@ -63,7 +63,7 @@ We now update our objective function such that the upper bound of our summation 
 
 ### Constraints:
 #### 1. All BOM items must be cut exactly once / from exactly one stock board:
-> $\sum_{j=1}^m u_{ij} = 1  \forall i$  
+> **constr. 1: **$\sum_{j=1}^m u_{ij} = 1  \forall i$  
 
 #### 2. The thickness (smallest dimension) of each BOM item must match that of the stock item from which it's cut: 
 We want to constrain our problem such that:
@@ -159,7 +159,7 @@ $`t_1 = \begin{cases} 0 & \text{if } y_2 \lt y_3 \text{ as desired}\\ 0,1 & \tex
 
 BUT WAIT: $y_3$ is a non-negative decimal number, and could be equal to zero, which would result in the fraction above having a denominator of zero. Since $y_3$ can never be negative, we can remedy this by simply adding 1 to the numerator and denominator:  
 
-$t_1 \leq \frac{y_2 + 1}{y_3 + 1}$  
+> $t_1 \leq \frac{y_2 + 1}{y_3 + 1}$  
 
 What additional constraint can we create to force $t_1 = 1$ when $\frac{y_2}{y_3} \geq 1$?  
 
