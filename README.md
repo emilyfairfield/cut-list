@@ -63,7 +63,7 @@ We now update our objective function such that the upper bound of our summation 
 
 ### Constraints:
 #### 1. All BOM items must be cut exactly once / from exactly one stock board:
-> **constr. 1: **$\sum_{j=1}^m u_{ij} = 1  \forall i$  
+> **constr. 1: ** $\sum_{j=1}^m u_{ij} = 1  \forall i$  
 
 #### 2. The thickness (smallest dimension) of each BOM item must match that of the stock item from which it's cut: 
 We want to constrain our problem such that:
