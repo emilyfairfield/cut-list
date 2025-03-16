@@ -12,6 +12,7 @@ First, let's list our assumptions:
 * Grain direction doesn't matter. In other words, the user does not mind if some of the grain "points" vertically on one board and "points" horizontally on another. The consequence of this assumption is that we don't have to consider - or even know - grain direction when "rotating" BOM items to fit them together on a stock board.
 * The user does not care about which wood species their pieces come from. They simply want to minimize cost.
 * All pieces in the BOM, and all pieces of stock wood, are rectangular prisms.
+* All user-provided dimensions (of BOM items and stock boards available for purchase) are provided in the same units of measure.
 * The solution is feasible.
 
 ## Problem Formulation:
