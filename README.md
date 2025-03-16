@@ -186,6 +186,9 @@ Let's use it and try to come up with another constraint to handle the case when 
 > **Constraint 4c:**\
 > $t_1 \geq y_2 - y_3$  
 
+How do we constrain $t_1 = 0$ when $y_2 = y_3$?
+Try:
+$t_1 \geq 1 - |y_2 - y_3|$  
 
 
 ##### BOM items' height cannot exceed height of stock board:
@@ -195,10 +198,12 @@ Let's use it and try to come up with another constraint to handle the case when 
 #### 6. All u_ij must be a non-negative integer:
 
 #### 7. Integer constraints:
-$u_{ij}, q_j, r_i \in\{0,1\} \forall i,j$
+> **Constraint 7:**\
+> $u_{ij}, q_j, r_i \in\{0,1\} \forall i,j$
 
 #### 8. Non-negativity constraints:
-$x_i, y_i \geq 0 \forall i$
+> **Constraint 8:**\
+> $x_i, y_i \geq 0 \forall i$
 
 ## Future Work:
 * Create GUI for tool.
