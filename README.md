@@ -68,7 +68,7 @@ We now update our objective function such that the upper bound of our summation 
 #### 2. The thickness (smallest dimension) of each BOM item must match that of the stock item from which it's cut: 
 We want to constrain our problem such that:
 
-> $`u_{ij} = \begin{cases} 0 & \text{if } c_i \neq h_j \\ \in \{0,1\} & \text{otherwise} \end{cases}`$  
+$`u_{ij} = \begin{cases} 0 & \text{if } c_i \neq h_j \\ \in \{0,1\} & \text{otherwise} \end{cases}`$  
 
 How can this be expressed as an inequality / constraint? Let's consider some examples:
 
@@ -86,14 +86,14 @@ We need BOTH of the following:
 
 > $u_{ij} \leq \frac{c_i}{h_j} \forall i,j$  
 AND  
-> $u_{ij} \leq \frac{h_j}{c_i} \forall i,j$
+> $u_{ij} \leq \frac{h_j}{c_i} \forall i,j$  
 
 Because if $c_i \neq h_j$, then one of the above ratios will be less than one, and since $u_{ij} \in \{0,1\}$, this will force $u_{ij} = 0$.
 
 #### 3. If any BOM items are planned to be cut from stock board j, we must buy stock board j:
 We want to constraint our problem such that, for a given $j$, if any $u_{ij} \forall i$ is set to 1, $q_j$ gets set to 1. Based on the definition of $u_{ij}$, we know that $u_{ij}$ will be either 0 or 1 for all values of $i$ and $j$. We also know that there will be $n$ total $u_{ij}$ variables for each value of $j$. Using similar logic to constraint 2 above, we require that:
 
-$q_j \geq \frac{\sum_{i=1}^n u_{ij}}{n} \forall j$  
+> $q_j \geq \frac{\sum_{i=1}^n u_{ij}}{n} \forall j$  
 
 If any $u_{ij}$ are equal to 1 for a given stock board $j$, then the numerator will evaluate to some value greater than 0. And, since we defined $q_j$ to be either 0 or 1, this will force $q_j$ to 1. The maximum value of the numerator is $n$, so the right side of this inequality will never evaluate to more than 1.
 
@@ -106,13 +106,18 @@ We're going to need additional decision variables, to answer not just "Is BOM it
 
 To this end, let's create additional decision variables for each BOM item's x and y coordinates with respect to the stock board. Arbitrarily choose the BOM item's upper left corner to be the point represented by $(x_i,y_i)$, such that:  
 
-$x_i:$ x coordinate of BOM item $i$'s upper left corner with respect to the upper left corner of the stock board from which it's cut  
+> $x_i:$ x coordinate of BOM item $i$'s upper left corner with respect to the upper left corner of the stock board from which it's cut  
 
-$y_i:$ y coordinate of BOM item $i$'s upper left corner with respect to the upper left corner of the stock board from which it's cut
+> $y_i:$ y coordinate of BOM item $i$'s upper left corner with respect to the upper left corner of the stock board from which it's cut
 
-Looking again at the example cut pattern above, there's one more element to this problem that we haven't yet considered. To enable the model to rotate boards, we will also need a decision variable to indicate whether a BOM item is "rotated" with respect to the stock sheet from which it's cut. A BOM item will be considered "rotated" if its longest dimension is **NOT** parallel to the stock board's longest dimension. Call this additional decision variable $r_i$, where:
+Looking again at the example cut pattern above, there's one more element to this problem that we haven't yet considered. To enable the model to rotate boards, we will also need a decision variable to indicate whether a BOM item is "rotated" with respect to the stock sheet from which it's cut. 
 
-$`r_i = \begin{cases} 1 & \text{if BOM item } i \text{ is rotated wrt its stock board} \\ 0 & \text{otherwise} \end{cases}`$ 
+> [!NOTE]
+> A BOM item will be considered "rotated" if its longest dimension is **NOT** parallel to the stock board's longest dimension. 
+
+Call this additional decision variable $r_i$, where:
+
+> $`r_i = \begin{cases} 1 & \text{if BOM item } i \text{ is rotated wrt its stock board} \\ 0 & \text{otherwise} \end{cases}`$ 
 
 Using these new decision variables and our existing decision variables $u_{ij}$, we need to devise our constraints that prevent BOM items from exceeding the boundaries of the stock board from which they're cut. Using the above diagram:  
 
@@ -137,8 +142,9 @@ Wait. Let's simplify this by enumerating the ways 2 boards are NOT "next to each
 ![](./images/constr3d.png)
 
 Let's use $t$ to represent "NOT next to each other", where $t=t_1 + t_2$ and $t_1$ and $t_2$ represent scenarios 1 and 2, respectively, from the photo above.  
+
 First, we know we should constrain $t_1$ to be 0 or 1:  
-$t_1 \in {0,1}$  
+> $t_1 \in {0,1}$  
 
 We also want:  
 $`t_1 = \begin{cases} 1 & \text{if } y_2 \geq y_3 \\ 0 & \text{if } y_2 \lt y_3\end{cases}`$  
