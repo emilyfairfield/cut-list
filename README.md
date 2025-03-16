@@ -187,8 +187,14 @@ Let's use it and try to come up with another constraint to handle the case when 
 > $t_1 \geq y_2 - y_3$  
 
 How do we constrain $t_1 = 0$ when $y_2 = y_3$?
-Try:
+Try:  
 $t_1 \geq 1 - |y_2 - y_3|$  
+
+Does this accomplish what we want?  
+$`t_1 = \begin{cases} 1 & \text{if } y_2 = y_3 \text{ as desired}\\ 1 & \text{if } y_2 - y_3 = 0.5\text{ NOT what we want}\end{cases}`$  
+
+We only want $t_1=1$ when $y_2-y_3$ is 0 (or very close to 0), not just when it's less than 1. Consider this example:  
+
 
 
 ##### BOM items' height cannot exceed height of stock board:
