@@ -18,11 +18,13 @@ First, let's list our assumptions:
 Next, let's see if we can formulate the problem as a Mixed Integer Linear Program (MILP):
 
 ### Objective Function & Decision Variables, Attempt 1:
-> **Objective is to minimize cost:**\
-> $min_{\left(q_j\right)}\left( \sum_{j=1}^&infin; p_j q_j \right)$  
-> where:  
-> $p_j:$ price of stock item $j$    
-> $q_j:$ our **decision variables**, representing quantity of stock item $j$ to buy    
+```**Objective is to minimize cost:**\  
+$min_{\left(q_j\right)}\left( \sum_{j=1}^&infin; p_j q_j \right)$  
+
+where:  
+$p_j:$ price of stock item $j$    
+$q_j:$ our **decision variables**, representing quantity of stock item $j$ to buy    
+```
 
 ### User Inputs:
 #### Bill of Materials (BOM):
@@ -121,7 +123,7 @@ To this end, let's create additional decision variables for each BOM item's x an
 Looking again at the example cut pattern above, there's one more element to this problem that we haven't yet considered. To enable the model to rotate boards, we will also need a decision variable to indicate whether a BOM item is "rotated" with respect to the stock sheet from which it's cut. 
 
 > [!NOTE]
-> A BOM item will be considered "rotated" if its longest dimension is **NOT** parallel to the stock board's longest dimension. 
+> A BOM item will be considered "rotated" if its longest dimension is **NOT** parallel to the longest dimension of the stock board from which it's cut. 
 
 Call this additional decision variable $r_i$, where:
 
