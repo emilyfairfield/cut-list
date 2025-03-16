@@ -204,7 +204,12 @@ We need to change the "1" on the righthand side of the constraint to be some num
 > **Constraint 4d:**\
 > $t_1 \geq \frac{1}{100} - |y_2 - y_3|$  
 
-This is the motivation for assumption 6, that the minimum desired width of any BOM item will be greater than $\frac{1}{100}$ units.
+This is the motivation for assumption 6, that the minimum desired width of any BOM item will be greater than $\frac{1}{100}$ units.  
+
+TO DO: REPLACE Y2, Y3 WITH FORMULAS RELATED TO YI, AI, BI, AND RI.
+WRITE CONSTRAINTS FOR T2 (SCENARIO 2 IN PIC OUTLINING WAYS 2 BOARDS ARE NOT NEXT TO EACH OTHER)
+WRITE CONSTRAINT T = T1 + T2
+REWRITE HANDWRITTEN CONSTRAINT IN CONSTR3B.PNG, INCORPORATING T INTO IT. 
 
 ##### BOM items' height cannot exceed height of stock board:
 
