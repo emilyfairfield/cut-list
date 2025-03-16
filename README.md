@@ -154,8 +154,10 @@ Wait. Let's simplify this by enumerating the ways 2 boards are NOT "next to each
 
 Where:
 
-$"y_1" = y_i$  
-$"y_2" = $
+$"y_1" = y_i \forall i \in {0-n}$  
+$"y_2" = y_k \forall k \neq i \in {0-n}$  
+$"y_3" = y_i + (1-r_i)*l_i + r_i*w_i \forall i \in {0-n}$  
+$"y_4" = y_k + (1-r_k)*l_k + r_k*w_k \forall k \neq i \in {0-n}$  
 
 Let's use $t$ to represent "NOT next to each other", where $t=t_1 + t_2$ and $t_1$ and $t_2$ represent scenarios 1 and 2, respectively, from the photo above.  
 
@@ -177,8 +179,11 @@ $`t_1 = \begin{cases} 0 & \text{if } y_2 \lt y_3 \text{ as desired}\\ 0,1 & \tex
 
 BUT WAIT: $y_3$ is a non-negative decimal number, and could be equal to zero, which would result in the fraction above having a denominator of zero. Since $y_3$ can never be negative, we can remedy this by simply adding 1 to the numerator and denominator:  
 
+$t_1 \leq \frac{y_2 + 1}{y_3 + 1}$  
+Replacing $y_2$ and $y_3$ with their definitions above, we get:  
+
 > **Constraint 4b:**\
-> $t_1 \leq \frac{y_2 + 1}{y_3 + 1}$  
+> $t_1 \leq \frac{y_k + 1}{y_i + (1-r_i)*l_i + r_i*w_i + 1} \forall i \in {0-n} \forall k \neq i \in {0-n}$  
 
 What additional constraint can we create to force $t_1 = 1$ when $\frac{y_2}{y_3} \geq 1$?  
 
