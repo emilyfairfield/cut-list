@@ -14,6 +14,7 @@ First, let's list our assumptions:
 * All pieces in the BOM, and all pieces of stock wood, are rectangular prisms.
 * All user-provided dimensions (of BOM items and stock boards available for purchase) are provided in the same units of measure.
 * The solution is feasible.
+* The minimum desired width for any BOM item will be greater than $\frac{1}{100}$ units (see constraint 4d below).
 
 ## Problem Formulation:
 Next, let's see if we can formulate the problem as a Mixed Integer Linear Program (MILP):
@@ -196,7 +197,12 @@ $`t_1 = \begin{cases} 1 & \text{if } y_2 = y_3 \text{ as desired}\\ 1 & \text{if
 
 We only want $t_1=1$ when $y_2-y_3$ is 0 (or very close to 0), not just when it's less than 1. Consider this example:  
 
+![](./images/constr4d.png)  
 
+We need to change the "1" on the righthand side of the constraint to be some number smaller than what we expect to be the minimum width of all boards in the BOM. Let's say $\frac{1}{100}$:
+
+> **Constraint 4d:**\
+> $t_1 \geq \frac{1}{100} - |y_2 - y_3|$  
 
 ##### BOM items' height cannot exceed height of stock board:
 
