@@ -50,14 +50,14 @@ Next, let's see if we can formulate the problem as a Mixed Integer Linear Progra
 ### Objective Function & Decision Variables, Attempt 2:
 Based on the above, we need to come up with a reasonable upper limit for the quantity of each stock board required to fulfill our BOM. Because we are assuming feasibility, we know that in the worst case, we can only cut one of our BOM boards from each stock board we buy. Of course, we don't know right off the bat which size of stock board would be paired with each BOM item in this worst case. So, a conservative upper limit would be one of *each* type of stock board *per* BOM item.
 
-We now update our objective function such that the upper bound of our summation is $j=m$ where $m$ is the number of different types of boards times the number of BOM items, $n$. Our objective is still to minimize cost, but $q_j$ is no longer a decision variable, but a function of our new decision variable, $u_{ij}$. Keep in mind that because $j$ represents one **instance** of a stock board of given dimensions, it can only evaluate to 0 or 1. 
+We now update our objective function such that the upper bound of our summation is $j=m$ where $m$ is the number of different types of boards times the number of BOM items, $n$. Our objective is still to minimize cost, but $q_j$ is no longer a decision variable, but a function of our new decision variable, $u_{ij}$. Keep in mind that because $j$ represents one **instance** of a stock board of given dimensions, $q_j$ can only evaluate to 0 or 1. 
 
 > **Objective is to minimize cost:**\
-> $min_{\left(u_{ij}\right)}\left( \sum_{j=1}^m p_j q_j \right)$ 
+> $min_{\left(u_{ij}\right)}\left( \sum_{j=1}^m p_j q_j \right)$  
 > where   
-> $`u_{ij} = \begin{cases} 1 & \text{if BOM item i is cut from stock board j} \\ 0 & \text{otherwise} \end{cases}`$  
-> $p_j:$ price of stock item $j$  
+> $`u_{ij} = \begin{cases} 1 & \text{if BOM item i is cut from stock board j} \\ 0 & \text{otherwise} \end{cases}`$    
 > $`q_{j} = \begin{cases} 1 & \text{if we need to buy stock board j to satisfy our BOM} \\ 0 & \text{otherwise} \end{cases}`$  
+> $p_j:$ price of stock item $j$  
 > $n:$ total number of BOM items  
 > $m:$ upper limit of stock items = number of different types of board $* n$  
 
