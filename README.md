@@ -156,8 +156,8 @@ Where:
 
 $"y_1" = y_i \forall i \in {0-n}$  
 $"y_2" = y_k \forall k \neq i \in {0-n}$  
-$"y_3" = y_i + (1-r_i)*l_i + r_i*w_i \forall i \in {0-n}$  
-$"y_4" = y_k + (1-r_k)*l_k + r_k*w_k \forall k \neq i \in {0-n}$  
+$"y_3" = y_i + (1-r_i) \times l_i + r_i \times w_i \forall i \in {0-n}$  
+$"y_4" = y_k + (1-r_k) \times l_k + r_k \times w_k \forall k \neq i \in {0-n}$  
 
 Let's use $t$ to represent "NOT next to each other", where $t=t_1 + t_2$ and $t_1$ and $t_2$ represent scenarios 1 and 2, respectively, from the photo above.  
 
