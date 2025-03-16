@@ -8,13 +8,13 @@ I made due with that tool at the time just to get the project done, but I swore 
 
 ## Assumptions:
 First, let's list our assumptions:
-* The user only intends to cut the stock boards along their two largest dimensions. (eg, they will never cut/plane a 8' x 4' x 0.75" board down to a 8' x 4' x 0.5" board.) The consequence of this assumption is that we only consider cutting BOM items of a given thickness from stock items of the same thickness.
-* Grain direction doesn't matter. In other words, the user does not mind if some of the grain "points" vertically on one board and "points" horizontally on another. The consequence of this assumption is that we don't have to consider - or even know - grain direction when "rotating" BOM items to fit them together on a stock board.
-* The user does not care about which wood species their pieces come from. They simply want to minimize cost.
-* All pieces in the BOM, and all pieces of stock wood, are rectangular prisms.
-* All user-provided dimensions (of BOM items and stock boards available for purchase) are provided in the same units of measure.
-* The solution is feasible.
-* The minimum desired width for any BOM item will be greater than $\frac{1}{100}$ units (see constraint 4d below).
+1. The user only intends to cut the stock boards along their two largest dimensions. (eg, they will never cut/plane a 8' x 4' x 0.75" board down to a 8' x 4' x 0.5" board.) The consequence of this assumption is that we only consider cutting BOM items of a given thickness from stock items of the same thickness.
+2. Grain direction doesn't matter. In other words, the user does not mind if some of the grain "points" vertically on one board and "points" horizontally on another. The consequence of this assumption is that we don't have to consider - or even know - grain direction when "rotating" BOM items to fit them together on a stock board.
+3. The user does not care about which wood species their pieces come from. They simply want to minimize cost.
+4. All pieces in the BOM, and all pieces of stock wood, are rectangular prisms.
+5. All user-provided dimensions (of BOM items and stock boards available for purchase) are provided in the same units of measure.
+6. The minimum desired width for any BOM item will be greater than $\frac{1}{100}$ units (see constraint 4d below).
+7. The solution is feasible.
 
 ## Problem Formulation:
 Next, let's see if we can formulate the problem as a Mixed Integer Linear Program (MILP):
@@ -204,7 +204,10 @@ We need to change the "1" on the righthand side of the constraint to be some num
 > **Constraint 4d:**\
 > $t_1 \geq \frac{1}{100} - |y_2 - y_3|$  
 
+This is the motivation for assumption 6, that the minimum desired width of any BOM item will be greater than $\frac{1}{100}$ units.
+
 ##### BOM items' height cannot exceed height of stock board:
+
 
 #### 5. BOM items cannot overlap each other:
 
