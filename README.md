@@ -159,72 +159,78 @@ $"y_2" = y_k \forall k \neq i \in {0-n}$
 $"y_3" = y_i + (1-r_i) \times l_i + r_i \times w_i \forall i \in {0-n}$  
 $"y_4" = y_k + (1-r_k) \times l_k + r_k \times w_k \forall k \neq i \in {0-n}$  
 
-Let's use $t$ to represent "NOT next to each other", where $t=t_1 + t_2$ and $t_1$ and $t_2$ represent scenarios 1 and 2, respectively, from the photo above.  
+Let's use $v$ to represent "NOT next to each other", where $v=s + t$, and $s$ and $t$ represent scenarios 1 and 2, respectively, from the photo above:  
 
-First, we know we should constrain $t_1$ to be 0 or 1:  
+> $s_{ik}:$ {0,1} board $i$ is NOT next to board $k$ because board $i$ is ABOVE board $k$
+> $t_{ik}:$ {0,1} board $i$ is NOT next to board $k$ because board $i$ is BELOW board $k$
+> $v_{ik}:$ {0,1} board $i$ is NOT next to board $k$
+
 > **Constraint 4a:**\
-> $t_1 \in {0,1}$  
+> $v_{ik} = s_{ik} + t_{ik}$   
+
+We know we should constrain $s_{ik}$ to be 0 or 1:  
+> **Constraint 4b:**\
+> $s_{ik} \in {0,1}$  
 
 We also want:  
-$`t_1 = \begin{cases} 1 & \text{if } y_2 \geq y_3 \\ 0 & \text{if } y_2 \lt y_3\end{cases}`$  
+$`s_{ik} = \begin{cases} 1 & \text{if } y_2 \geq y_3 \\ 0 & \text{if } y_2 \lt y_3\end{cases}`$  
 
 Which can be rewritten as:  
-$`t_1 = \begin{cases} 1 & \text{if } \frac{y_2}{y_3} \geq 1 \\ 0 & \text{if } \frac{y_2}{y_3} \lt 1\end{cases}`$  
+$`s_{ik} = \begin{cases} 1 & \text{if } \frac{y_2}{y_3} \geq 1 \\ 0 & \text{if } \frac{y_2}{y_3} \lt 1\end{cases}`$  
 
 Try:  
-$t_1 \leq \frac{y_2}{y_3}$  
+$s_{ik} \leq \frac{y_2}{y_3}$  
 
 Does this accomplish what we want?  
-$`t_1 = \begin{cases} 0 & \text{if } y_2 \lt y_3 \text{ as desired}\\ 0,1 & \text{if } y_2 \geq y_3 \text{not restrictive enough, combine with another constraint?}\end{cases}`$  
+$`s_{ik} = \begin{cases} 0 & \text{if } y_2 \lt y_3 \text{ as desired}\\ 0,1 & \text{if } y_2 \geq y_3 \text{not restrictive enough, combine with another constraint?}\end{cases}`$  
 
 BUT WAIT: $y_3$ is a non-negative decimal number, and could be equal to zero, which would result in the fraction above having a denominator of zero. Since $y_3$ can never be negative, we can remedy this by simply adding 1 to the numerator and denominator:  
 
-$t_1 \leq \frac{y_2 + 1}{y_3 + 1}$  
+$s_{ik} \leq \frac{y_2 + 1}{y_3 + 1}$  
 Replacing $y_2$ and $y_3$ with their definitions above, we get:  
 
-> **Constraint 4b:**\
-> $t_1 \leq \frac{y_k + 1}{y_i + (1-r_i) \times l_i + r_i \times w_i + 1} \forall i \in {0-n}, k \neq i \in {0-n}$  
+> **Constraint 4c:**\
+> $s_{ik} \leq \frac{y_k + 1}{y_i + (1-r_i) \times l_i + r_i \times w_i + 1} \forall i \in {0-n}, k \neq i \in {0-n}$  
 
-What additional constraint can we create to force $t_1 = 1$ when $\frac{y_2}{y_3} \geq 1$?  
+What additional constraint can we create to force $s_{ik} = 1$ when $\frac{y_2}{y_3} \geq 1$?  
 
 Try:
-$t_1 \geq y_2 - y_3$    
+$s_{ik} \geq y_2 - y_3$    
 
 Does this accomplish what we want?  
-$`t_1 = \begin{cases} 1 & \text{if } y_2 \gt y_3 \text{ as desired}\\ 0,1 & \text{if } y_2 = y_3 \text{not restrictive enough, combine with another constraint?}\\ 0,1 & \text{if } y_2 \lt y_3 \text{not restrictive enough, but works when combined with constraint 4b}\end{cases}`$  
+$`s_{ik} = \begin{cases} 1 & \text{if } y_2 \gt y_3 \text{ as desired}\\ 0,1 & \text{if } y_2 = y_3 \text{not restrictive enough, combine with another constraint?}\\ 0,1 & \text{if } y_2 \lt y_3 \text{not restrictive enough, but works when combined with constraint 4b}\end{cases}`$  
 
 Let's use it and try to come up with another constraint to handle the case when $y_2 = y_3$
-$t_1 \geq y_2 - y_3$ 
+$s_{ik} \geq y_2 - y_3$ 
 Replacing $y_2$ and $y_3$ with their definitions above, we get: 
 
-> **Constraint 4c:**\
-> $t_1 \geq y_k - (y_i + (1-r_i) \times l_i + r_i \times w_i) \forall i \in {0-n}, k \neq i \in {0-n}$  
+> **Constraint 4d:**\
+> $s_{ik} \geq y_k - (y_i + (1-r_i) \times l_i + r_i \times w_i) \forall i \in {0-n}, k \neq i \in {0-n}$  
 
-How do we constrain $t_1 = 0$ when $y_2 = y_3$?
+How do we constrain $s_{ik} = 0$ when $y_2 = y_3$?
 Try:  
-$t_1 \geq 1 - |y_2 - y_3|$  
+$s_{ik} \geq 1 - |y_2 - y_3|$  
 
 Does this accomplish what we want?  
-$`t_1 = \begin{cases} 1 & \text{if } y_2 = y_3 \text{ as desired}\\ 1 & \text{if } y_2 - y_3 = 0.5\text{ NOT what we want}\end{cases}`$  
+$`s_{ik} = \begin{cases} 1 & \text{if } y_2 = y_3 \text{ as desired}\\ 1 & \text{if } y_2 - y_3 = 0.5\text{ NOT what we want}\end{cases}`$  
 
-We only want $t_1=1$ when $y_2-y_3$ is 0 (or very close to 0), not just when it's less than 1. Consider this example:  
+We only want $s_{ik}=1$ when $y_2-y_3$ is 0 (or very close to 0), not just when it's less than 1. Consider this example:  
 
 ![](./images/constr4d.png)  
 
 We need to change the "1" on the righthand side of the constraint to be some number smaller than what we expect to be the minimum width of all boards in the BOM. Let's say $\frac{1}{100}$:
 
-$t_1 \geq \frac{1}{100} - |y_2 - y_3|$  
+$s_{ik} \geq \frac{1}{100} - |y_2 - y_3|$  
 Replacing $y_2$ and $y_3$ with their definitions above, we get: 
 
-> **Constraint 4d:**\
-> $t_1 \geq \frac{1}{100} - |y_k - (y_i + (1-r_i) \times l_i + r_i \times w_i)|  \forall i \in {0-n}, k \neq i \in {0-n} $  
+> **Constraint 4e:**\
+> $s_{ik} \geq \frac{1}{100} - |y_k - (y_i + (1-r_i) \times l_i + r_i \times w_i)|  \forall i \in {0-n}, k \neq i \in {0-n} $  
 
 This is the motivation for assumption 6, that the minimum desired width of any BOM item will be greater than $\frac{1}{100}$ units.  
 
 TO DO: 
-WRITE CONSTRAINTS FOR T2 (SCENARIO 2 IN PIC OUTLINING WAYS 2 BOARDS ARE NOT NEXT TO EACH OTHER)  
-WRITE CONSTRAINT T = T1 + T2  
-REWRITE HANDWRITTEN CONSTRAINT IN CONSTR3B.PNG, INCORPORATING T INTO IT. 
+WRITE CONSTRAINTS FOR t_ik (SCENARIO 2 IN PIC OUTLINING WAYS 2 BOARDS ARE NOT NEXT TO EACH OTHER)  
+REWRITE HANDWRITTEN CONSTRAINT IN CONSTR3B.PNG, INCORPORATING (1-v_ik) INTO IT. 
 
 ##### BOM items' height cannot exceed height of stock board:
 
