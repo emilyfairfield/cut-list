@@ -183,7 +183,7 @@ $t_1 \leq \frac{y_2 + 1}{y_3 + 1}$
 Replacing $y_2$ and $y_3$ with their definitions above, we get:  
 
 > **Constraint 4b:**\
-> $t_1 \leq \frac{y_k + 1}{y_i + (1-r_i) \times l_i + r_i \times w_i + 1} \forall i \in {0-n} \forall k \neq i \in {0-n}$  
+> $t_1 \leq \frac{y_k + 1}{y_i + (1-r_i) \times l_i + r_i \times w_i + 1} \forall i \in {0-n}, k \neq i \in {0-n}$  
 
 What additional constraint can we create to force $t_1 = 1$ when $\frac{y_2}{y_3} \geq 1$?  
 
@@ -194,9 +194,11 @@ Does this accomplish what we want?
 $`t_1 = \begin{cases} 1 & \text{if } y_2 \gt y_3 \text{ as desired}\\ 0,1 & \text{if } y_2 = y_3 \text{not restrictive enough, combine with another constraint?}\\ 0,1 & \text{if } y_2 \lt y_3 \text{not restrictive enough, but works when combined with constraint 4b}\end{cases}`$  
 
 Let's use it and try to come up with another constraint to handle the case when $y_2 = y_3$
+$t_1 \geq y_2 - y_3$ 
+Replacing $y_2$ and $y_3$ with their definitions above, we get: 
 
 > **Constraint 4c:**\
-> $t_1 \geq y_2 - y_3$  
+> $t_1 \geq y_k - (y_i + (1-r_i) \times l_i + r_i \times w_i) \forall i \in {0-n}, k \neq i \in {0-n}$  
 
 How do we constrain $t_1 = 0$ when $y_2 = y_3$?
 Try:  
@@ -211,12 +213,15 @@ We only want $t_1=1$ when $y_2-y_3$ is 0 (or very close to 0), not just when it'
 
 We need to change the "1" on the righthand side of the constraint to be some number smaller than what we expect to be the minimum width of all boards in the BOM. Let's say $\frac{1}{100}$:
 
+$t_1 \geq \frac{1}{100} - |y_2 - y_3|$  
+Replacing $y_2$ and $y_3$ with their definitions above, we get: 
+
 > **Constraint 4d:**\
-> $t_1 \geq \frac{1}{100} - |y_2 - y_3|$  
+> $t_1 \geq \frac{1}{100} - |y_k - (y_i + (1-r_i) \times l_i + r_i \times w_i)|  \forall i \in {0-n}, k \neq i \in {0-n} $  
 
 This is the motivation for assumption 6, that the minimum desired width of any BOM item will be greater than $\frac{1}{100}$ units.  
 
-TO DO: REPLACE Y2, Y3 WITH FORMULAS RELATED TO YI, AI, BI, AND RI.  
+TO DO: 
 WRITE CONSTRAINTS FOR T2 (SCENARIO 2 IN PIC OUTLINING WAYS 2 BOARDS ARE NOT NEXT TO EACH OTHER)  
 WRITE CONSTRAINT T = T1 + T2  
 REWRITE HANDWRITTEN CONSTRAINT IN CONSTR3B.PNG, INCORPORATING T INTO IT. 
