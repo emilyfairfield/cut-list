@@ -161,9 +161,9 @@ $"y_4" = y_k + (1-r_k) \times l_k + r_k \times w_k \forall k \neq i \in {0-n}$
 
 Let's use $v$ to represent "NOT next to each other", where $v=s + t$, and $s$ and $t$ represent scenarios 1 and 2, respectively, from the photo above:  
 
-> $s_{ik}:$ {0,1} board $i$ is NOT next to board $k$ because board $i$ is ABOVE board $k$
-> $t_{ik}:$ {0,1} board $i$ is NOT next to board $k$ because board $i$ is BELOW board $k$
-> $v_{ik}:$ {0,1} board $i$ is NOT next to board $k$
+> $s_{ik}:$ {0,1} board $i$ is NOT next to board $k$ because board $i$ is ABOVE board $k$  
+> $t_{ik}:$ {0,1} board $i$ is NOT next to board $k$ because board $i$ is BELOW board $k$  
+> $v_{ik}:$ {0,1} board $i$ is NOT next to board $k$  
 
 > **Constraint 4a:**\
 > $v_{ik} = s_{ik} + t_{ik}$   
@@ -227,6 +227,8 @@ Replacing $y_2$ and $y_3$ with their definitions above, we get:
 > $s_{ik} \geq \frac{1}{100} - |y_k - (y_i + (1-r_i) \times l_i + r_i \times w_i)|  \forall i \in {0-n}, k \neq i \in {0-n} $  
 
 This is the motivation for assumption 6, that the minimum desired width of any BOM item will be greater than $\frac{1}{100}$ units.  
+
+
 
 TO DO: 
 WRITE CONSTRAINTS FOR t_ik (SCENARIO 2 IN PIC OUTLINING WAYS 2 BOARDS ARE NOT NEXT TO EACH OTHER)  
