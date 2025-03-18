@@ -344,7 +344,7 @@ $d_{ik} \leq \frac{x_2 + 1}{x_3 + 1}$
 Replacing $x_2$ and $x_3$ with their definitions above, we get:  
 
 > **Constraint 4m:**\
-> $d_{ik} \leq \frac{x_k + 1}{x_i + (1-r_i) \times b_i + r_i \times a_i + 1} \forall i,k  where i \neq k \in {0-n}$  
+> $d_{ik} \leq \frac{x_k + 1}{x_i + (1-r_i) \times b_i + r_i \times a_i + 1} \forall i,k  \text{where} i \neq k \in {0-n}$  
 
 ___
 
