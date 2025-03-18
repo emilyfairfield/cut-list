@@ -240,33 +240,55 @@ This is the motivation for assumption 6, that the minimum desired width of any B
 
 ___
 
+We've written all required constraints to cover the first scenario whereby 2 boards are "NOT next to each other". Now we need to write constraints for the second scenario:  
+
 ![](./images/constr4f.png)  
 
-We need to replicate the same constraints we created for $s_{ik}$, but replace:  
+Noticing that scenario 2 can be rewritten to look just like scenario 1, we will simply need to replicate the same constraints we created for $s_{ik}$, but replace:  
 * $s_{ik}$ with $t_{ik}$  
 * $y_2$ with $y_1$  
 * $y_3$ with $y_4$  
 
+___
+
+Replicating constraint 4b, we get:  
+
 > **Constraint 4f:**\
 > $t_{ik} \in {0,1}$  
+
+___
+
+Replicating constraint 4c, we get:  
 
 $t_{ik} \leq \frac{y_1 + 1}{y_4 + 1}$  
 
 Plugging in our definitions for $y_1$ and $y_4$, we get:  
+
 > **Constraint 4g:**\
 > $t_{ik} \leq \frac{y_i + 1}{y_k + (1-r_k) \times l_k + r_k \times w_k + 1} \forall i \in {0-n}, k \neq i \in {0-n}$  
 
-$t_{ik} \geq y_1 - y_4$ 
-Replacing $y_1$ and $y_4$ with their definitions above, we get: 
+___
+
+Replicating constraint 4d, we get:  
+
+$t_{ik} \geq y_1 - y_4$  
+
+Plugging in our definitions for $y_1$ and $y_4$, we get:  
 
 > **Constraint 4h:**\
 > $y_i - (y_k + (1-r_k) \times l_k + r_k \times w_k) \forall i \in {0-n}, k \neq i \in {0-n}$  
 
+___
+
+Replicating constraint 4e, we get:  
+
 $t_{ik} \geq \frac{1}{100} - |y_1 - y_4|$  
-Replacing $y_1$ and $y_4$ with their definitions above, we get: 
+
+Plugging in our definitions for $y_1$ and $y_4$, we get:  
 
 > **Constraint 4i:**\
 > $t_{ik} \geq \frac{1}{100} - |y_i - (y_k + (1-r_k) \times l_k + r_k \times w_k)| \forall i \in {0-n}, k \neq i \in {0-n}$  
+___
 
 TO DO: 
 REWRITE HANDWRITTEN CONSTRAINT IN CONSTR3B.PNG, INCORPORATING (1-v_ik) INTO IT. 
