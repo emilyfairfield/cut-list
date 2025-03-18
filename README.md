@@ -299,7 +299,7 @@ Putting it all together:
 ![](./images/constr4final.png)  
 
 > **Constraint 4j:**\
-> 
+> $\sum_{i\neq k}^n u_{ij} \times \left(\left(1-r_i\right) \times b_i + r_i \times a_i\right) \times \left(1-v_{ik} \right) \leq w_j \forall j$
 
 ##### BOM items' height cannot exceed height of stock board:
 
