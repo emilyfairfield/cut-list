@@ -156,8 +156,8 @@ Where:
 
 $"y_1" = y_i \forall i \in {0-n}$  
 $"y_2" = y_k \forall k \neq i \in {0-n}$  
-$"y_3" = y_i + (1-r_i) \times l_i + r_i \times w_i \forall i \in {0-n}$  
-$"y_4" = y_k + (1-r_k) \times l_k + r_k \times w_k \forall k \neq i \in {0-n}$  
+$"y_3" = y_i + (1-r_i) \times a_i + r_i \times b_i \forall i \in {0-n}$  
+$"y_4" = y_k + (1-r_k) \times a_k + r_k \times b_k \forall k \neq i \in {0-n}$  
 
 ___
 
@@ -196,7 +196,7 @@ $s_{ik} \leq \frac{y_2 + 1}{y_3 + 1}$
 Replacing $y_2$ and $y_3$ with their definitions above, we get:  
 
 > **Constraint 4c:**\
-> $s_{ik} \leq \frac{y_k + 1}{y_i + (1-r_i) \times l_i + r_i \times w_i + 1} \forall i \in {0-n}, k \neq i \in {0-n}$  
+> $s_{ik} \leq \frac{y_k + 1}{y_i + (1-r_i) \times a_i + r_i \times b_i + 1} \forall i \in {0-n}, k \neq i \in {0-n}$  
 
 ___
 
@@ -213,7 +213,7 @@ $s_{ik} \geq y_2 - y_3$
 Replacing $y_2$ and $y_3$ with their definitions above, we get: 
 
 > **Constraint 4d:**\
-> $s_{ik} \geq y_k - (y_i + (1-r_i) \times l_i + r_i \times w_i) \forall i \in {0-n}, k \neq i \in {0-n}$  
+> $s_{ik} \geq y_k - (y_i + (1-r_i) \times a_i + r_i \times b_i) \forall i \in {0-n}, k \neq i \in {0-n}$  
 
 ___
 
@@ -234,7 +234,7 @@ $s_{ik} \geq \frac{1}{100} - |y_2 - y_3|$
 Replacing $y_2$ and $y_3$ with their definitions above, we get: 
 
 > **Constraint 4e:**\
-> $s_{ik} \geq \frac{1}{100} - |y_k - (y_i + (1-r_i) \times l_i + r_i \times w_i)|  \forall i \in {0-n}, k \neq i \in {0-n} $  
+> $s_{ik} \geq \frac{1}{100} - |y_k - (y_i + (1-r_i) \times a_i + r_i \times b_i)|  \forall i \in {0-n}, k \neq i \in {0-n} $  
 
 This is the motivation for assumption 6, that the minimum desired width of any BOM item will be greater than $\frac{1}{100}$ units.  
 
@@ -265,7 +265,7 @@ $t_{ik} \leq \frac{y_1 + 1}{y_4 + 1}$
 Plugging in our definitions for $y_1$ and $y_4$, we get:  
 
 > **Constraint 4g:**\
-> $t_{ik} \leq \frac{y_i + 1}{y_k + (1-r_k) \times l_k + r_k \times w_k + 1} \forall i \in {0-n}, k \neq i \in {0-n}$  
+> $t_{ik} \leq \frac{y_i + 1}{y_k + (1-r_k) \times a_k + r_k \times b_k + 1} \forall i \in {0-n}, k \neq i \in {0-n}$  
 
 ___
 
@@ -276,7 +276,7 @@ $t_{ik} \geq y_1 - y_4$
 Plugging in our definitions for $y_1$ and $y_4$, we get:  
 
 > **Constraint 4h:**\
-> $y_i - (y_k + (1-r_k) \times l_k + r_k \times w_k) \forall i \in {0-n}, k \neq i \in {0-n}$  
+> $y_i - (y_k + (1-r_k) \times a_k + r_k \times b_k) \forall i \in {0-n}, k \neq i \in {0-n}$  
 
 ___
 
@@ -287,7 +287,7 @@ $t_{ik} \geq \frac{1}{100} - |y_1 - y_4|$
 Plugging in our definitions for $y_1$ and $y_4$, we get:  
 
 > **Constraint 4i:**\
-> $t_{ik} \geq \frac{1}{100} - |y_i - (y_k + (1-r_k) \times l_k + r_k \times w_k)| \forall i \in {0-n}, k \neq i \in {0-n}$  
+> $t_{ik} \geq \frac{1}{100} - |y_i - (y_k + (1-r_k) \times a_k + r_k \times b_k)| \forall i \in {0-n}, k \neq i \in {0-n}$  
 ___
 
 ![](./images/constr4complete.png)  
@@ -302,7 +302,39 @@ Putting it all together:
 > $\sum_{i\neq k}^n u_{ij} \times \left(\left(1-r_i\right) \times b_i + r_i \times a_i\right) \times \left(1-v_{ik} \right) \leq w_j \forall j$
 
 ##### BOM items' height cannot exceed height of stock board:
+![](./images/constr4_length.png)  
 
+where:  
+
+> $g_{ik}:$ boards $i$ and $k$ are NOT in line with each other  
+
+This is nearly identical to the above width constraints, but instead of the "next to each other" term, which is a function of the BOM items' y coordinates, we created a term that signifies "in line with each other", and is a function of the BOM items' x coordinates. Let's try to construct the "NOT in line with each other" term in such a way that we can reuse the above constraints with minimal changes:
+
+![](./images/not_inline.png)  
+
+Where:
+
+$"x_1" = x_i \forall i \in {0-n}$  
+$"x_2" = x_k \forall k \neq i \in {0-n}$  
+$"x_3" = x_i + (1-r_i) \times w_i + r_i \times l_i \forall i \in {0-n}$  
+$"y_4" = y_k + (1-r_k) \times w_k + r_k \times l_k \forall k \neq i \in {0-n}$  
+
+___
+
+Let's use $v$ to represent "NOT next to each other", where $v=s + t$, and $s$ and $t$ represent scenarios 1 and 2, respectively, from the photo above:  
+
+> $s_{ik}:$ {0,1} board $i$ is NOT next to board $k$ because board $i$ is ABOVE board $k$  
+> $t_{ik}:$ {0,1} board $i$ is NOT next to board $k$ because board $i$ is BELOW board $k$  
+> $v_{ik}:$ {0,1} board $i$ is NOT next to board $k$  
+
+> **Constraint 4a:**\
+> $v_{ik} = s_{ik} + t_{ik}$   
+
+___
+
+We know we should constrain $s_{ik}$ to be 0 or 1:  
+> **Constraint 4b:**\
+> $s_{ik} \in {0,1}$  
 
 #### 5. BOM items cannot overlap each other:
 
