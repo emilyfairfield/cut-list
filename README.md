@@ -128,7 +128,7 @@ Looking again at the example cut pattern above, there's one more element to this
 
 Call this additional decision variable $r_i$, where:
 
-> $`r_i = \begin{cases} 1 & \text{if BOM item } i \text{ is rotated wrt its stock board} \\ 0 & \text{otherwise} \end{cases}`$ 
+> $`r_i = \begin{cases} 1 & \text{if BOM item } i \text{ is rotated wrt its stock board} \\ 0 & \text{otherwise} \end{cases}`$  
 
 Using these new decision variables and our existing decision variables $u_{ij}$, we need to devise our constraints that prevent BOM items from exceeding the boundaries of the stock board from which they're cut. Using the above diagram:  
 
@@ -299,7 +299,7 @@ Putting it all together:
 ![](./images/constr4final.png)  
 
 > **Constraint 4j:**\
-> $\sum_{i\neq k}^n u_{ij} \times \left(\left(1-r_i\right) \times b_i + r_i \times a_i\right) \times \left(1-v_{ik} \right) \leq w_j \forall j$
+> $\sum_{i\neq k}^n u_{ij} \times \left(\left(1-r_i\right) \times b_i + r_i \times a_i\right) \times \left(1-v_{ik} \right) \leq w_j \forall j$  
 
 ##### BOM items' height cannot exceed height of stock board:
 ![](./images/constr4_length.png)  
@@ -436,11 +436,73 @@ We only have an overlapping problem if all 4 of the above terms evaluate to 1 (i
 
 #### 6. Integer constraints:
 > **Constraint 6:**\
-> $u_{ij}, q_j, r_i \in\{0,1\} \forall i,j$
+> $u_{ij}, q_j, r_i \in\{0,1\} \forall i,j$  
 
 #### 7. Non-negativity constraints:
 > **Constraint 7:**\
-> $x_i, y_i \geq 0 \forall i$
+> $x_i, y_i \geq 0 \forall i$  
+
+## The Final Problem:  
+We set out to create a Mixed Integer Linear Program, but ended up having to incorporate quadratic constraints (see constraint 4), so we ended up with a Mixed Integer Quadratically Constrained Problem, as follows:
+
+**Objective is to minimize cost:**  
+> $min_{\left(u_{ij}, x_i, y_i, r_i\right)}\left( \sum_{j=1}^m p_j q_j \right)$  
+
+**Variable Definitions:**  
+User-Provided or Derived from User-Provided:  
+> $a_i:$ length/max dimension of BOM item $i$  
+> $b_i:$ width/mid dimension of BOM item $i$  
+> $c_i:$ height/min dimension of BOM item $i$  
+> $l_j:$ length/max dimension of stock item $j$  
+> $w_j:$ width/mid dimension of stock item $j$  
+> $h_j:$ height/min dimension of stock item $j$  
+> $p_j:$ price of stock item $j$  
+> $n:$ total number of BOM items  
+> $m:$ upper limit of stock items = number of different types of board $* n$  
+
+Decision Variables:  
+> $`u_{ij} = \begin{cases} 1 & \text{if BOM item i is cut from stock board j} \\ 0 & \text{otherwise} \end{cases}`$  
+> $x_i:$ x coordinate of BOM item $i$'s upper left corner with respect to the upper left corner of the stock board from which it's cut  
+> $y_i:$ y coordinate of BOM item $i$'s upper left corner with respect to the upper left corner of the stock board from which it's cut  
+> $`r_i = \begin{cases} 1 & \text{if BOM item } i \text{ is rotated wrt its stock board} \\ 0 & \text{otherwise} \end{cases}`$  
+
+Intermediate Variables:  
+> $`q_{j} = \begin{cases} 1 & \text{if we need to buy stock board j to satisfy our BOM} \\ 0 & \text{otherwise} \end{cases}`$  
+> $s_{ik}:$ {0,1} board $i$ is NOT next to board $k$ because board $i$ is ABOVE board $k$  
+> $t_{ik}:$ {0,1} board $i$ is NOT next to board $k$ because board $i$ is BELOW board $k$  
+> $v_{ik}:$ {0,1} board $i$ is NOT next to board $k$  
+> $d_{ik}:$ {0,1} board $i$ is NOT in line with board $k$ because board $i$ is to the LEFT of board $k$  
+> $f_{ik}:$ {0,1} board $i$ is NOT in line with board $k$ because board $i$ is to the RIGHT of board $k$  
+> $g_{ik}:$ {0,1} boards $i$ and $k$ are NOT in line with each other  
+
+**Subject to constraints:**  
+> 1. $\sum_{j=1}^m u_{ij} = 1  \forall i$  
+> 2a. $u_{ij} \leq \frac{c_i}{h_j} \forall i,j$  
+> 2b. $u_{ij} \leq \frac{h_j}{c_i} \forall i,j$  
+> 3. $q_j \geq \frac{\sum_{i=1}^n u_{ij}}{n} \forall j$  
+> 4a. $v_{ik} = s_{ik} + t_{ik}$  
+> 4b. $s_{ik} \in {0,1}$  
+> 4c. $s_{ik} \leq \frac{y_k + 1}{y_i + (1-r_i) \times a_i + r_i \times b_i + 1} \forall i \in {0-n}, k \neq i \in {0-n}$  
+> 4d. $s_{ik} \geq y_k - (y_i + (1-r_i) \times a_i + r_i \times b_i) \forall i \in {0-n}, k \neq i \in {0-n}$  
+> 4e. $s_{ik} \geq \frac{1}{100} - |y_k - (y_i + (1-r_i) \times a_i + r_i \times b_i)|  \forall i \in {0-n}, k \neq i \in {0-n} $  
+> 4f. $t_{ik} \in {0,1}$  
+> 4g. $t_{ik} \leq \frac{y_i + 1}{y_k + (1-r_k) \times a_k + r_k \times b_k + 1} \forall i \in {0-n}, k \neq i \in {0-n}$  
+> 4h. $y_i - (y_k + (1-r_k) \times a_k + r_k \times b_k) \forall i \in {0-n}, k \neq i \in {0-n}$  
+> 4i. $t_{ik} \geq \frac{1}{100} - |y_i - (y_k + (1-r_k) \times a_k + r_k \times b_k)| \forall i \in {0-n}, k \neq i \in {0-n}$  
+> 4j. $\sum_{i\neq k}^n u_{ij} \times \left(\left(1-r_i\right) \times b_i + r_i \times a_i\right) \times \left(1-v_{ik} \right) \leq w_j \forall j$  
+> 4k. $g_{ik} = d_{ik} + f_{ik}$  
+> 4l. $s_{ik} \in {0,1}$  
+> 4m. $d_{ik} \leq \frac{x_k + 1}{x_i + (1-r_i) \times b_i + r_i \times a_i + 1} \forall i,k  \text{ where } i \neq k \in {0-n}$  
+> 4n. $d_{ik} \geq x_k - (x_i + (1-r_i) \times b_i + r_i \times a_i) \forall i,k  \text{ where } i \neq k \in {0-n}$  
+> 4o. $d_{ik} \geq \frac{1}{100} - |x_k - (x_i + (1-r_i) \times b_i + r_i \times a_i)| \forall i,k  \text{ where } i \neq k \in {0-n}$  
+> 4p. $f_{ik} \in {0,1}$  
+> 4q. $f_{ik} \leq \frac{x_i + 1}{x_k + (1-r_k) \times b_k + r_k \times a_k + 1} \forall i,k  \text{ where } i \neq k \in {0-n}$  
+> 4r. $f_{ik} \geq x_i - (x_k + (1-r_k) \times b_k + r_k \times a_k) \forall i,k  \text{ where } i \neq k \in {0-n}$  
+> 4s. $f_{ik} \geq \frac{1}{100} - |x_i - (x_k + (1-r_k) \times b_k + r_k \times a_k)| \forall i,k  \text{ where } i \neq k \in {0-n}$  
+> 4t. $\sum_{i\neq k}^n u_{ij} \times \left(\left(1 - r_i\right) \times a_i + r_i \times b_i\right) \times \left(1 -g_{ik} \right) \leq l_j \forall j$  
+> 5. $\sum_{i\neq k}^n u_{ij} \times u_{kj} \times \left(1 - v_{ik}\right) \times \left(1 - g_{ik}\right) \forall j \in m$  
+> 6. $u_{ij}, q_j, r_i \in\{0,1\} \forall i,j$  
+> 7. $x_i, y_i \geq 0 \forall i$  
 
 ## Future Work:
 * Create GUI for tool.
