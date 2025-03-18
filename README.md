@@ -306,7 +306,7 @@ Putting it all together:
 
 where:  
 
-> $g_{ik}:$ boards $i$ and $k$ are NOT in line with each other  
+> $g_{ik}:$ {0,1} boards $i$ and $k$ are NOT in line with each other  
 
 This is nearly identical to the above width constraints, but instead of the "next to each other" term, which is a function of the BOM items' y coordinates, we created a term that signifies "in line with each other", and is a function of the BOM items' x coordinates. Let's try to construct the "NOT in line with each other" term in such a way that we can reuse the above constraints with minimal changes:
 
@@ -316,25 +316,110 @@ Where:
 
 $"x_1" = x_i \forall i \in {0-n}$  
 $"x_2" = x_k \forall k \neq i \in {0-n}$  
-$"x_3" = x_i + (1-r_i) \times w_i + r_i \times l_i \forall i \in {0-n}$  
-$"y_4" = y_k + (1-r_k) \times w_k + r_k \times l_k \forall k \neq i \in {0-n}$  
+$"x_3" = x_i + (1-r_i) \times b_i + r_i \times a_i \forall i \in {0-n}$  
+$"x_4" = x_k + (1-r_k) \times b_k + r_k \times a_k \forall k \neq i \in {0-n}$  
 
 ___
 
-Let's use $v$ to represent "NOT next to each other", where $v=s + t$, and $s$ and $t$ represent scenarios 1 and 2, respectively, from the photo above:  
+We used $g$ to represent "NOT in line with each other" in the constraint above. Let's say that $g=d+f$, where $d$ and $f$ represent scenarios 1 and 2, respectively, from the photo above:  
 
-> $s_{ik}:$ {0,1} board $i$ is NOT next to board $k$ because board $i$ is ABOVE board $k$  
-> $t_{ik}:$ {0,1} board $i$ is NOT next to board $k$ because board $i$ is BELOW board $k$  
-> $v_{ik}:$ {0,1} board $i$ is NOT next to board $k$  
+> $d_{ik}:$ {0,1} board $i$ is NOT in line with board $k$ because board $i$ is to the LEFT of board $k$  
+> $f_{ik}:$ {0,1} board $i$ is NOT in line with board $k$ because board $i$ is to the RIGHT of board $k$  
 
-> **Constraint 4a:**\
-> $v_{ik} = s_{ik} + t_{ik}$   
+> **Constraint 4k:**\
+> $g_{ik} = d_{ik} + f_{ik}$   
 
 ___
 
-We know we should constrain $s_{ik}$ to be 0 or 1:  
-> **Constraint 4b:**\
+Constraining $d_{ik}$ to be 0 or 1, as we did with $s_{ik}$ in constraint 4b above:  
+
+> **Constraint 4l:**\
 > $s_{ik} \in {0,1}$  
+
+___
+
+Adapting constraint 4c:
+
+$d_{ik} \leq \frac{x_2 + 1}{x_3 + 1}$  
+Replacing $x_2$ and $x_3$ with their definitions above, we get:  
+
+> **Constraint 4m:**\
+> $d_{ik} \leq \frac{x_k + 1}{x_i + (1-r_i) \times b_i + r_i \times a_i + 1} \forall i,k  where i \neq k \in {0-n}$  
+
+___
+
+Adapting constraint 4d:
+
+$d_{ik} \geq x_2 - x_3$  
+Replacing $x_2$ and $x_3$ with their definitions above, we get: 
+
+> **Constraint 4n:**\
+> $d_{ik} \geq x_k - (x_i + (1-r_i) \times b_i + r_i \times a_i) \forall i,k  where i \neq k \in {0-n}$  
+
+___
+
+Adapting constraint 4e:
+
+$d_{ik} \geq \frac{1}{100} - |x_2 - x_3|$  
+Replacing $x_2$ and $x_3$ with their definitions above, we get: 
+
+> **Constraint 4o:**\
+> $d_{ik} \geq \frac{1}{100} - |x_k - (x_i + (1-r_i) \times b_i + r_i \times a_i)| \forall i,k  where i \neq k \in {0-n}$  
+
+___
+
+We've written all required constraints to cover the first scenario whereby 2 boards are "NOT in line each other". Now we need to write constraints for the second scenario, which is defined by variable $f_{ik}$:  
+
+![](./images/constr4_inline_first_complete.png)  
+
+Adapting constraint 4f:  
+
+> **Constraint 4p:**\
+> $f_{ik} \in {0,1}$  
+
+___
+
+Adapting constraint 4g:  
+
+$f_{ik} \leq \frac{x_1 + 1}{x_4 + 1}$  
+
+Plugging in our definitions for $x_1$ and $x_4$, we get:  
+
+> **Constraint 4q:**\
+> $f_{ik} \leq \frac{x_i + 1}{x_k + (1-r_k) \times b_k + r_k \times a_k + 1} \forall i,k  where i \neq k \in {0-n}$  
+
+___
+
+Adapting constraint 4h:
+
+$f_{ik} \geq x_1 - x_4$  
+
+Plugging in our definitions for $x_1$ and $x_4$, we get:  
+
+> **Constraint 4r:**\
+> $f_{ik} \geq x_i - (x_k + (1-r_k) \times b_k + r_k \times a_k) \forall i,k  where i \neq k \in {0-n}$  
+
+___
+
+Adapting constraint 4i:  
+
+$f_{ik} \geq \frac{1}{100} - |x_1 - x_4|$  
+
+Plugging in our definitions for $x_1$ and $x_4$, we get:  
+
+> **Constraint 4s:**\
+> $f_{ik} \geq \frac{1}{100} - |x_i - (x_k + (1-r_k) \times b_k + r_k \times a_k)| \forall i,k  where i \neq k \in {0-n}$  
+
+___
+
+We've now covered both scenarios:  
+![](./images/constr4_length_complete.png)  
+___
+
+Putting it all together/adapting constraint 4j:  
+
+> **Constraint 4t:**\
+> $\sum_{i\neq k}^n u_{ij} \times \left(\left(1 - r_i\right) \times a_i + r_i \times b_i\right) \times \left(1 -g_{ik} \right) \leq l_j \forall j$  
 
 #### 5. BOM items cannot overlap each other:
 
