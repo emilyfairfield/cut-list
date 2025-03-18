@@ -159,6 +159,8 @@ $"y_2" = y_k \forall k \neq i \in {0-n}$
 $"y_3" = y_i + (1-r_i) \times l_i + r_i \times w_i \forall i \in {0-n}$  
 $"y_4" = y_k + (1-r_k) \times l_k + r_k \times w_k \forall k \neq i \in {0-n}$  
 
+___
+
 Let's use $v$ to represent "NOT next to each other", where $v=s + t$, and $s$ and $t$ represent scenarios 1 and 2, respectively, from the photo above:  
 
 > $s_{ik}:$ {0,1} board $i$ is NOT next to board $k$ because board $i$ is ABOVE board $k$  
@@ -168,9 +170,13 @@ Let's use $v$ to represent "NOT next to each other", where $v=s + t$, and $s$ an
 > **Constraint 4a:**\
 > $v_{ik} = s_{ik} + t_{ik}$   
 
+___
+
 We know we should constrain $s_{ik}$ to be 0 or 1:  
 > **Constraint 4b:**\
 > $s_{ik} \in {0,1}$  
+
+___
 
 We also want:  
 $`s_{ik} = \begin{cases} 1 & \text{if } y_2 \geq y_3 \\ 0 & \text{if } y_2 \lt y_3\end{cases}`$  
@@ -192,6 +198,8 @@ Replacing $y_2$ and $y_3$ with their definitions above, we get:
 > **Constraint 4c:**\
 > $s_{ik} \leq \frac{y_k + 1}{y_i + (1-r_i) \times l_i + r_i \times w_i + 1} \forall i \in {0-n}, k \neq i \in {0-n}$  
 
+___
+
 What additional constraint can we create to force $s_{ik} = 1$ when $\frac{y_2}{y_3} \geq 1$?  
 
 Try:
@@ -206,6 +214,8 @@ Replacing $y_2$ and $y_3$ with their definitions above, we get:
 
 > **Constraint 4d:**\
 > $s_{ik} \geq y_k - (y_i + (1-r_i) \times l_i + r_i \times w_i) \forall i \in {0-n}, k \neq i \in {0-n}$  
+
+___
 
 How do we constrain $s_{ik} = 0$ when $y_2 = y_3$?
 Try:  
@@ -228,10 +238,37 @@ Replacing $y_2$ and $y_3$ with their definitions above, we get:
 
 This is the motivation for assumption 6, that the minimum desired width of any BOM item will be greater than $\frac{1}{100}$ units.  
 
+___
 
+![](./images/constr4f.png)  
+
+We need to replicate the same constraints we created for $s_{ik}$, but replace:  
+* $s_{ik}$ with $t_{ik}$  
+* $y_2$ with $y_1$  
+* $y_3$ with $y_4$  
+
+> **Constraint 4f:**\
+> $t_{ik} \in {0,1}$  
+
+$t_{ik} \leq \frac{y_1 + 1}{y_4 + 1}$  
+
+Plugging in our definitions for $y_1$ and $y_4$, we get:  
+> **Constraint 4g:**\
+> $t_{ik} \leq \frac{y_i + 1}{y_k + (1-r_k) \times l_k + r_k \times w_k + 1} \forall i \in {0-n}, k \neq i \in {0-n}$  
+
+$t_{ik} \geq y_1 - y_4$ 
+Replacing $y_1$ and $y_4$ with their definitions above, we get: 
+
+> **Constraint 4h:**\
+> $y_i - (y_k + (1-r_k) \times l_k + r_k \times w_k) \forall i \in {0-n}, k \neq i \in {0-n}$  
+
+$t_{ik} \geq \frac{1}{100} - |y_1 - y_4|$  
+Replacing $y_1$ and $y_4$ with their definitions above, we get: 
+
+> **Constraint 4i:**\
+> $t_{ik} \geq \frac{1}{100} - |y_i - (y_k + (1-r_k) \times l_k + r_k \times w_k)| \forall i \in {0-n}, k \neq i \in {0-n}$  
 
 TO DO: 
-WRITE CONSTRAINTS FOR t_ik (SCENARIO 2 IN PIC OUTLINING WAYS 2 BOARDS ARE NOT NEXT TO EACH OTHER)  
 REWRITE HANDWRITTEN CONSTRAINT IN CONSTR3B.PNG, INCORPORATING (1-v_ik) INTO IT. 
 
 ##### BOM items' height cannot exceed height of stock board:
