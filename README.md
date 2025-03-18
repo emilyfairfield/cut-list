@@ -422,6 +422,17 @@ Putting it all together/adapting constraint 4j:
 > $\sum_{i\neq k}^n u_{ij} \times \left(\left(1 - r_i\right) \times a_i + r_i \times b_i\right) \times \left(1 -g_{ik} \right) \leq l_j \forall j$  
 
 #### 5. BOM items cannot overlap each other:
+There are several ways that two boards could overlap each other, including the below examples:
+![](./images/overlapping.png)  
+
+Notice that each instance of "overlapping" requires that the two boards be BOTH "next to each other" AND "in line with each other", meaning both their x and y spans overlap. So, to write this constraint, we can take advantage of our earlier definitions of "next to each other" and "in line with each other":
+
+![](./images/constr5.png)  
+
+We only have an overlapping problem if all 4 of the above terms evaluate to 1 (in other words, if the answer to all 4 questions is "yes"). If any of the 4 evaluate to 0, then the left hand side of the inequality will evaluate to 0, allowing the solution to be considered. Formalizing this constraint:  
+
+> **Constraint 5:**\
+> $\sum_{i\neq k}^n u_{ij} \times u_{kj} \times \left(1 - v_{ik}\right) \times \left(1 - g_{ik}\right) \forall j \in m$  
 
 #### 6. Integer constraints:
 > **Constraint 6:**\
