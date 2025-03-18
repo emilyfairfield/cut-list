@@ -476,11 +476,11 @@ Intermediate Variables:
 > $g_{ik}:$ {0,1} boards $i$ and $k$ are NOT in line with each other  
 
 **Subject to constraints:**  
-> 1. $\sum_{j=1}^m u_{ij} = 1  \forall i$  
-> 2a. $u_{ij} \leq \frac{c_i}{h_j} \forall i,j$  
-> 2b. $u_{ij} \leq \frac{h_j}{c_i} \forall i,j$  
-> 3. $q_j \geq \frac{\sum_{i=1}^n u_{ij}}{n} \forall j$  
-> 4a. $v_{ik} = s_{ik} + t_{ik}$  
+> constr 1. $\sum_{j=1}^m u_{ij} = 1  \forall i$  
+> constr 2a. $u_{ij} \leq \frac{c_i}{h_j} \forall i,j$  
+> constr 2b. $u_{ij} \leq \frac{h_j}{c_i} \forall i,j$  
+> constr 3. $q_j \geq \frac{\sum_{i=1}^n u_{ij}}{n} \forall j$  
+> constr 4a. $v_{ik} = s_{ik} + t_{ik}$  
 > 4b. $s_{ik} \in {0,1}$  
 > 4c. $s_{ik} \leq \frac{y_k + 1}{y_i + (1-r_i) \times a_i + r_i \times b_i + 1} \forall i \in {0-n}, k \neq i \in {0-n}$  
 > 4d. $s_{ik} \geq y_k - (y_i + (1-r_i) \times a_i + r_i \times b_i) \forall i \in {0-n}, k \neq i \in {0-n}$  
