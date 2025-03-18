@@ -354,7 +354,7 @@ $d_{ik} \geq x_2 - x_3$
 Replacing $x_2$ and $x_3$ with their definitions above, we get: 
 
 > **Constraint 4n:**\
-> $d_{ik} \geq x_k - (x_i + (1-r_i) \times b_i + r_i \times a_i) \forall i,k  where i \neq k \in {0-n}$  
+> $d_{ik} \geq x_k - (x_i + (1-r_i) \times b_i + r_i \times a_i) \forall i,k  \text{ where } i \neq k \in {0-n}$  
 
 ___
 
@@ -364,7 +364,7 @@ $d_{ik} \geq \frac{1}{100} - |x_2 - x_3|$
 Replacing $x_2$ and $x_3$ with their definitions above, we get: 
 
 > **Constraint 4o:**\
-> $d_{ik} \geq \frac{1}{100} - |x_k - (x_i + (1-r_i) \times b_i + r_i \times a_i)| \forall i,k  where i \neq k \in {0-n}$  
+> $d_{ik} \geq \frac{1}{100} - |x_k - (x_i + (1-r_i) \times b_i + r_i \times a_i)| \forall i,k  \text{ where } i \neq k \in {0-n}$  
 
 ___
 
@@ -386,7 +386,7 @@ $f_{ik} \leq \frac{x_1 + 1}{x_4 + 1}$
 Plugging in our definitions for $x_1$ and $x_4$, we get:  
 
 > **Constraint 4q:**\
-> $f_{ik} \leq \frac{x_i + 1}{x_k + (1-r_k) \times b_k + r_k \times a_k + 1} \forall i,k  where i \neq k \in {0-n}$  
+> $f_{ik} \leq \frac{x_i + 1}{x_k + (1-r_k) \times b_k + r_k \times a_k + 1} \forall i,k  \text{ where } i \neq k \in {0-n}$  
 
 ___
 
@@ -397,7 +397,7 @@ $f_{ik} \geq x_1 - x_4$
 Plugging in our definitions for $x_1$ and $x_4$, we get:  
 
 > **Constraint 4r:**\
-> $f_{ik} \geq x_i - (x_k + (1-r_k) \times b_k + r_k \times a_k) \forall i,k  where i \neq k \in {0-n}$  
+> $f_{ik} \geq x_i - (x_k + (1-r_k) \times b_k + r_k \times a_k) \forall i,k  \text{ where } i \neq k \in {0-n}$  
 
 ___
 
@@ -408,7 +408,7 @@ $f_{ik} \geq \frac{1}{100} - |x_1 - x_4|$
 Plugging in our definitions for $x_1$ and $x_4$, we get:  
 
 > **Constraint 4s:**\
-> $f_{ik} \geq \frac{1}{100} - |x_i - (x_k + (1-r_k) \times b_k + r_k \times a_k)| \forall i,k  where i \neq k \in {0-n}$  
+> $f_{ik} \geq \frac{1}{100} - |x_i - (x_k + (1-r_k) \times b_k + r_k \times a_k)| \forall i,k  \text{ where } i \neq k \in {0-n}$  
 
 ___
 
