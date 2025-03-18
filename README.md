@@ -290,22 +290,28 @@ Plugging in our definitions for $y_1$ and $y_4$, we get:
 > $t_{ik} \geq \frac{1}{100} - |y_i - (y_k + (1-r_k) \times l_k + r_k \times w_k)| \forall i \in {0-n}, k \neq i \in {0-n}$  
 ___
 
-TO DO: 
-REWRITE HANDWRITTEN CONSTRAINT IN CONSTR3B.PNG, INCORPORATING (1-v_ik) INTO IT. 
+![](./images/constr4complete.png)  
+
+___ 
+
+Putting it all together:
+
+![](./images/constr4final.png)  
+
+> **Constraint 4j:**\
+> 
 
 ##### BOM items' height cannot exceed height of stock board:
 
 
 #### 5. BOM items cannot overlap each other:
 
-#### 6. All u_ij must be a non-negative integer:
-
-#### 7. Integer constraints:
-> **Constraint 7:**\
+#### 6. Integer constraints:
+> **Constraint 6:**\
 > $u_{ij}, q_j, r_i \in\{0,1\} \forall i,j$
 
-#### 8. Non-negativity constraints:
-> **Constraint 8:**\
+#### 7. Non-negativity constraints:
+> **Constraint 7:**\
 > $x_i, y_i \geq 0 \forall i$
 
 ## Future Work:
