@@ -476,8 +476,9 @@ Intermediate Variables:
 > $g_{ik}:$ {0,1} boards $i$ and $k$ are NOT in line with each other  
 
 **Subject to constraints:**  
-> constr 1. $\sum_{j=1}^m u_{ij} = 1  \forall i$  
-> constr 2a. $u_{ij} \leq \frac{c_i}{h_j} \forall i,j$  
+> 1. $\sum_{j=1}^m u_{ij} = 1  \forall i$  
+> 2.
+>   a. $u_{ij} \leq \frac{c_i}{h_j} \forall i,j$  
 > constr 2b. $u_{ij} \leq \frac{h_j}{c_i} \forall i,j$  
 > constr 3. $q_j \geq \frac{\sum_{i=1}^n u_{ij}}{n} \forall j$  
 > constr 4a. $v_{ik} = s_{ik} + t_{ik}$  
