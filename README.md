@@ -476,12 +476,12 @@ Intermediate Variables:
 > $g_{ik}:$ {0,1} boards $i$ and $k$ are NOT in line with each other  
 
 **Subject to constraints:**  
-> **1. All BOM items must be cut exactly once / from exactly one stock board:**
+> **1. All BOM items must be cut exactly once / from exactly one stock board:**\
 > $\sum_{j=1}^m u_{ij} = 1  \forall i$  
-> **2. The thickness (smallest dimension) of each BOM item must match that of the stock item from which it's cut:**
+> **2. The thickness (smallest dimension) of each BOM item must match that of the stock item from which it's cut:**\
 >   - a. $u_{ij} \leq \frac{c_i}{h_j} \forall i,j$  
 >   - b. $u_{ij} \leq \frac{h_j}{c_i} \forall i,j$  
-> **3.  If any BOM items are planned to be cut from stock board j, we must buy stock board j:**
+> **3.  If any BOM items are planned to be cut from stock board j, we must buy stock board j:**\
 > $q_j \geq \frac{\sum_{i=1}^n u_{ij}}{n} \forall j$  
 > **4. BOM items cannot exceed the boundaries of the stock board from which they're cut:**
 >   - a. $v_{ik} = s_{ik} + t_{ik}$  
@@ -504,11 +504,11 @@ Intermediate Variables:
 >   - r. $f_{ik} \geq x_i - (x_k + (1-r_k) \times b_k + r_k \times a_k) \forall i,k  \text{ where } i \neq k \in {0-n}$  
 >   - s. $f_{ik} \geq \frac{1}{100} - |x_i - (x_k + (1-r_k) \times b_k + r_k \times a_k)| \forall i,k  \text{ where } i \neq k \in {0-n}$  
 >   - t. $\sum_{i\neq k}^n u_{ij} \times \left(\left(1 - r_i\right) \times a_i + r_i \times b_i\right) \times \left(1 -g_{ik} \right) \leq l_j \forall j$  
-> **5. BOM items cannot overlap each other:** 
+> **5. BOM items cannot overlap each other:** \
 > $\sum_{i\neq k}^n u_{ij} \times u_{kj} \times \left(1 - v_{ik}\right) \times \left(1 - g_{ik}\right) \forall j \in m$  
-> **6. Integer Constraints:** 
+> **6. Integer Constraints:** \
 > $u_{ij}, q_j, r_i \in\{0,1\} \forall i,j$  
-> **7. Non-negativity Constraints:** 
+> **7. Non-negativity Constraints:** \
 > $x_i, y_i \geq 0 \forall i$  
 
 ## Future Work:
