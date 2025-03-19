@@ -481,6 +481,7 @@ Intermediate Variables:
 >**2. The thickness (smallest dimension) of each BOM item must match that of the stock item from which it's cut:**  
 >   - a. $u_{ij} \leq \frac{c_i}{h_j} \forall i,j$  
 >   - b. $u_{ij} \leq \frac{h_j}{c_i} \forall i,j$  
+
 >**3.  If any BOM items are planned to be cut from stock board j, we must buy stock board j:**  
 >$q_j \geq \frac{\sum_{i=1}^n u_{ij}}{n} \forall j$  
 >**4. BOM items cannot exceed the boundaries of the stock board from which they're cut:**
