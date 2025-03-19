@@ -481,32 +481,32 @@ Intermediate Variables:
 
 >**2. The thickness (smallest dimension) of each BOM item must match that of the stock item from which it's cut:**  
 >   - **a.** $u_{ij} \leq \frac{c_i}{h_j} \forall i,j$  
->   - b. $u_{ij} \leq \frac{h_j}{c_i} \forall i,j$  
+>   - **b.** $u_{ij} \leq \frac{h_j}{c_i} \forall i,j$  
 
 >**3.  If any BOM items are planned to be cut from stock board j, we must buy stock board j:**  
 >$q_j \geq \frac{\sum_{i=1}^n u_{ij}}{n} \forall j$  
 
 >**4. BOM items cannot exceed the boundaries of the stock board from which they're cut:**
->   - a. $v_{ik} = s_{ik} + t_{ik}$  
->   - b. $s_{ik} \in {0,1}$  
->   - c. $s_{ik} \leq \frac{y_k + 1}{y_i + (1-r_i) \times a_i + r_i \times b_i + 1} \forall i \in {0-n}, k \neq i \in {0-n}$  
->   - d. $s_{ik} \geq y_k - (y_i + (1-r_i) \times a_i + r_i \times b_i) \forall i \in {0-n}, k \neq i \in {0-n}$  
->   - e. $s_{ik} \geq \frac{1}{100} - |y_k - (y_i + (1-r_i) \times a_i + r_i \times b_i)|  \forall i \in {0-n}, k \neq i \in {0-n} $  
->   - f. $t_{ik} \in {0,1}$  
->   - g. $t_{ik} \leq \frac{y_i + 1}{y_k + (1-r_k) \times a_k + r_k \times b_k + 1} \forall i \in {0-n}, k \neq i \in {0-n}$  
->   - h. $y_i - (y_k + (1-r_k) \times a_k + r_k \times b_k) \forall i \in {0-n}, k \neq i \in {0-n}$  
->   - i. $t_{ik} \geq \frac{1}{100} - |y_i - (y_k + (1-r_k) \times a_k + r_k \times b_k)| \forall i \in {0-n}, k \neq i \in {0-n}$  
->   - j. $\sum_{i\neq k}^n u_{ij} \times \left(\left(1-r_i\right) \times b_i + r_i \times a_i\right) \times \left(1-v_{ik} \right) \leq w_j \forall j$  
->   - k. $g_{ik} = d_{ik} + f_{ik}$  
->   - l. $s_{ik} \in {0,1}$  
->   - m. $d_{ik} \leq \frac{x_k + 1}{x_i + (1-r_i) \times b_i + r_i \times a_i + 1} \forall i,k  \text{ where } i \neq k \in {0-n}$  
->   - n. $d_{ik} \geq x_k - (x_i + (1-r_i) \times b_i + r_i \times a_i) \forall i,k  \text{ where } i \neq k \in {0-n}$  
->   - o. $d_{ik} \geq \frac{1}{100} - |x_k - (x_i + (1-r_i) \times b_i + r_i \times a_i)| \forall i,k  \text{ where } i \neq k \in {0-n}$  
->   - p. $f_{ik} \in {0,1}$  
->   - q. $f_{ik} \leq \frac{x_i + 1}{x_k + (1-r_k) \times b_k + r_k \times a_k + 1} \forall i,k  \text{ where } i \neq k \in {0-n}$  
->   - r. $f_{ik} \geq x_i - (x_k + (1-r_k) \times b_k + r_k \times a_k) \forall i,k  \text{ where } i \neq k \in {0-n}$  
->   - s. $f_{ik} \geq \frac{1}{100} - |x_i - (x_k + (1-r_k) \times b_k + r_k \times a_k)| \forall i,k  \text{ where } i \neq k \in {0-n}$  
->   - t. $\sum_{i\neq k}^n u_{ij} \times \left(\left(1 - r_i\right) \times a_i + r_i \times b_i\right) \times \left(1 -g_{ik} \right) \leq l_j \forall j$  
+>   - **a.** $v_{ik} = s_{ik} + t_{ik}$  
+>   - **b.** $s_{ik} \in {0,1}$  
+>   - **c.** $s_{ik} \leq \frac{y_k + 1}{y_i + (1-r_i) \times a_i + r_i \times b_i + 1} \forall i \in {0-n}, k \neq i \in {0-n}$  
+>   - **d.** $s_{ik} \geq y_k - (y_i + (1-r_i) \times a_i + r_i \times b_i) \forall i \in {0-n}, k \neq i \in {0-n}$  
+>   - **e.** $s_{ik} \geq \frac{1}{100} - |y_k - (y_i + (1-r_i) \times a_i + r_i \times b_i)|  \forall i \in {0-n}, k \neq i \in {0-n} $  
+>   - **f.** $t_{ik} \in {0,1}$  
+>   - **g.** $t_{ik} \leq \frac{y_i + 1}{y_k + (1-r_k) \times a_k + r_k \times b_k + 1} \forall i \in {0-n}, k \neq i \in {0-n}$  
+>   - **h.** $y_i - (y_k + (1-r_k) \times a_k + r_k \times b_k) \forall i \in {0-n}, k \neq i \in {0-n}$  
+>   - **i.** $t_{ik} \geq \frac{1}{100} - |y_i - (y_k + (1-r_k) \times a_k + r_k \times b_k)| \forall i \in {0-n}, k \neq i \in {0-n}$  
+>   - **j.** $\sum_{i\neq k}^n u_{ij} \times \left(\left(1-r_i\right) \times b_i + r_i \times a_i\right) \times \left(1-v_{ik} \right) \leq w_j \forall j$  
+>   - **k.** $g_{ik} = d_{ik} + f_{ik}$  
+>   - **l.** $s_{ik} \in {0,1}$  
+>   - **m.** $d_{ik} \leq \frac{x_k + 1}{x_i + (1-r_i) \times b_i + r_i \times a_i + 1} \forall i,k  \text{ where } i \neq k \in {0-n}$  
+>   - **n.** $d_{ik} \geq x_k - (x_i + (1-r_i) \times b_i + r_i \times a_i) \forall i,k  \text{ where } i \neq k \in {0-n}$  
+>   - **o.** $d_{ik} \geq \frac{1}{100} - |x_k - (x_i + (1-r_i) \times b_i + r_i \times a_i)| \forall i,k  \text{ where } i \neq k \in {0-n}$  
+>   - **p.** $f_{ik} \in {0,1}$  
+>   - **q.** $f_{ik} \leq \frac{x_i + 1}{x_k + (1-r_k) \times b_k + r_k \times a_k + 1} \forall i,k  \text{ where } i \neq k \in {0-n}$  
+>   - **r.** $f_{ik} \geq x_i - (x_k + (1-r_k) \times b_k + r_k \times a_k) \forall i,k  \text{ where } i \neq k \in {0-n}$  
+>   - **s.** $f_{ik} \geq \frac{1}{100} - |x_i - (x_k + (1-r_k) \times b_k + r_k \times a_k)| \forall i,k  \text{ where } i \neq k \in {0-n}$  
+>   - **t.** $\sum_{i\neq k}^n u_{ij} \times \left(\left(1 - r_i\right) \times a_i + r_i \times b_i\right) \times \left(1 -g_{ik} \right) \leq l_j \forall j$  
 
 > **5. BOM items cannot overlap each other:** \
 > $\sum_{i\neq k}^n u_{ij} \times u_{kj} \times \left(1 - v_{ik}\right) \times \left(1 - g_{ik}\right) \forall j \in m$  
