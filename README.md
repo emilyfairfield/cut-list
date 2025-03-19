@@ -16,7 +16,8 @@ First, let's list our assumptions:
 6. The minimum desired width for any BOM item will be greater than $\frac{1}{100}$ units (see constraint 4d below).
 7. The solution is feasible.
 
-## Problem Formulation:
+<details>
+<summary>##Problem Formulation:</summary>
 Next, let's see if we can formulate the problem as a Mixed Integer Linear Program (MILP):
 
 ### Objective Function & Decision Variables, Attempt 1:
@@ -53,7 +54,9 @@ where:
 ### Objective Function & Decision Variables, Attempt 2:
 Based on the above, we need to come up with a reasonable upper limit for the quantity of each stock board required to fulfill our BOM. Because we are assuming feasibility, we know that in the worst case, we can only cut one of our BOM boards from each stock board we buy. Of course, we don't know right off the bat which size of stock board would be paired with each BOM item in this worst case. So, a conservative upper limit would be one of *each* type of stock board *per* BOM item.
 
-We now update our objective function such that the upper bound of our summation is $j=m$ where $m$ is the number of different types of boards times the number of BOM items, $n$. Our objective is still to minimize cost, but $q_j$ is no longer a decision variable, but a function of our new decision variable, $u_{ij}$. Keep in mind that because $j$ represents one **instance** of a stock board of given dimensions, $q_j$ can only evaluate to 0 or 1. 
+We will now update our objective function such that the upper bound of our summation is $j=m$ where $m$ is the number of different types of boards times the number of BOM items, $n$. 
+
+We also need to reconsider our decision variables. Keep in mind that because $j$ represents one **instance** of a stock board of given dimensions, $q_j$ can only evaluate to 0 or 1. And we're not planning to directly decide whether or not to buy stock board $j$. Our decision to buy it is a symptom of whether or not we need to cut BOM items from it to fulfill our BOM. So our real decision variables should answer the question "Do we need to cut BOM item $i$ from stock board $j$?":
 
 > **Objective is to minimize cost:**\
 > $min_{\left(u_{ij}\right)}\left( \sum_{j=1}^m p_j q_j \right)$  
@@ -97,7 +100,7 @@ We need BOTH of the following:
 Because if $c_i \neq h_j$, then one of the above ratios will be less than one, and since $u_{ij} \in \{0,1\}$, this will force $u_{ij} = 0$.
 
 #### 3. If any BOM items are planned to be cut from stock board j, we must buy stock board j:
-We want to constraint our problem such that, for a given $j$, if any $u_{ij} \forall i$ is set to 1, $q_j$ gets set to 1. 
+We want to constrain our problem such that, for a given $j$, if any $u_{ij} \forall i$ is set to 1, $q_j$ gets set to 1. 
 
 Based on the definition of $u_{ij}$, we know that $u_{ij}$ will be either 0 or 1 for all values of $i$ and $j$. 
 
@@ -441,6 +444,8 @@ We only have an overlapping problem if all 4 of the above terms evaluate to 1 (i
 #### 7. Non-negativity constraints:
 > **Constraint 7:**\
 > $x_i, y_i \geq 0 \forall i$  
+
+</details>
 
 ## The Final Problem:  
 We set out to create a Mixed Integer Linear Program, but ended up having to incorporate quadratic constraints (see constraint 4), so we ended up with a Mixed Integer Quadratically Constrained Problem, as follows:
