@@ -481,7 +481,7 @@ Intermediate Variables:
 >   - a. $u_{ij} \leq \frac{c_i}{h_j} \forall i,j$  
 >   - b. $u_{ij} \leq \frac{h_j}{c_i} \forall i,j$  
 > 3. $q_j \geq \frac{\sum_{i=1}^n u_{ij}}{n} \forall j$  
-> 4.a. 
+> 4. a. 
 >   - a. $v_{ik} = s_{ik} + t_{ik}$  
 >   - b. $s_{ik} \in {0,1}$  
 >   - c. $s_{ik} \leq \frac{y_k + 1}{y_i + (1-r_i) \times a_i + r_i \times b_i + 1} \forall i \in {0-n}, k \neq i \in {0-n}$  
