@@ -19,8 +19,8 @@ First, let's list our assumptions:
 ## Problem Formulation: 
 
 <details>
-<summary>## Problem Formulation:</summary>
-Next, let's see if we can formulate the problem as a Mixed Integer Linear Program (MILP):
+<summary>Details</summary>
+Let's see if we can formulate the problem as a Mixed Integer Linear Program (MILP):
 
 ### Objective Function & Decision Variables, Attempt 1:
 > **Objective is to minimize cost:**\
