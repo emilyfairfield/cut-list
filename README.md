@@ -16,8 +16,10 @@ First, let's list our assumptions:
 6. The minimum desired width for any BOM item will be greater than $\frac{1}{100}$ units (see constraint 4d below).
 7. The solution is feasible.
 
+## Problem Formulation: 
+
 <details>
-<summary>##Problem Formulation:</summary>
+<summary>## Problem Formulation:</summary>
 Next, let's see if we can formulate the problem as a Mixed Integer Linear Program (MILP):
 
 ### Objective Function & Decision Variables, Attempt 1:
