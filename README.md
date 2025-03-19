@@ -479,31 +479,32 @@ Intermediate Variables:
 > 1. $\sum_{j=1}^m u_{ij} = 1  \forall i$  
 > 2.
 >   - a. $u_{ij} \leq \frac{c_i}{h_j} \forall i,j$  
-> constr 2b. $u_{ij} \leq \frac{h_j}{c_i} \forall i,j$  
-> constr 3. $q_j \geq \frac{\sum_{i=1}^n u_{ij}}{n} \forall j$  
-> constr 4a. $v_{ik} = s_{ik} + t_{ik}$  
-> constr 4b. $s_{ik} \in {0,1}$  
-> constr 4c. $s_{ik} \leq \frac{y_k + 1}{y_i + (1-r_i) \times a_i + r_i \times b_i + 1} \forall i \in {0-n}, k \neq i \in {0-n}$  
-> constr 4d. $s_{ik} \geq y_k - (y_i + (1-r_i) \times a_i + r_i \times b_i) \forall i \in {0-n}, k \neq i \in {0-n}$  
-> constr 4e. $s_{ik} \geq \frac{1}{100} - |y_k - (y_i + (1-r_i) \times a_i + r_i \times b_i)|  \forall i \in {0-n}, k \neq i \in {0-n} $  
-> constr 4f. $t_{ik} \in {0,1}$  
-> constr 4g. $t_{ik} \leq \frac{y_i + 1}{y_k + (1-r_k) \times a_k + r_k \times b_k + 1} \forall i \in {0-n}, k \neq i \in {0-n}$  
-> constr 4h. $y_i - (y_k + (1-r_k) \times a_k + r_k \times b_k) \forall i \in {0-n}, k \neq i \in {0-n}$  
-> constr 4i. $t_{ik} \geq \frac{1}{100} - |y_i - (y_k + (1-r_k) \times a_k + r_k \times b_k)| \forall i \in {0-n}, k \neq i \in {0-n}$  
-> constr 4j. $\sum_{i\neq k}^n u_{ij} \times \left(\left(1-r_i\right) \times b_i + r_i \times a_i\right) \times \left(1-v_{ik} \right) \leq w_j \forall j$  
-> constr 4k. $g_{ik} = d_{ik} + f_{ik}$  
-> constr 4l. $s_{ik} \in {0,1}$  
-> constr 4m. $d_{ik} \leq \frac{x_k + 1}{x_i + (1-r_i) \times b_i + r_i \times a_i + 1} \forall i,k  \text{ where } i \neq k \in {0-n}$  
-> constr 4n. $d_{ik} \geq x_k - (x_i + (1-r_i) \times b_i + r_i \times a_i) \forall i,k  \text{ where } i \neq k \in {0-n}$  
-> constr 4o. $d_{ik} \geq \frac{1}{100} - |x_k - (x_i + (1-r_i) \times b_i + r_i \times a_i)| \forall i,k  \text{ where } i \neq k \in {0-n}$  
-> constr 4p. $f_{ik} \in {0,1}$  
-> constr 4q. $f_{ik} \leq \frac{x_i + 1}{x_k + (1-r_k) \times b_k + r_k \times a_k + 1} \forall i,k  \text{ where } i \neq k \in {0-n}$  
-> constr 4r. $f_{ik} \geq x_i - (x_k + (1-r_k) \times b_k + r_k \times a_k) \forall i,k  \text{ where } i \neq k \in {0-n}$  
-> constr 4s. $f_{ik} \geq \frac{1}{100} - |x_i - (x_k + (1-r_k) \times b_k + r_k \times a_k)| \forall i,k  \text{ where } i \neq k \in {0-n}$  
-> constr 4t. $\sum_{i\neq k}^n u_{ij} \times \left(\left(1 - r_i\right) \times a_i + r_i \times b_i\right) \times \left(1 -g_{ik} \right) \leq l_j \forall j$  
-> constr 5. $\sum_{i\neq k}^n u_{ij} \times u_{kj} \times \left(1 - v_{ik}\right) \times \left(1 - g_{ik}\right) \forall j \in m$  
-> constr 6. $u_{ij}, q_j, r_i \in\{0,1\} \forall i,j$  
-> constr 7. $x_i, y_i \geq 0 \forall i$  
+>   - b. $u_{ij} \leq \frac{h_j}{c_i} \forall i,j$  
+> 3. $q_j \geq \frac{\sum_{i=1}^n u_{ij}}{n} \forall j$  
+> 4.
+>   - a. $v_{ik} = s_{ik} + t_{ik}$  
+>   - b. $s_{ik} \in {0,1}$  
+>   - c. $s_{ik} \leq \frac{y_k + 1}{y_i + (1-r_i) \times a_i + r_i \times b_i + 1} \forall i \in {0-n}, k \neq i \in {0-n}$  
+>   - d. $s_{ik} \geq y_k - (y_i + (1-r_i) \times a_i + r_i \times b_i) \forall i \in {0-n}, k \neq i \in {0-n}$  
+>   - e. $s_{ik} \geq \frac{1}{100} - |y_k - (y_i + (1-r_i) \times a_i + r_i \times b_i)|  \forall i \in {0-n}, k \neq i \in {0-n} $  
+>   - f. $t_{ik} \in {0,1}$  
+>   - g. $t_{ik} \leq \frac{y_i + 1}{y_k + (1-r_k) \times a_k + r_k \times b_k + 1} \forall i \in {0-n}, k \neq i \in {0-n}$  
+>   - h. $y_i - (y_k + (1-r_k) \times a_k + r_k \times b_k) \forall i \in {0-n}, k \neq i \in {0-n}$  
+>   - i. $t_{ik} \geq \frac{1}{100} - |y_i - (y_k + (1-r_k) \times a_k + r_k \times b_k)| \forall i \in {0-n}, k \neq i \in {0-n}$  
+>   - j. $\sum_{i\neq k}^n u_{ij} \times \left(\left(1-r_i\right) \times b_i + r_i \times a_i\right) \times \left(1-v_{ik} \right) \leq w_j \forall j$  
+>   - k. $g_{ik} = d_{ik} + f_{ik}$  
+>   - l. $s_{ik} \in {0,1}$  
+>   - m. $d_{ik} \leq \frac{x_k + 1}{x_i + (1-r_i) \times b_i + r_i \times a_i + 1} \forall i,k  \text{ where } i \neq k \in {0-n}$  
+>   - n. $d_{ik} \geq x_k - (x_i + (1-r_i) \times b_i + r_i \times a_i) \forall i,k  \text{ where } i \neq k \in {0-n}$  
+>   - o. $d_{ik} \geq \frac{1}{100} - |x_k - (x_i + (1-r_i) \times b_i + r_i \times a_i)| \forall i,k  \text{ where } i \neq k \in {0-n}$  
+>   - p. $f_{ik} \in {0,1}$  
+>   - q. $f_{ik} \leq \frac{x_i + 1}{x_k + (1-r_k) \times b_k + r_k \times a_k + 1} \forall i,k  \text{ where } i \neq k \in {0-n}$  
+>   - r. $f_{ik} \geq x_i - (x_k + (1-r_k) \times b_k + r_k \times a_k) \forall i,k  \text{ where } i \neq k \in {0-n}$  
+>   - s. $f_{ik} \geq \frac{1}{100} - |x_i - (x_k + (1-r_k) \times b_k + r_k \times a_k)| \forall i,k  \text{ where } i \neq k \in {0-n}$  
+>   - t. $\sum_{i\neq k}^n u_{ij} \times \left(\left(1 - r_i\right) \times a_i + r_i \times b_i\right) \times \left(1 -g_{ik} \right) \leq l_j \forall j$  
+> 5. $\sum_{i\neq k}^n u_{ij} \times u_{kj} \times \left(1 - v_{ik}\right) \times \left(1 - g_{ik}\right) \forall j \in m$  
+> 6. $u_{ij}, q_j, r_i \in\{0,1\} \forall i,j$  
+> 7. $x_i, y_i \geq 0 \forall i$  
 
 ## Future Work:
 * Create GUI for tool.
