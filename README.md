@@ -476,14 +476,14 @@ Intermediate Variables:
 > $g_{ik}:$ {0,1} boards $i$ and $k$ are NOT in line with each other  
 
 **Subject to constraints:**  
-> **1. All BOM items must be cut exactly once / from exactly one stock board:**\
+>**1. All BOM items must be cut exactly once / from exactly one stock board:**\
 > $\sum_{j=1}^m u_{ij} = 1  \forall i$  
-> **2. The thickness (smallest dimension) of each BOM item must match that of the stock item from which it's cut:**\
+>**2. The thickness (smallest dimension) of each BOM item must match that of the stock item from which it's cut:**\
 >   - a. $u_{ij} \leq \frac{c_i}{h_j} \forall i,j$  
 >   - b. $u_{ij} \leq \frac{h_j}{c_i} \forall i,j$  
-> **3.  If any BOM items are planned to be cut from stock board j, we must buy stock board j:**\
+>**3.  If any BOM items are planned to be cut from stock board j, we must buy stock board j:**\
 > $q_j \geq \frac{\sum_{i=1}^n u_{ij}}{n} \forall j$  
-> **4. BOM items cannot exceed the boundaries of the stock board from which they're cut:**
+>**4. BOM items cannot exceed the boundaries of the stock board from which they're cut:**
 >   - a. $v_{ik} = s_{ik} + t_{ik}$  
 >   - b. $s_{ik} \in {0,1}$  
 >   - c. $s_{ik} \leq \frac{y_k + 1}{y_i + (1-r_i) \times a_i + r_i \times b_i + 1} \forall i \in {0-n}, k \neq i \in {0-n}$  
