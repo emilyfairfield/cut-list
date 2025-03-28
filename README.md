@@ -281,7 +281,7 @@ $t_{ik} \geq y_1 - y_4$
 Plugging in our definitions for $y_1$ and $y_4$, we get:  
 
 > **Constraint 4h:**\
-> $y_i - (y_k + (1-r_k) \times a_k + r_k \times b_k) \forall i \in {0-n}, k \neq i \in {0-n}$  
+> $t_{ik} \geq y_i - (y_k + (1-r_k) \times a_k + r_k \times b_k) \forall i \in {0-n}, k \neq i \in {0-n}$  
 
 ___
 
@@ -501,7 +501,7 @@ Intermediate Variables:
 >   - **e.** $s_{ik} \geq \frac{1}{100} - |y_k - (y_i + (1-r_i) \times a_i + r_i \times b_i)|  \forall i \in {0-n}, k \neq i \in {0-n} $  
 >   - **f.** $t_{ik} \in {0,1}$  
 >   - **g.** $t_{ik} \leq \frac{y_i + 1}{y_k + (1-r_k) \times a_k + r_k \times b_k + 1} \forall i \in {0-n}, k \neq i \in {0-n}$  
->   - **h.** $y_i - (y_k + (1-r_k) \times a_k + r_k \times b_k) \forall i \in {0-n}, k \neq i \in {0-n}$  
+>   - **h.** $t_{ik} \geq y_i - (y_k + (1-r_k) \times a_k + r_k \times b_k) \forall i \in {0-n}, k \neq i \in {0-n}$  
 >   - **i.** $t_{ik} \geq \frac{1}{100} - |y_i - (y_k + (1-r_k) \times a_k + r_k \times b_k)| \forall i \in {0-n}, k \neq i \in {0-n}$  
 >   - **j.** $\sum_{i\neq k}^n u_{ij} \times \left(\left(1-r_i\right) \times b_i + r_i \times a_i\right) \times \left(1-v_{ik} \right) \leq w_j \forall j$  
 >   - **k.** $g_{ik} = d_{ik} + f_{ik}$  
