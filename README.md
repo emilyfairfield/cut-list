@@ -516,7 +516,7 @@ Intermediate Variables:
 >   - **t.** $\sum_{i\neq k}^n u_{ij} \times \left(\left(1 - r_i\right) \times a_i + r_i \times b_i\right) \times \left(1 -g_{ik} \right) \leq l_j \forall j$  
 
 > **5. BOM items cannot overlap each other:** \
-> $\sum_{i\neq k}^n u_{ij} \times u_{kj} \times \left(1 - v_{ik}\right) \times \left(1 - g_{ik}\right) \forall j \in m$  
+> $\sum_{i\neq k}^n u_{ij} \times u_{kj} \times \left(1 - v_{ik}\right) \times \left(1 - g_{ik}\right) = 0 \forall j \in m$  
 
 > **6. Integer Constraints:** \
 > $u_{ij}, q_j, r_i \in\{0,1\} \forall i,j$  
