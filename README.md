@@ -445,15 +445,12 @@ Constraints 4 & 5 control the *relative* positioning of BOM items, and ensure th
 ![](./images/constr6.png)  
 
 ##### 6a. Each BOM item's x coordinate cannot exceed the width of the stock board from which it's cut, minus its effective (accounting for rotation) width:  
-
 > **Constraint 6a:**\
 > $x_{i} \leq \sum_{j=1}^m u_{ij} \times \left(w_{j} - \left(\left(1-r_{i}\right) \times b_{i} + r_{i} \times a_{i} \right) \right) \forall i \in n$  
 
 ##### 6b. Each BOM item's y coordinate cannot exceed the length of the stock board from which it's cut, minus its effective (accounting for rotation) length:  
-
 > **Constraint 6b:**\
 > $y_{i} \leq \sum_{j=1}^m u_{ij} \times \left(l_{j} - \left(\left(1-r_{i}\right) \times a_{i} + r_{i} \times b_{i} \right) \right) \forall i \in n$  
-
 
 #### 7. Integer constraints:
 > **Constraint 7:**\
@@ -535,6 +532,8 @@ Intermediate Variables:
 > $\sum_{i\neq k}^n u_{ij} \times u_{kj} \times \left(1 - v_{ik}\right) \times \left(1 - g_{ik}\right) = 0 \forall j \in m$  
 
 > **6. Enforce Graph Coordinates:** \
+>   - **a.** $x_{i} \leq \sum_{j=1}^m u_{ij} \times \left(w_{j} - \left(\left(1-r_{i}\right) \times b_{i} + r_{i} \times a_{i} \right) \right) \forall i \in n$  
+>   - **b.** $y_{i} \leq \sum_{j=1}^m u_{ij} \times \left(l_{j} - \left(\left(1-r_{i}\right) \times a_{i} + r_{i} \times b_{i} \right) \right) \forall i \in n$  
 
 > **7. Integer Constraints:** \
 > $u_{ij}, q_j, r_i \in\{0,1\} \forall i,j$  
