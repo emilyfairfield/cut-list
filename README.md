@@ -531,7 +531,7 @@ Intermediate Variables:
 > **5. BOM items cannot overlap each other:** \
 > $\sum_{i\neq k}^n u_{ij} \times u_{kj} \times \left(1 - v_{ik}\right) \times \left(1 - g_{ik}\right) = 0 \forall j \in m$  
 
-> **6. Enforce Graph Coordinates:** \
+> **6. Enforce Graph Coordinates:**  
 >   - **a.** $x_{i} \leq \sum_{j=1}^m u_{ij} \times \left(w_{j} - \left(\left(1-r_{i}\right) \times b_{i} + r_{i} \times a_{i} \right) \right) \forall i \in n$  
 >   - **b.** $y_{i} \leq \sum_{j=1}^m u_{ij} \times \left(l_{j} - \left(\left(1-r_{i}\right) \times a_{i} + r_{i} \times b_{i} \right) \right) \forall i \in n$  
 
