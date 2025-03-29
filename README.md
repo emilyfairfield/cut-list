@@ -437,13 +437,26 @@ Notice that each instance of "overlapping" requires that the two boards be BOTH 
 We only have an overlapping problem if all 4 of the above terms evaluate to 1 (in other words, if the answer to all 4 questions is "yes"). If any of the 4 evaluate to 0, then the left hand side of the inequality will evaluate to 0, allowing the solution to be considered. Formalizing this constraint:  
 
 > **Constraint 5:**\
-> $\sum_{i\neq k}^n u_{ij} \times u_{kj} \times \left(1 - v_{ik}\right) \times \left(1 - g_{ik}\right) \forall j \in m$  
+> $\sum_{i\neq k}^n u_{ij} \times u_{kj} \times \left(1 - v_{ik}\right) \times \left(1 - g_{ik}\right) \forall j \in m$   
 
-#### 6. Integer constraints:
+#### 6. Enforce Graph Coordinates:
+Constraints 4 & 5 control the *relative* positioning of BOM items, and ensure that their combined dimensions do not exceed the overall dimensions of the stock boards from which they're cut. However, they do not enforce our desired coordinate plane for graphically depicting our cut list. We want:
+
+![](./images/constr6.png)  
+
+##### 6a. Each BOM item's x coordinate cannot exceed the width of the stock board from which it's cut, minus its effective (accounting for rotation) width:  
+
+> **Constraint 6a:**\
+> $x_{i} \leq \sum_{j=1}^m u_{ij} \times \left(w_{j} - \left(\left(1-r_{i}\right) \times b_{i} + r_{i} \times a_{i} \right) \right) \forall i \in n$ 
+
+##### 6b. Each BOM item's y coordinate cannot exceed the length of the stock board from which it's cut, minus its effective (accounting for rotation) length:
+
+
+#### 7. Integer constraints:
 > **Constraint 6:**\
 > $u_{ij}, q_j, r_i \in\{0,1\} \forall i,j$  
 
-#### 7. Non-negativity constraints:
+#### 8. Non-negativity constraints:
 > **Constraint 7:**\
 > $x_i, y_i \geq 0 \forall i$  
 
@@ -518,10 +531,12 @@ Intermediate Variables:
 > **5. BOM items cannot overlap each other:** \
 > $\sum_{i\neq k}^n u_{ij} \times u_{kj} \times \left(1 - v_{ik}\right) \times \left(1 - g_{ik}\right) = 0 \forall j \in m$  
 
-> **6. Integer Constraints:** \
+> **6. Enforce Graph Coordinates:** \
+
+> **7. Integer Constraints:** \
 > $u_{ij}, q_j, r_i \in\{0,1\} \forall i,j$  
 
-> **7. Non-negativity Constraints:** \
+> **8. Non-negativity Constraints:** \
 > $x_i, y_i \geq 0 \forall i$  
 
 ## Future Work:
