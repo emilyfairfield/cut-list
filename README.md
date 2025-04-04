@@ -26,10 +26,10 @@ Possible fixes to this include:
 ![](./images/output3.png)  
 
 4. More Complex "Quadrant" + Long Skinny Board Example - Fails to Find Optimal Solution:  
-Solution Found by Model:  
+Solution Found by Model requires more expensive 15' x 15' board:   
 ![](./images/output4.png)  
 
-Hand-constructed Optimal Solution:  
+Hand-constructed Optimal Solution uses less expensive 10' x 15' board:  
 ![](./images/optimal_solution.png)  
 
 I was able to isolate the problem to constraints 4j and 4t, below, which are too restrictive to allow board 2 to be "next to" boards 0,1, and 3 while also accounting for the fact that boards 0 and 1 are NOT next to board 3.
