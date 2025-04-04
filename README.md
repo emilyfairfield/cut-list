@@ -13,7 +13,7 @@ Possible fixes to this include:
 1. Reformulating the problem but keeping it as a MIQCP in such a way that the constraints do not rule out optimal solutions
 2. Writing a custom algorithm rather than using the MIQCP formulation
 3. Using Reinforcement Learning
-4. If MICQP or custom algorithm produces perfectly optimal solutions, using these as training examples for a supervised learning algorithm
+4. If MICQP or custom algorithm produces perfectly optimal solutions, using these as training examples for a supervised learning algorithm, to speed up runtime.
 
 ### Example Output:
 1. Simple Vertical Stacking Example - Finds Optimal Solution:  
