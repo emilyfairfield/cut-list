@@ -6,6 +6,36 @@ I searched for an online tool, which, given my BOM, would tell me how many sheet
 
 I made due with that tool at the time just to get the project done, but I swore I would improve upon it. This is my attempt at doing that.
 
+## TL;DR:
+I was able to formulate the problem as a Mixed Integer Quadratically Constrained Program (MICQP) using the pyscipopt library. As desired, the model does NOT require the user to input the quantity of stock boards that they own, but generates its own conservative upper bound for the quantity of each stock board they might need to satisfy their BOM. However, 2 of my constraints (4j. and 4t.) are slightly too restrictive and rule out optimal solutions in the final test case.
+
+Possible fixes to this include:
+1. Reformulating the problem but keeping it as a MIQCP in such a way that the constraints do not rule out optimal solutions
+2. Writing a custom algorithm rather than using the MIQCP formulation
+3. Using Reinforcement Learning
+4. If MICQP or custom algorithm produces perfectly optimal solutions, using these as training examples for a supervised learning algorithm
+
+### Example Output:
+1. Simple Vertical Stacking Example - Finds Optimal Solution:  
+![](./images/output_1.png)  
+
+2. Simple Horizontal Stacking Example - Finds Optimal Solution:  
+![](./images/output2.png)  
+
+3. "Quadrant" Style Example - Finds Optimal Solution:  
+![](./images/output3.png)  
+
+4. More Complex "Quadrant" + Long Skinny Board Example - Fails to Find Optimal Solution:
+Solution Found by Model:
+![](./images/output4.png)  
+
+Hand-constructed Optimal Solution:  
+![](optimal_solution.png)  
+
+I was able to isolate the problem to constraints 4j and 4t, below, which are too restrictive to allow board 2 to be "next to" boards 0,1, and 3 while also accounting for the fact that boards 0 and 1 are NOT next to board 3.
+
+See full code in cut_list.ipynb
+
 ## Assumptions:
 First, let's list our assumptions:
 1. The user only intends to cut the stock boards along their two largest dimensions. (eg, they will never cut/plane a 8' x 4' x 0.75" board down to a 8' x 4' x 0.5" board.) The consequence of this assumption is that we only consider cutting BOM items of a given thickness from stock items of the same thickness.
