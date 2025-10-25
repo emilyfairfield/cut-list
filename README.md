@@ -563,30 +563,6 @@ I was able to isolate the problem to constraints 4j and 4t, which are too restri
 
 </details>
 
-### User Inputs:
-#### Sawblade Kerf:
-> $s \geq 0$
-
-#### Bill of Materials (BOM):
-> $id_i:$ unique identifier for BOM item $i$, to be used in cut list visuals  
-> $a_i:$ length/max dimension of BOM item $i$  
-> $b_i:$ width/mid dimension of BOM item $i$  
-> $t_i:$ thickness/height/min dimension of BOM item $i$  
-> (where $a_i \geq b_i \geq c_i$)  
-> $rot_i:$ 0/1 whether or not the model is permitted to rotate the board wrt the stock board $i$ 
-> $qty_i:$ quantity needed
-
-#### Stock Boards Available for Purchase:
-> $id_j:$ unique identifier for stock item $j$, to be used in cut list visuals
-> $L_j:$ length/max dimension of stock item $j$  
-> $W_j:$ width/mid dimension of stock item $j$  
-> $T_j:$ thickness/height/min dimension of stock item $j$  
-> (where $l_j \geq w_j \geq h_j$)  
-> $cost_j:$ cost of stock item $j$  
-
-> [!NOTE]
-> For model simplicity, $j$ is one **instance** of a stock board with given dimensions. Require the user to give the information only once, but the tool will automatically duplicate it several times... We need to come up with a reasonable upper limit for the quantity of each stock board required to fulfill our BOM. Because we are assuming feasibility, we know that in the worst case, we can only cut one of our BOM boards from each stock board we buy. Of course, we don't know right off the bat which size of stock board would be paired with each BOM item in this worst case. So, a conservative upper limit would be one of *each* type of stock board *per* BOM item.
-
 ### Objective Function & Decision Variables:
 > **Objective is to minimize total board cost**:  
 > $\displaystyle \min_{z,u,x,y,r,left,right,above,below}\\sum_{k\in\mathcal{K}}\sum_{j\in\mathcal{J}} c_j,z_{kj}$
