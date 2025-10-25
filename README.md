@@ -568,7 +568,7 @@ I was able to isolate the problem to constraints 4j and 4t, which are too restri
 > $s \geq 0$
 
 #### Bill of Materials (BOM):
-> $id_i:$ unique identifier for BOM item $i$, to be used in cut list visuals
+> $id_i:$ unique identifier for BOM item $i$, to be used in cut list visuals  
 > $a_i:$ length/max dimension of BOM item $i$  
 > $b_i:$ width/mid dimension of BOM item $i$  
 > $t_i:$ thickness/height/min dimension of BOM item $i$  
@@ -585,18 +585,15 @@ I was able to isolate the problem to constraints 4j and 4t, which are too restri
 > $cost_j:$ cost of stock item $j$  
 
 > [!NOTE]
-> For model simplicity, $j$ is one **instance** of a stock board with given dimensions. Require the user to give the information only once, but the tool will automatically duplicate it several times*.
-
-* We need to come up with a reasonable upper limit for the quantity of each stock board required to fulfill our BOM. Because we are assuming feasibility, we know that in the worst case, we can only cut one of our BOM boards from each stock board we buy. Of course, we don't know right off the bat which size of stock board would be paired with each BOM item in this worst case. So, a conservative upper limit would be one of *each* type of stock board *per* BOM item.
+> For model simplicity, $j$ is one **instance** of a stock board with given dimensions. Require the user to give the information only once, but the tool will automatically duplicate it several times... We need to come up with a reasonable upper limit for the quantity of each stock board required to fulfill our BOM. Because we are assuming feasibility, we know that in the worst case, we can only cut one of our BOM boards from each stock board we buy. Of course, we don't know right off the bat which size of stock board would be paired with each BOM item in this worst case. So, a conservative upper limit would be one of *each* type of stock board *per* BOM item.
 
 ### Objective Function & Decision Variables:
-
-> Objective is to minimize total board cost:
+> **Objective is to minimize total board cost**:  
 > $\displaystyle \min_{z,u,x,y,r,\ell,r!r!r,a,b}\ \sum_{k\in\mathcal{K}}\sum_{j\in\mathcal{J}} c_j,z_{kj}$
 
 where:
 
-> $z_{kj} = \begin{cases} 1 & \text{if slot } k \text{ uses stock type } j \\ 0 & \text{otherwise} \end{cases}$  
+> $`z_{kj} = \begin{cases} 1 & \text{if slot } k \text{ uses stock type } j \\ 0 & \text{otherwise} \end{cases}`$  
 > $u_{ik} = \begin{cases} 1 & \text{if item } i \text{ is cut from board slot } k \\ 0 & \text{otherwise} \end{cases}$  
 > $r_i:$ rotation flag for item $i$ (1 = rotated 90°, 0 = not rotated)  
 > $x_{ik},y_{ik}:$ lower-left coordinates of item $i$ on board $k$  
