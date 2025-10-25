@@ -10,8 +10,8 @@ I made due with that tool at the time just to get the project done, but I swore 
 After some research, I was able to formulate the problem as a Mixed Integer Linear Program (MILP). As desired, the model does NOT require the user to input the quantity of stock boards that they own, but generates its own conservative upper bound for the quantity of each stock board they might need to satisfy their BOM. The model also allows the user to limit rotation of the BOM item with respect to the stock board, if grain direction is important to the user.
 
 ### Example Output:
-CHANGE THIS!
-![](./images/optimal_solution.png)  
+<!-- CHANGE THIS! -->
+<!-- ![](./images/optimal_solution.png)   -->
 
 See full code in cut_list.ipynb
 
