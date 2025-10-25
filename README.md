@@ -634,10 +634,10 @@ If items $i,i'$ share a board $k$, at least one positional relation must hold:
 
 Big-M implications for each spatial relation:
 
-> $\text{Left:};&x_{ik}+w_i\le x_{i'k}+M_x(1-\text{left}{ii'k})$  
-> $\text{Right:};&x{i'k}+w_{i'}\le x_{ik}+M_x(1-\text{right}{ii'k})$  
-> $\text{Above:};&y{ik}+h_i\le y_{i'k}+M_y(1-\text{above}{ii'k})$  
-> $\text{Below:};&y{i'k}+h_{i'}\le y_{ik}+M_y(1-\text{below}_{ii'k})$    
+> $\text{Left:} x_{ik}+w_i\le x_{i'k}+M_x(1-\text{left}{ii'k})$  
+> $\text{Right:} x{i'k}+w_{i'}\le x_{ik}+M_x(1-\text{right}{ii'k})$  
+> $\text{Above:} y{ik}+h_i\le y_{i'k}+M_y(1-\text{above}{ii'k})$  
+> $\text{Below:} y{i'k}+h_{i'}\le y_{ik}+M_y(1-\text{below}_{ii'k})$    
 
 6️. Rotation policy:  
 
