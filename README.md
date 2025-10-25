@@ -597,9 +597,9 @@ where:
 
 > $`u_{ik} = \begin{cases} 1 & \text{if item } i \text{ is cut from board slot } k \\ 0 & \text{otherwise} \end{cases}`$
 
-$r_i:$ rotation flag for item $i$ (1 = rotated 90°, 0 = not rotated)
-$x_{ik},y_{ik}:$ lower-left coordinates of item $i$ on board $k$
-$left_{ii'k},right_{ii'k},above_{ii'k},below_{ii'k}:$ binaries enforcing non-overlap between items $i,i'$ on board $k$
+$r_i:$ rotation flag for item $i$ (1 = rotated 90°, 0 = not rotated)  
+$x_{ik},y_{ik}:$ lower-left coordinates of item $i$ on board $k$  
+$left_{ii'k},right_{ii'k},above_{ii'k},below_{ii'k}:$ binaries enforcing non-overlap between items $i,i'$ on board $k$  
 
 
 
