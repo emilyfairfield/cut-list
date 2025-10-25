@@ -589,26 +589,19 @@ I was able to isolate the problem to constraints 4j and 4t, which are too restri
 
 ### Objective Function & Decision Variables:
 > **Objective is to minimize total board cost**:  
-> $\displaystyle \min_{z,u,x,y,r,\ell,r!r!r,a,b}\ \sum_{k\in\mathcal{K}}\sum_{j\in\mathcal{J}} c_j,z_{kj}$
+> $\displaystyle \min_{z,u,x,y,r,left,right,above,below}\
+\sum_{k\in\mathcal{K}}\sum_{j\in\mathcal{J}} c_j,z_{kj}$
 
 where:
 
-> $`z_{kj} = \begin{cases} 1 & \text{if slot } k \text{ uses stock type } j \\ 0 & \text{otherwise} \end{cases}`$  
-> $u_{ik} = \begin{cases} 1 & \text{if item } i \text{ is cut from board slot } k \\ 0 & \text{otherwise} \end{cases}$  
-> $r_i:$ rotation flag for item $i$ (1 = rotated 90°, 0 = not rotated)  
-> $x_{ik},y_{ik}:$ lower-left coordinates of item $i$ on board $k$  
-> $\ell_{ii'k},r!r!r_{ii'k},a_{ii'k},b_{ii'k}:$ binaries enforcing non-overlap between items $i,i'$ on board $k$  
+> $`z_{kj} = \begin{cases} 1 & \text{if slot } k \text{ uses stock type } j \\ 0 & \text{otherwise} \end{cases}`$
 
+> $`u_{ik} = \begin{cases} 1 & \text{if item } i \text{ is cut from board slot } k \\ 0 & \text{otherwise} \end{cases}`$
 
-### Constraints:
-#### 1. All BOM items must be cut exactly once / from exactly one stock board:
-> **Constraint 1:**\
-> $\sum_{j=1}^m u_{ij} = 1  \forall i$  
+$r_i:$ rotation flag for item $i$ (1 = rotated 90°, 0 = not rotated)
+$x_{ik},y_{ik}:$ lower-left coordinates of item $i$ on board $k$
+$left_{ii'k},right_{ii'k},above_{ii'k},below_{ii'k}:$ binaries enforcing non-overlap between items $i,i'$ on board $k$
 
-#### 2. The thickness (smallest dimension) of each BOM item must match that of the stock item from which it's cut: 
-We want to constrain our problem such that:
-
-$`u_{ij} = \begin{cases} 0 & \text{if } c_i \neq h_j \\ \in \{0,1\} & \text{otherwise} \end{cases}`$  
 
 
 
