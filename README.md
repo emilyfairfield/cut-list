@@ -589,7 +589,7 @@ I was able to isolate the problem to constraints 4j and 4t, which are too restri
 
 ### Objective Function & Decision Variables:
 > **Objective is to minimize total board cost**:  
-> $\displaystyle \min_{z,u,x,y,r,left,right,above,below}\\sum_{k\in\{K}}\sum_{j\in\{J}} c_j,z_{kj}$
+> $\displaystyle \min_{z,u,x,y,r,left,right,above,below}\\sum_{k\in\mathcal{K}}\sum_{j\in\mathcal{J}} c_j,z_{kj}$
 
 where:
 
@@ -624,14 +624,60 @@ Define the thickness-compatible stock types:
 
 Effective (possibly rotated) in-plane dimensions of each item $i$:  
 
-> $w_i = (1-r_i),b_i + r_i,a_i + s$  
-> $h_i = (1-r_i),a_i + r_i,b_i + s$  
+> $w_i = (1-r_i) \times b_i + r_i \times a_i + s$  
+> $h_i = (1-r_i) \times a_i + r_i \times b_i + s$  
 
 Board dimensions chosen for slot $k$:  
 
-> $W_k = \sum_{j\in\mathcal{J}} W_j,z_{kj}$    
-> $L_k = \sum_{j\in\mathcal{J}} L_j,z_{kj}$  
+> $W_k = \sum_{j\in\mathcal{J}} W_j \times z_{kj}$    
 
+> $L_k = \sum_{j\in\mathcal{J}} L_j \times z_{kj}$  
+
+### Constraints
+1. At most one stock type per slot:  
+
+> $\displaystyle \sum_{j\in\mathcal{J}} z_{kj} \le 1 \qquad \forall k\in\mathcal{K}$  
+
+2. Each item assigned to exactly one slot:  
+
+> $\displaystyle \sum_{k\in\mathcal{K}} u_{ik} = 1 \qquad \forall i\in\mathcal{I}$  
+
+3️. Thickness compatibility and slot activeness:  
+
+> $\displaystyle u_{ik} \le \sum_{j\in\mathcal{J}i} z{kj} \qquad \forall i\in\mathcal{I},;k\in\mathcal{K}$  
+
+4️. Items must fit within their assigned boards:  
+
+$\begin{aligned}
+x_{ik} &\le W_k - w_i + M_x(1-u_{ik}) \quad &&\forall i,k \[4pt]
+y_{ik} &\le L_k - h_i + M_y(1-u_{ik}) \quad &&\forall i,k \[4pt]
+x_{ik} &\ge 0,\quad y_{ik}\ge 0 \quad &&\forall i,k
+\end{aligned}$  
+
+5️. Non-overlap (4-way disjunction):  
+If items $i,i'$ share a board $k$, at least one positional relation must hold:
+
+> $\text{left}{ii'k}+\text{right}{ii'k}+\text{above}{ii'k}+\text{below}{ii'k}\ge u_{ik}+u_{i'k}-1 \qquad \forall i<i',k$  
+
+Big-M implications for each spatial relation:
+
+$\begin{aligned}
+\text{Left:};&x_{ik}+w_i\le x_{i'k}+M_x(1-\text{left}{ii'k}) \[2pt]
+\text{Right:};&x{i'k}+w_{i'}\le x_{ik}+M_x(1-\text{right}{ii'k}) \[2pt]
+\text{Above:};&y{ik}+h_i\le y_{i'k}+M_y(1-\text{above}{ii'k}) \[2pt]
+\text{Below:};&y{i'k}+h_{i'}\le y_{ik}+M_y(1-\text{below}_{ii'k})
+\end{aligned}$  
+
+6️. Rotation policy:  
+
+$0\le r_i\le R_i,\quad r_i\in{0,1}\qquad\forall i\in\mathcal{I}$  
+
+### Outputs
+
+Purchase list: number of boards per stock type  
+> $n_j=\sum_k z_{kj}$  
+
+Cut list: item $i$ → slot $k$, board type $j$, position $(x_{ik},y_{ik})$, orientation $r_i$, and effective size $(w_i,h_i,\tau_i)$  
 
 ## Future Work:
 * Enable user to specify multiple desired wood species for one project without having to run the model multiple times.
