@@ -623,11 +623,9 @@ Board dimensions chosen for slot $k$:
 > $\displaystyle u_{ik} \le \sum_{j\in\mathcal{J}i} z{kj} \qquad \forall i\in\mathcal{I},;k\in\mathcal{K}$  
 
 4️. Items must fit within their assigned boards:  
-
-
-> $x_{ik} &\le W_k - w_i + M_x(1-u_{ik}) \quad &&\forall i,k$  
-> $y_{ik} &\le L_k - h_i + M_y(1-u_{ik}) \quad &&\forall i,k$  
-> $x_{ik} &\ge 0,\quad y_{ik}\ge 0 \quad &&\forall i,k$  
+> $x_{ik} \le W_k - w_i + M_x(1-u_{ik}) \quad \forall i,k$  
+> $y_{ik} \le L_k - h_i + M_y(1-u_{ik}) \quad \forall i,k$  
+> $x_{ik} \ge 0,\quad y_{ik}\ge 0 \quad \forall i,k$  
 
 5️. Non-overlap (4-way disjunction):  
 If items $i,i'$ share a board $k$, at least one positional relation must hold:
