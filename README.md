@@ -7,7 +7,7 @@ I searched for an online tool, which, given my BOM, would tell me how many sheet
 I made due with that tool at the time just to get the project done, but I swore I would improve upon it. This is my attempt at doing that.
 
 ## TL;DR:
-After some research, I was able to formulate the problem as a Mixed Integer Linear Program (MILP). As desired, the model does NOT require the user to input the quantity of stock boards that they own, but generates its own conservative upper bound for the quantity of each stock board they might need to satisfy their BOM. The model also allows the user to limit rotation of the BOM item with respect to the stock board, if grain direction is important to the user.
+My initial constraints for preventing boards from overlapping were too restrictive, ruling out optimal solutions. After some research, I was able to resolve this using four-way non-overlap constraints that follow the classical facility-layout formulation of Meller and Gau (1996), using Big-M linearization as refined by Castillo and Westerlund (2005). As desired, the model does NOT require the user to input the quantity of stock boards that they own, but generates its own conservative upper bound for the quantity of each stock board they might need to satisfy their BOM. The model also allows the user to limit rotation of the BOM item with respect to the stock board, if grain direction is important to the user.
 
 ### Example Output:
 <!-- CHANGE THIS! -->
@@ -653,3 +653,14 @@ Cut list: item $i$ → slot $k$, board type $j$, position $(x_{ik},y_{ik})$, ori
 ## Future Work:
 * Enable user to specify multiple desired wood species for one project without having to run the model multiple times.
 * Pull candidate stock items from common hardware stores' APIs instead of requiring user to input their information.
+
+## References:
+Meller, R.D., & Gau, K.Y. (1996).  
+The Facility Layout Problem: Recent and Emerging Trends and Perspectives.  
+Journal of Manufacturing Systems, 15(5), 351–366.  
+DOI: 10.1016/0278-6125(96)84117-6  
+
+Castillo, I., Westerlund, T., Egea, J.A., & Björk, K. (2005).  
+An Exact MILP Model for the Unequal-Area Facility Layout Problem.  
+Computers & Operations Research, 33(1), 214–230.  
+DOI: 10.1016/j.cor.2004.03.005  
