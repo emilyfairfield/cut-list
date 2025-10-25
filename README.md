@@ -597,11 +597,40 @@ where:
 
 > $`u_{ik} = \begin{cases} 1 & \text{if item } i \text{ is cut from board slot } k \\ 0 & \text{otherwise} \end{cases}`$
 
-$r_i:$ rotation flag for item $i$ (1 = rotated 90°, 0 = not rotated)  
-$x_{ik},y_{ik}:$ lower-left coordinates of item $i$ on board $k$  
-$left_{ii'k},right_{ii'k},above_{ii'k},below_{ii'k}:$ binaries enforcing non-overlap between items $i,i'$ on board $k$  
+> $r_i:$ rotation flag for item $i$ (1 = rotated 90°, 0 = not rotated)  
 
+> $x_{ik},y_{ik}:$ lower-left coordinates of item $i$ on board $k$  
 
+> $left_{ii'k},right_{ii'k},above_{ii'k},below_{ii'k}:$ binaries enforcing non-overlap between items $i,i'$ on board $k$  
+
+### Parameters
+
+| Symbol  | Meaning |
+| ------------- | ------------- |
+| $\mathcal{I}$  | set of items (BOM parts)  |
+| $\mathcal{J}$  | set of stock board types  |
+| $\mathcal{K}$  | set of potential board slots (upper bound on purchased boards)  |
+| $a_i,b_i,\tau_i$  | item $i$ length, width, thickness  |
+| $R_i\in{0,1}$  | rotation allowed flag  |
+| $L_j,W_j,\Theta_j,c_j$  | stock type $j$ length, width, thickness, cost  |
+| $s$  | in-plane kerf / gap allowance  |
+| $M_x,M_y$  | big-M constants (e.g., max board width / length)  |
+
+Define the thickness-compatible stock types:
+
+> $\mathcal{J}_i={j\in\mathcal{J}:\Theta_j=\tau_i}$
+
+### Derived Quantities
+
+Effective (possibly rotated) in-plane dimensions of each item $i$:  
+
+> $w_i = (1-r_i),b_i + r_i,a_i + s$  
+> $h_i = (1-r_i),a_i + r_i,b_i + s$  
+
+Board dimensions chosen for slot $k$:  
+
+> $W_k = \sum_{j\in\mathcal{J}} W_j,z_{kj}$    
+> $L_k = \sum_{j\in\mathcal{J}} L_j,z_{kj}$  
 
 
 ## Future Work:
