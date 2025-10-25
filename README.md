@@ -589,8 +589,7 @@ I was able to isolate the problem to constraints 4j and 4t, which are too restri
 
 ### Objective Function & Decision Variables:
 > **Objective is to minimize total board cost**:  
-> $\displaystyle \min_{z,u,x,y,r,left,right,above,below}\
-\sum_{k\in\mathcal{K}}\sum_{j\in\mathcal{J}} c_j,z_{kj}$
+> $\displaystyle \min_{z,u,x,y,r,left,right,above,below}\\sum_{k\in\mathcal{K}}\sum_{j\in\mathcal{J}} c_j,z_{kj}$
 
 where:
 
