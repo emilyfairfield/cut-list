@@ -7,49 +7,26 @@ I searched for an online tool, which, given my BOM, would tell me how many sheet
 I made due with that tool at the time just to get the project done, but I swore I would improve upon it. This is my attempt at doing that.
 
 ## TL;DR:
-I was able to formulate the problem as a Mixed Integer Quadratically Constrained Program (MICQP) using the pyscipopt library. As desired, the model does NOT require the user to input the quantity of stock boards that they own, but generates its own conservative upper bound for the quantity of each stock board they might need to satisfy their BOM. However, 2 of my constraints (4j. and 4t.) are slightly too restrictive and rule out optimal solutions in the final test case.
-
-Possible fixes to this include:
-1. Reformulating the problem but keeping it as a MIQCP in such a way that the constraints do not rule out optimal solutions
-2. Writing a custom algorithm rather than using the MIQCP formulation
-3. Using Reinforcement Learning
-4. If MICQP or custom algorithm produces perfectly optimal solutions, using these as training examples for a supervised learning algorithm, to speed up runtime.
+After some research, I was able to formulate the problem as a Mixed Integer Linear Program (MILP). As desired, the model does NOT require the user to input the quantity of stock boards that they own, but generates its own conservative upper bound for the quantity of each stock board they might need to satisfy their BOM. The model also allows the user to limit rotation of the BOM item with respect to the stock board, if grain direction is important to the user.
 
 ### Example Output:
-1. Simple Vertical Stacking Example - Finds Optimal Solution:  
-![](./images/output_1.png)  
-
-2. Simple Horizontal Stacking Example - Finds Optimal Solution:  
-![](./images/output2.png)  
-
-3. "Quadrant" Style Example - Finds Optimal Solution:  
-![](./images/output3.png)  
-
-4. More Complex "Quadrant" + Long Skinny Board Example - Fails to Find Optimal Solution:  
-Solution Found by Model requires more expensive 15' x 15' board:   
-![](./images/output4.png)  
-
-Hand-constructed Optimal Solution uses less expensive 10' x 15' board:  
+CHANGE THIS!
 ![](./images/optimal_solution.png)  
-
-I was able to isolate the problem to constraints 4j and 4t, below, which are too restrictive to allow board 2 to be "next to" boards 0,1, and 3 while also accounting for the fact that boards 0 and 1 are NOT next to board 3.
 
 See full code in cut_list.ipynb
 
 ## Assumptions:
 First, let's list our assumptions:
 1. The user only intends to cut the stock boards along their two largest dimensions. (eg, they will never cut/plane a 8' x 4' x 0.75" board down to a 8' x 4' x 0.5" board.) The consequence of this assumption is that we only consider cutting BOM items of a given thickness from stock items of the same thickness.
-2. Grain direction doesn't matter. In other words, the user does not mind if some of the grain "points" vertically on one board and "points" horizontally on another. The consequence of this assumption is that we don't have to consider - or even know - grain direction when "rotating" BOM items to fit them together on a stock board.
-3. The user does not care about which wood species their pieces come from. They simply want to minimize cost.
-4. All pieces in the BOM, and all pieces of stock wood, are rectangular prisms.
-5. All user-provided dimensions (of BOM items and stock boards available for purchase) are provided in the same units of measure.
-6. The minimum desired width for any BOM item will be greater than $\frac{1}{100}$ units (see constraint 4d below).
-7. The solution is feasible.
+2. The user does not care about which wood species their pieces come from. They simply want to minimize cost. Therefore, the model does not consider - or even know - the grain species of the stock boards or BOM items. If this is a problem, the user can run the model on subsets of stock boards and BOM items according to their species - one run per species.
+3. All pieces in the BOM, and all pieces of stock wood, are rectangular prisms.
+4. All user-provided dimensions (of BOM items and stock boards available for purchase) are provided in the same units of measure.
+5. The solution is feasible.
 
 ## Problem Formulation: 
-
 <details>
 <summary>Details</summary>
+The below was my attempt, before researching, at formulating the problem as an MILP:
 Let's see if we can formulate the problem as a Mixed Integer Linear Program (MILP):
 
 ### Objective Function & Decision Variables, Attempt 1:
@@ -76,7 +53,6 @@ where:
 > $h_j:$ height/min dimension of stock item $j$  
 > (where $l_j \geq w_j \geq h_j$)  
 > $p_j:$ price of stock item $j$  
-
 
 > [!NOTE]
 > For model simplicity, $j$ is one **instance** of a stock board with given dimensions. Require the user to give the information only once, but the tool should automatically duplicate it several times*.
@@ -490,9 +466,7 @@ Constraints 4 & 5 control the *relative* positioning of BOM items, and ensure th
 > **Constraint 8:**\
 > $x_i, y_i \geq 0 \forall i$  
 
-</details>
-
-## The Final Problem:  
+### The Final Problem, Pre-Research:  
 We set out to create a Mixed Integer Linear Program, but ended up having to incorporate quadratic constraints (see constraint 4), so we ended up with a Mixed Integer Quadratically Constrained Problem, as follows:
 
 **Objective is to minimize cost:**  
@@ -571,8 +545,76 @@ Intermediate Variables:
 > **8. Non-negativity Constraints:** \
 > $x_i, y_i \geq 0 \forall i$  
 
+### Results of the MICQP:
+> 1. Simple vertical stacking example - Finds Optimal Solution:
+![](./images/output1.png) 
+
+> 2. Simple horizontal stacking example - Finds Optimal Solution:
+![](./images/output2.png) 
+
+> 3. "Quadrant" style example - Finds Optimal Solution:
+![](./images/output3.png) 
+
+> 4. More complex "quadrant" + long skinny board example - Fails to find optimal solution. Solution found by model requires more expensive 15' x 15' board, whereas hand-constructed example uses less expensive 10' x 10' board:
+![](./images/output4.png) 
+![](./images/optimal_solution.png) 
+
+I was able to isolate the problem to constraints 4j and 4t, which are too restrictive to allow board 2 to be "next to" boards 0,1, and 3 while also accounting for the fact that boards 0 and 1 are NOT next to board 3. 
+
+</details>
+
+### User Inputs:
+#### Sawblade Kerf:
+> $s \geq 0$
+
+#### Bill of Materials (BOM):
+> $id_i:$ unique identifier for BOM item $i$, to be used in cut list visuals
+> $a_i:$ length/max dimension of BOM item $i$  
+> $b_i:$ width/mid dimension of BOM item $i$  
+> $t_i:$ thickness/height/min dimension of BOM item $i$  
+> (where $a_i \geq b_i \geq c_i$)  
+> $rot_i:$ 0/1 whether or not the model is permitted to rotate the board wrt the stock board $i$ 
+> $qty_i:$ quantity needed
+
+#### Stock Boards Available for Purchase:
+> $id_j:$ unique identifier for stock item $j$, to be used in cut list visuals
+> $L_j:$ length/max dimension of stock item $j$  
+> $W_j:$ width/mid dimension of stock item $j$  
+> $T_j:$ thickness/height/min dimension of stock item $j$  
+> (where $l_j \geq w_j \geq h_j$)  
+> $cost_j:$ cost of stock item $j$  
+
+> [!NOTE]
+> For model simplicity, $j$ is one **instance** of a stock board with given dimensions. Require the user to give the information only once, but the tool will automatically duplicate it several times*.
+
+* We need to come up with a reasonable upper limit for the quantity of each stock board required to fulfill our BOM. Because we are assuming feasibility, we know that in the worst case, we can only cut one of our BOM boards from each stock board we buy. Of course, we don't know right off the bat which size of stock board would be paired with each BOM item in this worst case. So, a conservative upper limit would be one of *each* type of stock board *per* BOM item.
+
+### Objective Function & Decision Variables:
+
+> Objective is to minimize total board cost:
+> $\displaystyle \min_{z,u,x,y,r,\ell,r!r!r,a,b}\ \sum_{k\in\mathcal{K}}\sum_{j\in\mathcal{J}} c_j,z_{kj}$
+
+where:
+
+> $z_{kj} = \begin{cases} 1 & \text{if slot } k \text{ uses stock type } j \\ 0 & \text{otherwise} \end{cases}$  
+> $u_{ik} = \begin{cases} 1 & \text{if item } i \text{ is cut from board slot } k \\ 0 & \text{otherwise} \end{cases}$  
+> $r_i:$ rotation flag for item $i$ (1 = rotated 90°, 0 = not rotated)  
+> $x_{ik},y_{ik}:$ lower-left coordinates of item $i$ on board $k$  
+> $\ell_{ii'k},r!r!r_{ii'k},a_{ii'k},b_{ii'k}:$ binaries enforcing non-overlap between items $i,i'$ on board $k$  
+
+
+### Constraints:
+#### 1. All BOM items must be cut exactly once / from exactly one stock board:
+> **Constraint 1:**\
+> $\sum_{j=1}^m u_{ij} = 1  \forall i$  
+
+#### 2. The thickness (smallest dimension) of each BOM item must match that of the stock item from which it's cut: 
+We want to constrain our problem such that:
+
+$`u_{ij} = \begin{cases} 0 & \text{if } c_i \neq h_j \\ \in \{0,1\} & \text{otherwise} \end{cases}`$  
+
+
+
 ## Future Work:
-* Create GUI for tool.
-* Enable user to specify grain direction preferences.
 * Enable user to specify multiple desired wood species for one project without having to run the model multiple times.
 * Pull candidate stock items from common hardware stores' APIs instead of requiring user to input their information.
