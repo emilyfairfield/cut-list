@@ -624,11 +624,10 @@ Board dimensions chosen for slot $k$:
 
 4️. Items must fit within their assigned boards:  
 
-$\begin{aligned}
-x_{ik} &\le W_k - w_i + M_x(1-u_{ik}) \quad &&\forall i,k \[4pt]
-y_{ik} &\le L_k - h_i + M_y(1-u_{ik}) \quad &&\forall i,k \[4pt]
-x_{ik} &\ge 0,\quad y_{ik}\ge 0 \quad &&\forall i,k
-\end{aligned}$  
+
+> $x_{ik} &\le W_k - w_i + M_x(1-u_{ik}) \quad &&\forall i,k$  
+> $y_{ik} &\le L_k - h_i + M_y(1-u_{ik}) \quad &&\forall i,k$  
+> $x_{ik} &\ge 0,\quad y_{ik}\ge 0 \quad &&\forall i,k$  
 
 5️. Non-overlap (4-way disjunction):  
 If items $i,i'$ share a board $k$, at least one positional relation must hold:
@@ -637,12 +636,10 @@ If items $i,i'$ share a board $k$, at least one positional relation must hold:
 
 Big-M implications for each spatial relation:
 
-$\begin{aligned}
-\text{Left:};&x_{ik}+w_i\le x_{i'k}+M_x(1-\text{left}{ii'k}) \[2pt]
-\text{Right:};&x{i'k}+w_{i'}\le x_{ik}+M_x(1-\text{right}{ii'k}) \[2pt]
-\text{Above:};&y{ik}+h_i\le y_{i'k}+M_y(1-\text{above}{ii'k}) \[2pt]
-\text{Below:};&y{i'k}+h_{i'}\le y_{ik}+M_y(1-\text{below}_{ii'k})
-\end{aligned}$  
+> $\text{Left:};&x_{ik}+w_i\le x_{i'k}+M_x(1-\text{left}{ii'k})$  
+> $\text{Right:};&x{i'k}+w_{i'}\le x_{ik}+M_x(1-\text{right}{ii'k})$  
+> $\text{Above:};&y{ik}+h_i\le y_{i'k}+M_y(1-\text{above}{ii'k})$  
+> $\text{Below:};&y{i'k}+h_{i'}\le y_{ik}+M_y(1-\text{below}_{ii'k})$    
 
 6️. Rotation policy:  
 
