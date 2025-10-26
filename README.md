@@ -10,8 +10,9 @@ I made due with that tool at the time just to get the project done, but I swore 
 My initial constraints for preventing boards from overlapping were too restrictive, ruling out optimal solutions. After some research, I was able to resolve this using four-way non-overlap constraints that follow the classical facility-layout formulation of Meller and Gau (1996)[[1]](#1), using Big-M linearization as refined by Castillo and Westerlund (2005)[[2]](#2). As desired, the model does NOT require the user to input the quantity of stock boards that they own, but generates its own conservative upper bound for the quantity of each stock board they might need to satisfy their BOM. The model also allows the user to limit rotation of the BOM item with respect to the stock board, if grain direction is important to the user.
 
 ### Example Output:
-<!-- CHANGE THIS! -->
-<!-- ![](./images/optimal_solution.png)   -->
+Finds the optimal solution with double "quadrant + long skinny board" example:  
+![](./images/final_output1.png)  
+![](./images/final_output2.png)  
 
 See full code in cut_list.ipynb
 
