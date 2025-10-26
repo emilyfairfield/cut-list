@@ -7,7 +7,7 @@ I searched for an online tool, which, given my BOM, would tell me how many sheet
 I made due with that tool at the time just to get the project done, but I swore I would improve upon it. This is my attempt at doing that.
 
 ## TL;DR:
-My initial constraints for preventing boards from overlapping were too restrictive, ruling out optimal solutions. After some research, I was able to resolve this using four-way non-overlap constraints that follow the classical facility-layout formulation of Meller and Gau (1996), using Big-M linearization as refined by Castillo and Westerlund (2005) \cite{MellerGau1996,CastilloWesterlund2005}. As desired, the model does NOT require the user to input the quantity of stock boards that they own, but generates its own conservative upper bound for the quantity of each stock board they might need to satisfy their BOM. The model also allows the user to limit rotation of the BOM item with respect to the stock board, if grain direction is important to the user.
+My initial constraints for preventing boards from overlapping were too restrictive, ruling out optimal solutions. After some research, I was able to resolve this using four-way non-overlap constraints that follow the classical facility-layout formulation of Meller and Gau (1996)[[1]](#1), using Big-M linearization as refined by Castillo and Westerlund (2005)[[2]](#2). As desired, the model does NOT require the user to input the quantity of stock boards that they own, but generates its own conservative upper bound for the quantity of each stock board they might need to satisfy their BOM. The model also allows the user to limit rotation of the BOM item with respect to the stock board, if grain direction is important to the user.
 
 ### Example Output:
 <!-- CHANGE THIS! -->
@@ -655,33 +655,12 @@ Cut list: item $i$ → slot $k$, board type $j$, position $(x_{ik},y_{ik})$, ori
 * Pull candidate stock items from common hardware stores' APIs instead of requiring user to input their information.
 
 ## References:
-@article{MellerGau1996,
-  author    = {Meller, Russell D. and Gau, Kevin Y.},
-  title     = {The Facility Layout Problem: Recent and Emerging Trends and Perspectives},
-  journal   = {Journal of Manufacturing Systems},
-  volume    = {15},
-  number    = {5},
-  pages     = {351--366},
-  year      = {1996},
-  doi       = {10.1016/0278-6125(96)84117-6},
-  url       = {https://doi.org/10.1016/0278-6125(96)84117-6},
-  abstract  = {Introduced the four-way disjunctive formulation (left, right, above, below)
-               and Big-M linearization for rectangle non-overlap, foundational to modern
-               MILP models for facility layout, cutting, and packing.}
-}
+<a id="1">[1]</a> Meller, R.D., & Gau, K.Y. (1996).  
+The Facility Layout Problem: Recent and Emerging Trends and Perspectives.  
+Journal of Manufacturing Systems, 15(5), 351–366.  
+DOI: 10.1016/0278-6125(96)84117-6  
 
-
-@article{CastilloWesterlund2005,
-  author    = {Castillo, Ignacio and Westerlund, Tommy and Egea, José A. and Björk, Krister},
-  title     = {An Exact {MILP} Model for the Unequal-Area Facility Layout Problem},
-  journal   = {Computers \& Operations Research},
-  volume    = {33},
-  number    = {1},
-  pages     = {214--230},
-  year      = {2005},
-  doi       = {10.1016/j.cor.2004.03.005},
-  url       = {https://doi.org/10.1016/j.cor.2004.03.005},
-  abstract  = {Formulated an exact MILP for unequal-area facility layout using
-               Big-M implications to linearize the four-way disjunctive
-               non-overlap relations, now widely applied to cutting and packing.}
-}
+<a id="1">[2]</a> Castillo, I., Westerlund, T., Egea, J.A., & Björk, K. (2005).  
+An Exact MILP Model for the Unequal-Area Facility Layout Problem.  
+Computers & Operations Research, 33(1), 214–230.  
+DOI: 10.1016/j.cor.2004.03.005  
