@@ -7,7 +7,7 @@ I searched for an online tool, which, given my BOM, would tell me how many sheet
 I made due with that tool at the time just to get the project done, but I swore I would improve upon it. This is my attempt at doing that.
 
 ## TL;DR:
-My initial constraints for preventing boards from overlapping were too restrictive, ruling out optimal solutions. After some research, I was able to resolve this using four-way non-overlap constraints that follow the classical facility-layout formulation of Meller and Gau (1996)[[1]](#1), using Big-M linearization as refined by Castillo and Westerlund (2005)[[2]](#2). As desired, the model does NOT require the user to input the quantity of stock boards that they own, but generates its own conservative upper bound for the quantity of each stock board they might need to satisfy their BOM. The model also allows the user to limit rotation of the BOM item with respect to the stock board, if grain direction is important to the user.
+My initial constraints for preventing boards from overlapping were too restrictive, ruling out optimal solutions. After some research, I was able to resolve this using four-way non-overlap constraints that follow the classical facility-layout formulation of Meller and Gau (1996)[[1]](#1), using Big-M linearization as refined by Castillo and Westerlund (2005)[[2]](#2). As desired, the model does NOT require the user to input the quantity of stock boards that they own, but generates its own conservative upper bound for the quantity of each stock board they might need to satisfy their BOM. The model also allows the user to limit rotation of the BOM item with respect to the stock board, if grain direction is important to the user. The tool finds the globally optimal solution using the PuLP library and displays it using Matplotlib. It is slow to run, so future work could include writing less than optimal heuristics.
 
 ### Example Output:
 Given this input BOM:  
@@ -33,15 +33,19 @@ Finds the optimal solution:
 
 See full code in cut_list.ipynb
 
-## Usage Instructions (Windows):  
-1. Navigate to project folder in cmd prompt
-2. Run the following commands to install the required libraries in an isolated virtual environment specific to this project:  
+## Usage Instructions (Windows): 
+1. Using command prompt, navigate to the folder where you want this tool to reside.
+2. Run the following command to clone the repository there:  
+git clone https://github.com/emilyfairfield/cut-list.git  
+3. Run the following commands to install required files and libraries in an isolated virtual environment specific to this project:  
+cd cut-list  
 python3 -m venv venv  
 venv\Scripts\Activate  
+python.exe -m pip install --upgrade pip  
 pip install -r requirements.txt  
-3. Open cut_list.ipynb in your preferred notebook tool - Jupyter, VS Code, etc.
-4. Select the venv you created as your kernel
-5. To run using the sample data, simply click "Run All", OR alter the BOM and/or Stock boards (see data/bom.csv and stock.csv) according to your project requirements (see User Inputs below for a full description of required inputs).
+4. Open cut_list.ipynb in your preferred notebook environment.  
+5. Select the venv you just created as your kernel. For example, in VSCode, in the upper right corner, if needed, select "Install python + jupyter" in the kernel dropdown, then select "venv".
+6. To run using the sample data, simply click "Run All", OR alter the BOM and/or Stock boards (see data/bom.csv and data/stock.csv) according to your project requirements (see User Inputs below for a full description of required inputs)
 
 ## User Inputs:
 data/bom.csv must contain the following:
@@ -701,6 +705,7 @@ Cut list: item $i$ → slot $k$, board type $j$, position $(x_{ik},y_{ik})$, ori
 ## Future Work:
 * Enable user to specify multiple desired wood species for one project without having to run the model multiple times.
 * Pull candidate stock items from common hardware stores' APIs instead of requiring user to input their information.
+* Compare to less optimal heuristics to try to achieve better run time.  
 
 ## References:
 <a id="1">[1]</a> Meller, R.D., & Gau, K.Y. (1996).  
