@@ -9,7 +9,7 @@ I made due with that tool at the time just to get the project done, but I swore 
 ## TL;DR:
 My initial constraints for preventing boards from overlapping were too restrictive, ruling out optimal solutions. After some research, I was able to resolve this using four-way non-overlap constraints that follow the classical facility-layout formulation of Meller and Gau (1996)[[1]](#1), using Big-M linearization as refined by Castillo and Westerlund (2005)[[2]](#2). As desired, the model does NOT require the user to input the quantity of stock boards that they own, but generates its own conservative upper bound for the quantity of each stock board they might need to satisfy their BOM. The model also allows the user to limit rotation of the BOM item with respect to the stock board, if grain direction is important to the user. The tool finds the globally optimal solution using the PuLP library and displays it using Matplotlib. It is slow to run, so future work could include writing less than optimal heuristics.
 
-### Example Output:
+### Example Input:
 Given this input BOM:  
 | $id$  | $a$ | $b$|$t$|$rot$|$qty$|
 | ------------- | ------------- | ------------- |------------- |------------- |------------- |
@@ -26,8 +26,9 @@ And this input Stock List:
 | T2  | 15  | 15  | 0.75 |40|
 | T3  | 15  | 10  | 0.50 |20|  
 
+### Example Output:  
 
-Finds the optimal solution:  
+The model finds the optimal solution:  
 ![](./images/final_output1.png)  
 ![](./images/final_output2.png)  
 
