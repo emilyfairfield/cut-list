@@ -10,11 +10,58 @@ I made due with that tool at the time just to get the project done, but I swore 
 My initial constraints for preventing boards from overlapping were too restrictive, ruling out optimal solutions. After some research, I was able to resolve this using four-way non-overlap constraints that follow the classical facility-layout formulation of Meller and Gau (1996)[[1]](#1), using Big-M linearization as refined by Castillo and Westerlund (2005)[[2]](#2). As desired, the model does NOT require the user to input the quantity of stock boards that they own, but generates its own conservative upper bound for the quantity of each stock board they might need to satisfy their BOM. The model also allows the user to limit rotation of the BOM item with respect to the stock board, if grain direction is important to the user.
 
 ### Example Output:
-Finds the optimal solution with double "quadrant + long skinny board" example:  
+Given this input BOM:  
+| $id$  | $a$ | $b$|$t$|$rot$|$qty$|
+| ------------- | ------------- | ------------- |------------- |------------- |------------- |
+| P1 | 5  | 4 | 0.75 |1|2|
+| P2  | 5  | 5  | 0.75 |1|2|
+| P3  | 10  | 1  | 0.75 |1| 2|
+| P4  | 9  | 5  | 0.75 | 1|2|
+| P5  | 10  | 5  | 0.75 |1| 2|  
+
+And this input Stock List:  
+| $id$  | $L$ | $W$|$T$|$cost$|
+| ------------- | ------------- | ------------- |------------- |------------- |
+| T1 | 15  | 10 | 0.75 |30|
+| T2  | 15  | 15  | 0.75 |40|
+| T3  | 15  | 10  | 0.50 |20|  
+
+
+Finds the optimal solution:  
 ![](./images/final_output1.png)  
 ![](./images/final_output2.png)  
 
 See full code in cut_list.ipynb
+
+## Usage Instructions (Windows):  
+1. Navigate to project folder in cmd prompt
+2. Run the following commands to install the required libraries in an isolated virtual environment specific to this project:  
+python3 -m venv venv  
+venv\Scripts\Activate  
+pip install -r requirements.txt  
+3. Open cut_list.ipynb in your preferred notebook tool - Jupyter, VS Code, etc.
+4. Select the venv you created as your kernel
+5. To run using the sample data, simply click "Run All", OR alter the BOM and/or Stock boards (see data/bom.csv and stock.csv) according to your project requirements (see User Inputs below for a full description of required inputs).
+
+## User Inputs:
+data/bom.csv must contain the following:
+|Field Name | Description |
+| ---|---|
+| $id$ | Unique ID of your choosing, for labeling the output cut list diagrams. |
+| $a$ | length of item |
+| $b$ | width of item |
+| $t$ | thickness of item|
+| $rot$ | 0/1: whether or not rotation is acceptable, with respect to the stock board. An item is considered "rotated" if its longest dimension is perpendicular to the longest dimension of the stock board from which it's cut. The user may care about this if they're staining a project and care about grain direction.|
+| $qty$ | quantity needed |
+
+data/stock.csv must contain the following:
+|Field Name | Description |
+| ---|---|
+| $id$ | Unique ID of your choosing, for labeling the output cut list diagrams. |
+| $L$ | length of stock board available for purchase|
+| $W$ | width of stock board available for purchase |
+| $T$ | thickness of stock board available for purchase |
+| $cost$ | cost of stock board available for purchase|
 
 ## Assumptions:
 First, let's list our assumptions:
@@ -32,7 +79,7 @@ Let's see if we can formulate the problem as a Mixed Integer Linear Program (MIL
 
 ### Objective Function & Decision Variables, Attempt 1:
 > **Objective is to minimize cost:**\
-> $min_{\left(q_j\right)}\left( \sum_{j=1}^&infin; p_j q_j \right)$  
+> $min_{\left(q_j\right)}\left( \sum_{j=1}^\infin p_j q_j \right)$  
 
 where:  
 > $p_j:$ price of stock item $j$    
