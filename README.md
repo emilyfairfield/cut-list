@@ -1,5 +1,6 @@
 # cut-list
-## Motivation:
+## Motivation:  
+<img src="./images/murphy_bed.JPEG" alt="Murphy Bed Folded Up" width="42%"> <img src="./images/murphy_bed_2.JPEG" alt="Murphy Bed Folded Down" width="50%">  
 A few years ago, my family and I built a murphy bed with bookcases in our home. We painstakingly put together our Bill of Materials (BOM) for the project, and found that many of the boards could be cut from large sheets of plywood. 
 
 I searched for an online tool, which, given my BOM, would tell me how many sheets of plywood to buy, and subsequently, how to cut them, with the goal of minimizing cost. I found a tool that was close to what I needed - it told me how to cut stock boards to get my BOM, with the goal of using the fewest boards. However, it assumed I had these stock boards on hand and required that I input their quantities.
